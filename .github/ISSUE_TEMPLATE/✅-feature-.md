@@ -3,7 +3,7 @@ name: "✅ Feature "
 about: Feature 작업 내용을 입력하세요.
 title: ''
 labels: ''
-assignees: songseunghei, Ojongseok
+assignees: Ojongseok, songseunghei
 
 ---
 
