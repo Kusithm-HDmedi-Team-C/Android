@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        println("테스트용")
+        
         binding.tv.text = "2312423"
     }
 
