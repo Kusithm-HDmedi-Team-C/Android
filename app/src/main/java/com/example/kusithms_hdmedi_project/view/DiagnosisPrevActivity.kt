@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
-import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
+import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisPrevBinding
 
-class DiagnosisActivity : AppCompatActivity() {
-    private var _binding : ActivityDiagnosisBinding? = null
+class DiagnosisPrevActivity : AppCompatActivity() {
+    private var _binding : ActivityDiagnosisPrevBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityDiagnosisBinding.inflate(layoutInflater)
+        _binding = ActivityDiagnosisPrevBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportFragmentManager.beginTransaction().add(R.id.framelayout, DiagnosisPrevFragment()).commit()
 
     }
 

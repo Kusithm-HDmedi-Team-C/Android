@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Kusithms_HDmedi_Project"
         tools:targetApi="31">
         <activity
+            android:name=".view.DiagnosisPrevActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.DiagnosisResultActivity"
             android:exported="false" />
         <activity
