@@ -38,7 +38,7 @@
                         android:layout_marginTop="72dp"
                         android:scaleType="fitXY"
                         android:layout_gravity="center"
-                        android:src="@drawable/sample" />
+                        android:src="@drawable/img_diagnosis_prev_character" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"

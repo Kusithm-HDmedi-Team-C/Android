@@ -21,6 +21,13 @@ class DiagnosisPrevFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.llTop.setOnClickListener {
+
+        }
+
+        binding.tvStart.setOnClickListener {
+            parentFragmentManager.beginTransaction().remove(this).commit()
+        }
 
     }
 

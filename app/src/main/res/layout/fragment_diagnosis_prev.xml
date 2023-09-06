@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/ll_top"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,19 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="24sp"
         android:layout_marginTop="74dp"
+        android:fontFamily="@font/pretendard_bold"
         android:lineHeight="32dp"
         android:layout_marginHorizontal="24dp"
         android:text="@string/자가_진단_전_안내사항을_확인해주세요"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/sample"/>
+        android:id="@+id/iv_chr"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_diagnosis_prev_character"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -41,7 +45,8 @@
             android:textColor="@color/white"
             android:lineHeight="20dp"
             android:textSize="15sp"
-            android:text="본 진단은 ....\n본 진단은 ....\n본 진단은 ...."/>
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/본_진단은_간이진단으로_"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
@@ -50,12 +55,13 @@
         android:layout_weight="1"/>
 
     <TextView
+        android:id="@+id/tv_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingVertical="18dp"
         android:background="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:text="시작하기"/>
 
