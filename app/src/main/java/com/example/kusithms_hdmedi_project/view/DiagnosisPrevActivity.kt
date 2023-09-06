@@ -16,9 +16,13 @@ class DiagnosisPrevActivity : AppCompatActivity() {
         _binding = ActivityDiagnosisPrevBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 첫 진입할 때 확인사항 띄워주기
         supportFragmentManager.beginTransaction().add(R.id.framelayout, DiagnosisPrevFragment()).commit()
 
+
     }
+
+
 
     override fun onDestroy() {
         _binding = null
