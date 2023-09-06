@@ -4,8 +4,10 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.kusithms_hdmedi_project.R
+import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
 import com.google.android.material.appbar.AppBarLayout
@@ -33,11 +35,28 @@ class DiagnosisActivity : AppCompatActivity() {
             }
         }
 
+        binding.ivClose.setOnClickListener {
+            val dialog = BaseDialog(
+                this,
+                getString(R.string.자가진단을_종료하시겠습니까_),
+                getString(R.string.기록된_사항은_저장되지_않아요),
+                positive = {
+                    finish()
+                    Toast.makeText(this, "중단되었습니다.", Toast.LENGTH_SHORT).show()
+                },
+                negative = {
+                    Toast.makeText(this, "취소취소", Toast.LENGTH_SHORT).show()
+                }
+            )
+            dialog.show(supportFragmentManager, "")
+        }
+
         binding.pbDiagnosis.progress = 10
     }
 
     fun selectAnswer(view: View) {
         binding.appBarLayout.setExpanded(false, true)
+
 
         when (view.id) {
             R.id.ll_answer_1 -> {
