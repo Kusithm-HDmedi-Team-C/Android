@@ -32,11 +32,11 @@ class DiagnosisActivity : AppCompatActivity() {
                 binding.ivClose.setColorFilter(resources.getColor(R.color.white))
             }
         }
-
-//        binding.appBarLayout.
     }
 
     fun selectAnswer(view: View) {
+        binding.appBarLayout.setExpanded(false, true)
+
         when (view.id) {
             R.id.ll_answer_1 -> {
                 binding.llAnswer1.setBackgroundResource(R.drawable.bg_diagnosis_question_check_on)
