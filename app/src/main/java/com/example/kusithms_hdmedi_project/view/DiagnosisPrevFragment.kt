@@ -62,7 +62,10 @@ class DiagnosisPrevFragment: Fragment() {
                     startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                     visibility = View.VISIBLE
                 }
-                binding.tvStart.visibility = View.VISIBLE
+                binding.tvStart.apply {
+                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+                    visibility = View.VISIBLE
+                }
             }
         }
         touchStatus++

@@ -8,4 +8,9 @@
     <string name="본_진단은_만_4_13_">본 진단은 만 4~13세의 자녀를 둔 양육자를 대상으로 합니다.</string>
     <string name="보다_객관적인_진단을_위해_솔직하게_">보다 객관적인 진단을 위해 솔직하게 응답해주세요.</string>
     <string name="시작하기">시작하기</string>
+    <string name="매우_그래요">매우 그래요</string>
+    <string name="대체로_그래요">대체로 그래요</string>
+    <string name="가끔_그래요">가끔 그래요</string>
+    <string name="거의_그러지_않아요">거의 그러지 않아요</string>
+    <string name="진단_마치기">진단 마치기</string>
 </resources>
