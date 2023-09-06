@@ -1,5 +1,6 @@
 package com.example.kusithms_hdmedi_project.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,10 +32,13 @@ class DiagnosisPrevFragment: Fragment() {
         }
 
         binding.tvStart.setOnClickListener {
-            parentFragmentManager.beginTransaction().remove(this).commit()
+//            parentFragmentManager.beginTransaction().remove(this).commit()
+            startActivity(Intent(requireContext(), DiagnosisActivity::class.java))
+            requireActivity().finish()
         }
     }
 
+    /** 화면 터칠할 때마다 다음단계의 View Visible, 애니메이션 처리 **/
     private fun setupVisibleView() {
         when (touchStatus) {
             0 -> {
