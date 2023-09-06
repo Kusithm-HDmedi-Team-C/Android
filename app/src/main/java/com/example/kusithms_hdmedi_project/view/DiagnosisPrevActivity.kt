@@ -4,20 +4,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
-import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
+import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisPrevBinding
 
-class DiagnosisActivity : AppCompatActivity() {
-    private var _binding : ActivityDiagnosisBinding? = null
+class DiagnosisPrevActivity : AppCompatActivity() {
+    private var _binding : ActivityDiagnosisPrevBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityDiagnosisBinding.inflate(layoutInflater)
+        _binding = ActivityDiagnosisPrevBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 첫 진입할 때 확인사항 띄워주기
+        supportFragmentManager.beginTransaction().add(R.id.framelayout, DiagnosisPrevFragment()).commit()
 
 
     }
+
+
 
     override fun onDestroy() {
         _binding = null

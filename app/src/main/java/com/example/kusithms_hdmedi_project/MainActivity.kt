@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
 import com.example.kusithms_hdmedi_project.view.DiagnosisActivity
+import com.example.kusithms_hdmedi_project.view.DiagnosisPrevActivity
 
 class MainActivity : AppCompatActivity() {
     private var _binding : ActivityMainBinding? = null
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            startActivity(Intent(this, DiagnosisActivity::class.java))
+            startActivity(Intent(this, DiagnosisPrevActivity::class.java))
         }
     }
 

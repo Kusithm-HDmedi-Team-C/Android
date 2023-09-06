@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/ll_top"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_blue"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="74dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:lineHeight="32dp"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/자가_진단_전_안내사항을_확인해주세요"/>
+
+    <ImageView
+        android:id="@+id/iv_character"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        tools:visibility="visible"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_diagnosis_prev_character"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_chat_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:background="@drawable/bg_prev_chat"
+        android:layout_marginHorizontal="24dp"
+        android:padding="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_on"
+            android:layout_marginRight="14dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:lineHeight="20dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/본_진단은_간이진단으로_"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_chat_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:visibility="visible"
+        android:visibility="invisible"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_prev_chat"
+        android:layout_marginHorizontal="24dp"
+        android:padding="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_on"
+            android:layout_marginRight="14dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:lineHeight="20dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/본_진단은_만_4_13_"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_chat_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_prev_chat"
+        android:layout_marginHorizontal="24dp"
+        android:padding="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_on"
+            android:layout_marginRight="14dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:lineHeight="20dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/보다_객관적인_진단을_위해_솔직하게_"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:paddingVertical="18dp"
+        android:fontFamily="@font/pretendard_semibold"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:textColor="#1A1E27"
+        android:text="@string/시작하기"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
