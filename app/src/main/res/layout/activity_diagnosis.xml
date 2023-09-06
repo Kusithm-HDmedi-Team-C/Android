@@ -47,7 +47,6 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_marginLeft="24dp">
 
                         <ImageView
@@ -74,6 +73,7 @@
                     style="@style/Theme.TransparentStatusBar"
                     app:layout_collapseMode="pin"
                     app:contentInsetStart="0dp"
+                    android:layout_marginBottom="10dp"
                     app:contentInsetStartWithNavigation="0dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -102,6 +102,14 @@
                             app:tint="@color/white" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.Toolbar>
+                <ProgressBar
+                    android:id="@+id/pb_diagnosis"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:max="100"
+                    android:layout_gravity="bottom"
+                    android:progressDrawable="@drawable/style_diagnosis_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"/>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -270,6 +278,7 @@
                     android:textSize="16sp"
                     android:paddingVertical="16dp"
                     android:paddingHorizontal="42dp"
+                    android:visibility="gone"
                     android:fontFamily="@font/pretendard_semibold"
                     android:background="@drawable/bg_rad_48"
                     android:backgroundTint="@color/main_blue"

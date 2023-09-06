@@ -32,6 +32,8 @@ class DiagnosisActivity : AppCompatActivity() {
                 binding.ivClose.setColorFilter(resources.getColor(R.color.white))
             }
         }
+
+        binding.pbDiagnosis.progress = 10
     }
 
     fun selectAnswer(view: View) {

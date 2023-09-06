@@ -25,14 +25,12 @@ class DiagnosisPrevFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.llTop.setOnClickListener {
+            // 화면 어디든 터치하면 다음 View 보이도록 설정
             setupVisibleView()
         }
 
         binding.tvStart.setOnClickListener {
-//            parentFragmentManager.beginTransaction().remove(this).commit()
             startActivity(Intent(requireContext(), DiagnosisActivity::class.java))
             requireActivity().finish()
         }
