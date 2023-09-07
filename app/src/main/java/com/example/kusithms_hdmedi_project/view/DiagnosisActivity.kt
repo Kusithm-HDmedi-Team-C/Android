@@ -1,10 +1,12 @@
 package com.example.kusithms_hdmedi_project.view
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -71,6 +73,7 @@ class DiagnosisActivity : AppCompatActivity() {
         }
 
         binding.ivBack.setOnClickListener {
+            resetAnswerBoxUi()
             diagnosisVM.prevQuestion(--nowQuestionIndex)
         }
 
@@ -104,43 +107,72 @@ class DiagnosisActivity : AppCompatActivity() {
 
         when (view.id) {
             R.id.ll_answer_1 -> {
-                refreshAnswerBoxUi(binding.llAnswer1, binding.ivCheck1, binding.tvAnswer1, true)
+                selectedAnswerBoxUi(binding.llAnswer1, binding.ivCheck1, binding.tvAnswer1)
             }
             R.id.ll_answer_2 -> {
-                refreshAnswerBoxUi(binding.llAnswer2, binding.ivCheck2, binding.tvAnswer2, true)
+                selectedAnswerBoxUi(binding.llAnswer2, binding.ivCheck2, binding.tvAnswer2)
             }
             R.id.ll_answer_3 -> {
-                refreshAnswerBoxUi(binding.llAnswer3, binding.ivCheck3, binding.tvAnswer3, true)
+                selectedAnswerBoxUi(binding.llAnswer3, binding.ivCheck3, binding.tvAnswer3)
             }
             R.id.ll_answer_4 -> {
-                refreshAnswerBoxUi(binding.llAnswer4, binding.ivCheck4, binding.tvAnswer4, true)
+                selectedAnswerBoxUi(binding.llAnswer4, binding.ivCheck4, binding.tvAnswer4)
             }
         }
+        
     }
 
     /** 체크된 답변 UI 강조하고 초기화 **/
-    private fun refreshAnswerBoxUi(
+    private fun selectedAnswerBoxUi(
         llAnswer: View,
         ivCheck : ImageView,
         tvAnswer : TextView,
-        checked: Boolean
     ) {
-        if (checked) {
-            llAnswer.setBackgroundResource(R.drawable.bg_diagnosis_question_check_on)
-            ivCheck.setImageResource(R.drawable.ic_check_on)
-            tvAnswer.setTextColor(Color.parseColor("#4E7FFF"))
+        window?.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
+        if (nowQuestionIndex+1 == diagnosisVM.questionList.value.size) {
+            // 마지막 문항인 경우
+            binding.tvFinish.visibility = View.VISIBLE
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+            resetAnswerBoxUi()
+        } else {
             lifecycleScope.launch {
-                delay(600)
-                refreshAnswerBoxUi(llAnswer, ivCheck, tvAnswer, false)
+                delay(500)
 
                 diagnosisVM.nextQuestion(++nowQuestionIndex)
+                window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+                resetAnswerBoxUi()
             }
-        } else {
-            llAnswer.setBackgroundResource(R.drawable.bg_diagnosis_question_check_off)
-            ivCheck.setImageResource(R.drawable.ic_check_off)
-            tvAnswer.setTextColor(Color.parseColor("#8D94A0"))
         }
+
+        llAnswer.setBackgroundResource(R.drawable.bg_diagnosis_question_check_on)
+        ivCheck.setImageResource(R.drawable.ic_check_on)
+        tvAnswer.setTextColor(Color.parseColor("#4E7FFF"))
+    }
+
+    /** 체크된 답변 UI상태 초기화하는 함수 **/
+    private fun resetAnswerBoxUi() {
+        binding.llAnswer1.setBackgroundResource(R.drawable.bg_diagnosis_question_check_off)
+        binding.llAnswer2.setBackgroundResource(R.drawable.bg_diagnosis_question_check_off)
+        binding.llAnswer3.setBackgroundResource(R.drawable.bg_diagnosis_question_check_off)
+        binding.llAnswer4.setBackgroundResource(R.drawable.bg_diagnosis_question_check_off)
+        binding.ivCheck1.setImageResource(R.drawable.ic_check_off)
+        binding.ivCheck2.setImageResource(R.drawable.ic_check_off)
+        binding.ivCheck3.setImageResource(R.drawable.ic_check_off)
+        binding.ivCheck4.setImageResource(R.drawable.ic_check_off)
+        binding.tvAnswer1.setTextColor(Color.parseColor("#8D94A0"))
+        binding.tvAnswer2.setTextColor(Color.parseColor("#8D94A0"))
+        binding.tvAnswer3.setTextColor(Color.parseColor("#8D94A0"))
+        binding.tvAnswer4.setTextColor(Color.parseColor("#8D94A0"))
+    }
+
+    fun finishDiagnosis() {
+        startActivity(Intent(this, DiagnosisResultActivity::class.java).apply {
+
+        })
+        finish()
     }
 
     override fun onDestroy() {

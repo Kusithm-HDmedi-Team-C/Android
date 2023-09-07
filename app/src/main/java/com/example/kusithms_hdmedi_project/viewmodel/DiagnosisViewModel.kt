@@ -31,11 +31,12 @@ class DiagnosisViewModel: ViewModel() {
         val testList = mutableListOf<String>()
         testList.add("첫번째 문항")
         testList.add("두번째 문항")
-        testList.add("세번째 문항")
+        testList.add("세번째 문항 3333")
         testList.add("네번째 문항")
         testList.add("다섯번째 문항")
-        testList.add("여섯번째 문항")
+        testList.add("여섯번째 문항 666666666666666666666")
         testList.add("일곱번째 문항")
+        testList.add("여덟번째 문항 마지막입니다~")
 
         _questionList.update { testList }
     }
