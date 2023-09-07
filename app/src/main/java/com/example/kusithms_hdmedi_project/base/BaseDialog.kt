@@ -41,13 +41,13 @@ class BaseDialog(
         binding.tvTitle.text = title
         binding.tvSubTitle.text = subTitle
 
-        // 확인, Positive 버튼 터치 시
+        // 확인, Positive 버튼 터치 시 람다로 들어온 positive() 실행
         binding.btnOk.setOnClickListener {
             dismiss()
             positive()
         }
 
-        // 취소, Negative 버튼 터치 시
+        // 취소, Negative 버튼 터치 시 람다로 들어온 negative() 실행
         binding.btnCancel.setOnClickListener {
             dismiss()
             negative()

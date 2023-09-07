@@ -278,7 +278,6 @@
                     android:textSize="16sp"
                     android:paddingVertical="16dp"
                     android:paddingHorizontal="42dp"
-                    android:visibility="gone"
                     android:fontFamily="@font/pretendard_semibold"
                     android:background="@drawable/bg_rad_48"
                     android:backgroundTint="@color/main_blue"
