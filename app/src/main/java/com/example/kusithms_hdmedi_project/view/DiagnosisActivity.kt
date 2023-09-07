@@ -92,7 +92,7 @@ class DiagnosisActivity : AppCompatActivity() {
                 }
             }
         }
-        diagnosisVM.pbEachSize.observe(this) {
+        diagnosisVM.pbStepSize.observe(this) {
             binding.pbDiagnosis.progress = it
 
         }

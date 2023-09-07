@@ -13,18 +13,18 @@ class DiagnosisViewModel: ViewModel() {
     private val _nowQuestion = MutableStateFlow<String>("")
     val nowQuestion = _nowQuestion.asStateFlow()     // 현재 사용자가 보고 있는 문항
 
-    val pbEachSize = MutableLiveData<Int>(0)
+    val pbStepSize = MutableLiveData<Int>(0)
 
     fun nextQuestion(nextIndex : Int) {
         _nowQuestion.value = questionList.value[nextIndex]
 
-        pbEachSize.value = pbEachSize.value?.plus(100 / questionList.value.size)
+        pbStepSize.value = pbStepSize.value?.plus(100 / questionList.value.size)
     }
 
     fun prevQuestion(prevIndex: Int) {
         _nowQuestion.value = questionList.value[prevIndex]
 
-        pbEachSize.value = pbEachSize.value?.minus(100 / questionList.value.size)
+        pbStepSize.value = pbStepSize.value?.minus(100 / questionList.value.size)
     }
 
     fun getQuestionList() {
