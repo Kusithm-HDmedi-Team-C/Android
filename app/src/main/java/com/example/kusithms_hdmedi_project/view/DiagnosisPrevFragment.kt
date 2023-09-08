@@ -23,8 +23,8 @@ class DiagnosisPrevFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 최초 터치시에만 작동
         binding.llTop.setOnClickListener {
-            // 화면 어디든 터치하면 다음 View 보이도록 설정
             setupVisibleView()
             binding.llTop.isClickable = false
         }
@@ -33,9 +33,10 @@ class DiagnosisPrevFragment: Fragment() {
             startActivity(Intent(requireContext(), DiagnosisActivity::class.java))
             requireActivity().finish()
         }
+
     }
 
-    /** 화면 터칠할 때마다 다음단계의 View Visible, 애니메이션 처리 **/
+    /** 체크할 때 마다 다음단계의 View Visible, 애니메이션 처리 **/
     private fun setupVisibleView() {
         binding.ivCharacter.apply {
             visibility = View.VISIBLE
@@ -69,36 +70,6 @@ class DiagnosisPrevFragment: Fragment() {
                 visibility = View.VISIBLE
             }
         }
-
-//        when (touchStatus) {
-//            0 -> {
-//                binding.ivCharacter.apply {
-//                    visibility = View.VISIBLE
-//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_right_to_left))
-//                }
-//                binding.llChat1.apply {
-//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-//                    visibility = View.VISIBLE
-//                }
-//            }
-//            1 -> {
-//                binding.llChat2.apply {
-//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-//                    visibility = View.VISIBLE
-//                }
-//            }
-//            2 -> {
-//                binding.llChat3.apply {
-//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-//                    visibility = View.VISIBLE
-//                }
-//                binding.tvStart.apply {
-//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-//                    visibility = View.VISIBLE
-//                }
-//            }
-//        }
-//        touchStatus++
     }
 
     override fun onDestroy() {

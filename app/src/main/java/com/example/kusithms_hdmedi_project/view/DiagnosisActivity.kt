@@ -19,6 +19,8 @@ import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
+import com.example.kusithms_hdmedi_project.util.Extensions.repeatOnStarted
+import com.example.kusithms_hdmedi_project.util.Extensions.testMethod
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisViewModel
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.delay
@@ -84,21 +86,17 @@ class DiagnosisActivity : AppCompatActivity() {
 
     private fun subscribeUi() {
         /** 모든 설문 문항 **/
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                diagnosisVM.questionList.collect {
-                    diagnosisVM.nextQuestion(++nowQuestionIndex)
-                }
+        repeatOnStarted {
+            diagnosisVM.questionList.collect {
+                diagnosisVM.nextQuestion(++nowQuestionIndex)
             }
         }
 
         /** 현재 사용자가 보고 있는 문항 **/
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                diagnosisVM.nowQuestion.collect {
-                    binding.tvQuestionNumber.text = (nowQuestionIndex+1).toString() +"."
-                    binding.tvQuestion.text = it
-                }
+        repeatOnStarted {
+            diagnosisVM.nowQuestion.collect {
+                binding.tvQuestionNumber.text = (nowQuestionIndex+1).toString() +"."
+                binding.tvQuestion.text = it
             }
         }
 
@@ -106,6 +104,7 @@ class DiagnosisActivity : AppCompatActivity() {
         diagnosisVM.pbStepSize.observe(this) {
             binding.pbDiagnosis.progress = it
         }
+
     }
 
     /** 답변 선택 **/
