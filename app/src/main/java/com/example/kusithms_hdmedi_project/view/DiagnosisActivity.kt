@@ -3,6 +3,7 @@ package com.example.kusithms_hdmedi_project.view
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,7 +25,7 @@ class DiagnosisActivity : AppCompatActivity() {
     val diagnosisVM by viewModels<DiagnosisViewModel>()
 
     private lateinit var diagnosisContentsViewPagerAdapter: DiagnosisContentsViewPagerAdapter
-    private var nowQuestionIndex = -1
+    private var nowPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,8 @@ class DiagnosisActivity : AppCompatActivity() {
                 super.onPageSelected(position)
 
                 diagnosisVM.refreshPb(position+1)
+                binding.vpDiagnosisContents.isUserInputEnabled = diagnosisVM.answerList.value[position] != -1
+                nowPage = position
             }
         })
 
@@ -74,7 +77,7 @@ class DiagnosisActivity : AppCompatActivity() {
         }
 
         binding.ivBack.setOnClickListener {
-            diagnosisVM.prevQuestion(--nowQuestionIndex)
+
         }
     }
 
@@ -82,33 +85,26 @@ class DiagnosisActivity : AppCompatActivity() {
         /** 모든 설문 문항 **/
         repeatOnStarted {
             diagnosisVM.questionList.collect {
-                diagnosisVM.nextQuestion(++nowQuestionIndex)
                 diagnosisContentsViewPagerAdapter = DiagnosisContentsViewPagerAdapter(this@DiagnosisActivity, it)
 
                 binding.vpDiagnosisContents.adapter = diagnosisContentsViewPagerAdapter
 
                 diagnosisContentsViewPagerAdapter.setItemClickListener(object : DiagnosisContentsViewPagerAdapter.OnItemClickListener {
-                    override fun onClickAnswer1(v: View, position: Int) {
+                    override fun onClickAnswer(v: View, position: Int, answerNumber: Int) {
                         binding.appBarLayout.setExpanded(false, true)
-
+                        diagnosisVM.setAnswerList(position, answerNumber)
                     }
-
-                    override fun onClickAnswer2(v: View, position: Int) {
-                        binding.appBarLayout.setExpanded(false, true)
-
-                    }
-
-                    override fun onClickAnswer3(v: View, position: Int) {
-                        binding.appBarLayout.setExpanded(false, true)
-
-                    }
-
-                    override fun onClickAnswer4(v: View, position: Int) {
-                        binding.appBarLayout.setExpanded(false, true)
-
-                    }
-
                 })
+            }
+        }
+
+        // 답변 목록이 유지되는 옵저빙
+        repeatOnStarted {
+            diagnosisVM.answerList.collect {
+                binding.vpDiagnosisContents.isUserInputEnabled = it[nowPage] != -1
+                var sum = 0
+                it.map { sum+=it }
+                Log.d("taag", sum.toString())
             }
         }
 

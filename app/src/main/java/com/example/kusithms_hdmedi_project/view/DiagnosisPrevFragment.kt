@@ -54,6 +54,7 @@ class DiagnosisPrevFragment: Fragment() {
                 startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                 visibility = View.VISIBLE
             }
+            binding.ivCheck1.isClickable = false
         }
 
         binding.ivCheck2.setOnClickListener {
@@ -62,6 +63,7 @@ class DiagnosisPrevFragment: Fragment() {
                 startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                 visibility = View.VISIBLE
             }
+            binding.ivCheck2.isClickable = false
         }
 
         binding.ivCheck3.setOnClickListener {
@@ -70,6 +72,7 @@ class DiagnosisPrevFragment: Fragment() {
                 startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
                 visibility = View.VISIBLE
             }
+            binding.ivCheck3.isClickable = false
         }
     }
 

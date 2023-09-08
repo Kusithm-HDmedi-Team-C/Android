@@ -37,25 +37,25 @@ class DiagnosisContentsViewPagerAdapter(
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer1, binding.ivCheck1, binding.tvAnswer1)
 
-                itemClickListener.onClickAnswer1(it, position)
+                itemClickListener.onClickAnswer(it, position, 0)
             }
             binding.llAnswer2.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer2, binding.ivCheck2, binding.tvAnswer2)
 
-                itemClickListener.onClickAnswer2(it, position)
+                itemClickListener.onClickAnswer(it, position, 1)
             }
             binding.llAnswer3.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer3, binding.ivCheck3, binding.tvAnswer3)
 
-                itemClickListener.onClickAnswer3(it, position)
+                itemClickListener.onClickAnswer(it, position, 2)
             }
             binding.llAnswer4.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer4, binding.ivCheck4, binding.tvAnswer4)
 
-                itemClickListener.onClickAnswer4(it, position)
+                itemClickListener.onClickAnswer(it, position, 3)
             }
 
         }
@@ -93,10 +93,7 @@ class DiagnosisContentsViewPagerAdapter(
     }
 
     interface OnItemClickListener {
-        fun onClickAnswer1(v: View, position: Int)
-        fun onClickAnswer2(v: View, position: Int)
-        fun onClickAnswer3(v: View, position: Int)
-        fun onClickAnswer4(v: View, position: Int)
+        fun onClickAnswer(v: View, position: Int, answerNumber: Int)
     }
 
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
