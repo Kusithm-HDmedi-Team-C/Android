@@ -20,7 +20,6 @@ class DiagnosisViewModel: ViewModel() {
 
         pbStepSize.value = pbStepSize.value?.plus(100 / questionList.value.size)
     }
-
     fun prevQuestion(prevIndex: Int) {
         _nowQuestion.value = questionList.value[prevIndex]
 
@@ -33,10 +32,7 @@ class DiagnosisViewModel: ViewModel() {
         testList.add("두번째 문항")
         testList.add("세번째 문항 3333")
         testList.add("네번째 문항")
-        testList.add("다섯번째 문항")
-        testList.add("여섯번째 문항 666666666666666666666")
-        testList.add("일곱번째 문항")
-        testList.add("여덟번째 문항 마지막입니다~")
+        testList.add("다섯번째 문항 5555 마지막 문항입니다.")
 
         _questionList.update { testList }
     }

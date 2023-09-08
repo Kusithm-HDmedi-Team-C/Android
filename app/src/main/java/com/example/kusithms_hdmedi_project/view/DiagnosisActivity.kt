@@ -41,6 +41,10 @@ class DiagnosisActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         diagnosisVM.getQuestionList()
+        subscribeUi()
+
+        // 꼭 프래그먼트로 가하나..? 그냥 현재 액티비티에서 뷰에만 애니메이션 못 넣나??
+//        supportFragmentManager.beginTransaction().add()...
 
 
         /** 상단 앱바 펼쳐지거나 접히는거 리스너 **/
@@ -76,7 +80,9 @@ class DiagnosisActivity : AppCompatActivity() {
             resetAnswerBoxUi()
             diagnosisVM.prevQuestion(--nowQuestionIndex)
         }
+    }
 
+    private fun subscribeUi() {
         /** 모든 설문 문항 **/
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -95,9 +101,10 @@ class DiagnosisActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // 상단에 설문 진행률 프로그레스
         diagnosisVM.pbStepSize.observe(this) {
             binding.pbDiagnosis.progress = it
-
         }
     }
 
@@ -119,7 +126,6 @@ class DiagnosisActivity : AppCompatActivity() {
                 selectedAnswerBoxUi(binding.llAnswer4, binding.ivCheck4, binding.tvAnswer4)
             }
         }
-        
     }
 
     /** 체크된 답변 UI 강조하고 초기화 **/

@@ -15,8 +15,6 @@ class DiagnosisPrevFragment: Fragment() {
     private var _binding : FragmentDiagnosisPrevBinding? = null
     private val binding get() = _binding!!
 
-    private var touchStatus = 0
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentDiagnosisPrevBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,6 +26,7 @@ class DiagnosisPrevFragment: Fragment() {
         binding.llTop.setOnClickListener {
             // 화면 어디든 터치하면 다음 View 보이도록 설정
             setupVisibleView()
+            binding.llTop.isClickable = false
         }
 
         binding.tvStart.setOnClickListener {
@@ -38,35 +37,68 @@ class DiagnosisPrevFragment: Fragment() {
 
     /** 화면 터칠할 때마다 다음단계의 View Visible, 애니메이션 처리 **/
     private fun setupVisibleView() {
-        when (touchStatus) {
-            0 -> {
-                binding.ivCharacter.apply {
-                    visibility = View.VISIBLE
-                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_right_to_left))
-                }
-                binding.llChat1.apply {
-                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-                    visibility = View.VISIBLE
-                }
-            }
-            1 -> {
-                binding.llChat2.apply {
-                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-                    visibility = View.VISIBLE
-                }
-            }
-            2 -> {
-                binding.llChat3.apply {
-                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-                    visibility = View.VISIBLE
-                }
-                binding.tvStart.apply {
-                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-                    visibility = View.VISIBLE
-                }
+        binding.ivCharacter.apply {
+            visibility = View.VISIBLE
+            startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_right_to_left))
+        }
+        binding.llChat1.apply {
+            startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+            visibility = View.VISIBLE
+        }
+
+        binding.ivCheck1.setOnClickListener {
+            binding.ivCheck1.setImageResource(R.drawable.ic_check_on)
+            binding.llChat2.apply {
+                startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+                visibility = View.VISIBLE
             }
         }
-        touchStatus++
+
+        binding.ivCheck2.setOnClickListener {
+            binding.ivCheck2.setImageResource(R.drawable.ic_check_on)
+            binding.llChat3.apply {
+                startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+                visibility = View.VISIBLE
+            }
+        }
+
+        binding.ivCheck3.setOnClickListener {
+            binding.ivCheck3.setImageResource(R.drawable.ic_check_on)
+            binding.tvStart.apply {
+                startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+                visibility = View.VISIBLE
+            }
+        }
+
+//        when (touchStatus) {
+//            0 -> {
+//                binding.ivCharacter.apply {
+//                    visibility = View.VISIBLE
+//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.slide_right_to_left))
+//                }
+//                binding.llChat1.apply {
+//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+//                    visibility = View.VISIBLE
+//                }
+//            }
+//            1 -> {
+//                binding.llChat2.apply {
+//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+//                    visibility = View.VISIBLE
+//                }
+//            }
+//            2 -> {
+//                binding.llChat3.apply {
+//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+//                    visibility = View.VISIBLE
+//                }
+//                binding.tvStart.apply {
+//                    startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
+//                    visibility = View.VISIBLE
+//                }
+//            }
+//        }
+//        touchStatus++
     }
 
     override fun onDestroy() {
