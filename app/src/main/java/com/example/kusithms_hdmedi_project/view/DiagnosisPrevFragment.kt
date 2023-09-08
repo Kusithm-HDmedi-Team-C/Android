@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisPrevBinding
+import com.example.kusithms_hdmedi_project.util.Extensions
 
 class DiagnosisPrevFragment: Fragment() {
     private var _binding : FragmentDiagnosisPrevBinding? = null

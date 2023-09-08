@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
+    <data>
+        <variable
+            name="response"
+            type="com.example.kusithms_hdmedi_project.model.QuestionResponse" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -24,7 +28,7 @@
                 android:fontFamily="@font/pretendard_bold"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="36dp"
-                android:text="1."/>
+                android:text="@{Integer.toString(response.number) + `.`}" />
 
             <TextView
                 android:id="@+id/tv_question"
@@ -34,9 +38,9 @@
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:lineHeight="28dp"
-                android:text="우리 아이는 세부적인 면에 대해 꼼꼼하게 주의를 기울이지 못하거나 학업에서 부주의한 실수를 한다."
+                android:text="@{response.title}"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="6dp"/>
+                android:layout_marginTop="6dp" />
 
             <TextView
                 android:id="@+id/tv_question_ex"
@@ -44,29 +48,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="24dp"
-                android:text="예) 세부적인 것을 못 보고 넘어가거나 놓친다."
+                android:text="@{`예)` + response.example}"
                 android:fontFamily="@font/pretendard_semibold"
                 android:textSize="17sp"
                 android:textColor="#ABABAB"
-                android:layout_marginBottom="54dp"/>
+                android:layout_marginBottom="54dp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/ll_answer_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{(v) -> activity.selectAnswer(v)}"
                 android:background="@drawable/bg_diagnosis_question_check_off"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:paddingVertical="16dp"
                 android:paddingHorizontal="16dp">
+
                 <ImageView
                     android:id="@+id/iv_check_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_check_off"/>
+                    android:src="@drawable/ic_check_off" />
+
                 <TextView
                     android:id="@+id/tv_answer_1"
                     android:layout_width="wrap_content"
@@ -74,26 +79,27 @@
                     android:textColor="#8D94A0"
                     android:fontFamily="@font/pretendard_medium"
                     android:textSize="18sp"
-                    android:text="@string/매우_그래요"/>
+                    android:text="@string/매우_그래요" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/ll_answer_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{(v) -> activity.selectAnswer(v)}"
                 android:background="@drawable/bg_diagnosis_question_check_off"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:paddingVertical="16dp"
                 android:paddingHorizontal="16dp">
+
                 <ImageView
                     android:id="@+id/iv_check_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_check_off"/>
+                    android:src="@drawable/ic_check_off" />
+
                 <TextView
                     android:id="@+id/tv_answer_2"
                     android:layout_width="wrap_content"
@@ -101,26 +107,27 @@
                     android:textColor="#8D94A0"
                     android:fontFamily="@font/pretendard_medium"
                     android:textSize="18sp"
-                    android:text="@string/대체로_그래요"/>
+                    android:text="@string/대체로_그래요" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/ll_answer_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{(v) -> activity.selectAnswer(v)}"
                 android:background="@drawable/bg_diagnosis_question_check_off"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:paddingVertical="16dp"
                 android:paddingHorizontal="16dp">
+
                 <ImageView
                     android:id="@+id/iv_check_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_check_off"/>
+                    android:src="@drawable/ic_check_off" />
+
                 <TextView
                     android:id="@+id/tv_answer_3"
                     android:layout_width="wrap_content"
@@ -128,26 +135,27 @@
                     android:textColor="#8D94A0"
                     android:fontFamily="@font/pretendard_medium"
                     android:textSize="18sp"
-                    android:text="@string/가끔_그래요"/>
+                    android:text="@string/가끔_그래요" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/ll_answer_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{(v) -> activity.selectAnswer(v)}"
                 android:background="@drawable/bg_diagnosis_question_check_off"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:paddingVertical="16dp"
                 android:paddingHorizontal="16dp">
+
                 <ImageView
                     android:id="@+id/iv_check_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_check_off"/>
+                    android:src="@drawable/ic_check_off" />
+
                 <TextView
                     android:id="@+id/tv_answer_4"
                     android:layout_width="wrap_content"
@@ -155,19 +163,18 @@
                     android:textColor="#8D94A0"
                     android:fontFamily="@font/pretendard_medium"
                     android:textSize="18sp"
-                    android:text="@string/거의_그러지_않아요"/>
+                    android:text="@string/거의_그러지_않아요" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{()-> activity.finishDiagnosis()}"
                 android:textSize="16sp"
                 android:paddingVertical="16dp"
                 android:paddingHorizontal="42dp"
@@ -180,7 +187,7 @@
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="40dp"
-                android:text="@string/진단_마치기"/>
+                android:text="@string/진단_마치기" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.core.widget.NestedScrollView>
-</FrameLayout>
+    </FrameLayout>
+</layout>
