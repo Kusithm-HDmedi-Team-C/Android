@@ -1,9 +1,8 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisPrevBinding
 
 class DiagnosisPrevActivity : AppCompatActivity() {

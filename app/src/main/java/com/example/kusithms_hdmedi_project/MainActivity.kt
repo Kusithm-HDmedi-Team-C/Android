@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
-import com.example.kusithms_hdmedi_project.view.DiagnosisActivity
-import com.example.kusithms_hdmedi_project.view.DiagnosisPrevActivity
+import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 
 class MainActivity : AppCompatActivity() {
     private var _binding : ActivityMainBinding? = null

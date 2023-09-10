@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.kusithms_hdmedi_project.view.DiagnosisActivity" />
+            type="com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisActivity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

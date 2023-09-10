@@ -1,18 +1,13 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosis
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.kusithms_hdmedi_project.R
+import com.example.kusithms_hdmedi_project.api.RequestBodyModel
 import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.util.Extensions.repeatOnStarted
@@ -97,11 +92,21 @@ class DiagnosisActivity : AppCompatActivity() {
                 diagnosisContentsViewPagerAdapter = DiagnosisContentsViewPagerAdapter(this@DiagnosisActivity, it)
                 binding.vpDiagnosisContents.adapter = diagnosisContentsViewPagerAdapter
 
-                diagnosisContentsViewPagerAdapter.setItemClickListener(object : DiagnosisContentsViewPagerAdapter.OnItemClickListener {
+                diagnosisContentsViewPagerAdapter.setItemClickListener(object :
+                    DiagnosisContentsViewPagerAdapter.OnItemClickListener {
                     override fun onClickAnswer(v: View, position: Int, answerNumber: Int) {
                         binding.appBarLayout.setExpanded(false, true)
                         diagnosisVM.setAnswerList(position, answerNumber)
                         diagnosisContentsViewPagerAdapter.setAnswerList(diagnosisVM.answerList.value)
+                    }
+
+                    override fun onclickFinish(requestBody: RequestBodyModel) {
+                        binding.appBarLayout.visibility = View.GONE
+                        supportFragmentManager.beginTransaction().add(R.id.fl_init, DiagnosisLoadingFragment().apply {
+                            val bundle = Bundle()
+                            bundle.putSerializable("requestBody", requestBody)
+                            arguments = bundle
+                        }).commit()
                     }
                 })
             }

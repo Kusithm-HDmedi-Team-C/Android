@@ -1,10 +1,9 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosis
 
 import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +12,11 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.api.ApiService
 import com.example.kusithms_hdmedi_project.api.RequestBodyModel
-import com.example.kusithms_hdmedi_project.api.RetrofitInstance
 import com.example.kusithms_hdmedi_project.api.SurveyResult
 import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisContentsBinding
 import com.example.kusithms_hdmedi_project.model.QuestionResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.kusithms_hdmedi_project.view.DiagnosisResultActivity
 
 class DiagnosisContentsViewPagerAdapter(
     private val activity: Activity,
@@ -66,7 +61,7 @@ class DiagnosisContentsViewPagerAdapter(
                         }
                         val requestBody = RequestBodyModel(list)
 
-                        finishDiagnosis(requestBody)
+                        itemClickListener.onclickFinish(requestBody)
                     }
                 }
 
@@ -134,15 +129,9 @@ class DiagnosisContentsViewPagerAdapter(
         notifyDataSetChanged()
     }
 
-    fun finishDiagnosis(requestBody: RequestBodyModel) {
-        activity.startActivity(Intent(activity, DiagnosisResultActivity::class.java).apply {
-            putExtra("answer_list", requestBody)
-        })
-        activity.finish()
-    }
-
     interface OnItemClickListener {
         fun onClickAnswer(v: View, position: Int, answerNumber: Int)
+        fun onclickFinish(requestBody: RequestBodyModel)
     }
 
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
@@ -154,7 +143,7 @@ class DiagnosisContentsViewPagerAdapter(
         return PagerViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DiagnosisContentsViewPagerAdapter.PagerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.bind(questionList[position])
 
     }

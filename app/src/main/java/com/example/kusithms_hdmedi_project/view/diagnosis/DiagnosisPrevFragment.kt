@@ -1,4 +1,4 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosis
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisPrevBinding
-import com.example.kusithms_hdmedi_project.util.Extensions
 
 class DiagnosisPrevFragment: Fragment() {
     private var _binding : FragmentDiagnosisPrevBinding? = null
