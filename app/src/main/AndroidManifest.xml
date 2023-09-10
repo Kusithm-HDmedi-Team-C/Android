@@ -19,12 +19,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.DiagnosisActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.DiagnosisResultActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.DiagnosisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.DiagnosisResultActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

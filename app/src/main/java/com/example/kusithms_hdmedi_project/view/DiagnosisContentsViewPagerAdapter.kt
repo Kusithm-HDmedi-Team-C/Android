@@ -1,7 +1,6 @@
 package com.example.kusithms_hdmedi_project.view
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
@@ -10,11 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
+import com.example.kusithms_hdmedi_project.api.ApiService
+import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.api.RetrofitInstance
+import com.example.kusithms_hdmedi_project.api.SurveyResult
 import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisContentsBinding
 import com.example.kusithms_hdmedi_project.model.QuestionResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DiagnosisContentsViewPagerAdapter(
     private val activity: Activity,
@@ -47,7 +52,13 @@ class DiagnosisContentsViewPagerAdapter(
                 binding.tvFinish.visibility = View.VISIBLE
 
                 binding.tvFinish.setOnClickListener {
-                    finishDiagnosis()
+                    val list = mutableListOf<SurveyResult>()
+                    answerList.forEachIndexed { index, i ->
+                        list.add(SurveyResult(surveyId = index+1, score = i))
+                    }
+                    val requestBody = RequestBodyModel(list)
+
+                    finishDiagnosis(requestBody)
                 }
             } else {
                 binding.tvFinish.visibility = View.INVISIBLE
@@ -112,8 +123,10 @@ class DiagnosisContentsViewPagerAdapter(
         notifyDataSetChanged()
     }
 
-    fun finishDiagnosis() {
-        activity.startActivity(Intent(activity, DiagnosisResultActivity::class.java))
+    fun finishDiagnosis(requestBody: RequestBodyModel) {
+        activity.startActivity(Intent(activity, DiagnosisResultActivity::class.java).apply {
+            putExtra("answer_list", requestBody)
+        })
         activity.finish()
     }
 

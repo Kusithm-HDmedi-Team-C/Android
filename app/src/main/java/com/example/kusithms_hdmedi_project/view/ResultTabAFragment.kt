@@ -1,6 +1,7 @@
 package com.example.kusithms_hdmedi_project.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.kusithms_hdmedi_project.R
+import com.example.kusithms_hdmedi_project.api.RequestBodyModel
 import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabABinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
 
@@ -16,11 +18,14 @@ class ResultTabAFragment : Fragment() {
     private val viewModel: DiagnosisResultViewModel by viewModels()
     private val binding get() = _binding!!
 
+    private lateinit var requestBody : RequestBodyModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requestBody = arguments?.getSerializable("answer_list") as RequestBodyModel
+
         _binding = FragmentResultTabABinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -33,7 +38,8 @@ class ResultTabAFragment : Fragment() {
         binding.mainCharacter.startAnimation(
             android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
 
-        viewModel.postDataApi()
+        Log.d("taag", requestBody.toString())
+        viewModel.postDataApi(requestBody)
 
         viewModel.totalscore.observe(viewLifecycleOwner, Observer{
                 totalscore->
@@ -48,6 +54,17 @@ class ResultTabAFragment : Fragment() {
             binding.activityScore.text = impulsitive.toString()
         })
 
+    }
+
+    companion object {
+        fun newInstance(requestBody: RequestBodyModel): ResultTabAFragment {
+            val fragment = ResultTabAFragment().apply {
+                val bundle = Bundle()
+                bundle.putSerializable("answer_list", requestBody)
+                arguments = bundle
+            }
+            return fragment
+        }
     }
 
     override fun onDestroy() {

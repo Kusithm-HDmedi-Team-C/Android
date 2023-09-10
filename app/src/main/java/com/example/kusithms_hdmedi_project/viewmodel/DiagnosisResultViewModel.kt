@@ -69,16 +69,17 @@ class DiagnosisResultViewModel:ViewModel() {
             }
         }
     }
-    fun postDataApi() = viewModelScope.launch {
+    fun postDataApi(requestBodyModel: RequestBodyModel) = viewModelScope.launch {
         try{
-            val requestBody = RequestBodyModel(
-                surveyResults = listOf(
-                    SurveyResult(surveyId = 1, score=2 ),
-                    SurveyResult(surveyId = 2, score=3 ),
-                    SurveyResult(surveyId = 3, score=2 ),
-                    SurveyResult(surveyId = 4, score=3 ),
-                )
-            )
+            val requestBody = requestBodyModel
+//            val requestBody = RequestBodyModel(
+//                surveyResults = listOf(
+//                    SurveyResult(surveyId = 1, score=2 ),
+//                    SurveyResult(surveyId = 2, score=3 ),
+//                    SurveyResult(surveyId = 3, score=2 ),
+//                    SurveyResult(surveyId = 4, score=3 ),
+//                )
+//            )
             val call = apiService.postData(requestBody)
             call.enqueue(object : retrofit2.Callback<ApiResponse>{
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {

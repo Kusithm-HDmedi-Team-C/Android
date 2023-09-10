@@ -35,7 +35,6 @@ class DiagnosisActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().add(R.id.fl_init, DiagnosisInitFragment()).commit()
 
-
         diagnosisVM.getQuestionList()
         subscribeUi()
 
@@ -110,7 +109,6 @@ class DiagnosisActivity : AppCompatActivity() {
         // 답변 목록이 유지되는 옵저빙
         repeatOnStarted {
             diagnosisVM.answerList.collect {
-                Log.d("taag", it.contentToString())
                 binding.vpDiagnosisContents.isUserInputEnabled = it[nowPage] != -1
                 var sum = 0
                 it.map { sum+=it }

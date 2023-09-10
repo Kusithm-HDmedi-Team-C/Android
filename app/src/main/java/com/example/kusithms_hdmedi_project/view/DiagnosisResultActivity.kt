@@ -2,8 +2,10 @@ package com.example.kusithms_hdmedi_project.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kusithms_hdmedi_project.R
+import com.example.kusithms_hdmedi_project.api.RequestBodyModel
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisResultBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -12,8 +14,12 @@ class DiagnosisResultActivity : AppCompatActivity() {
     private var _binding : ActivityDiagnosisResultBinding? = null
     private val binding get() = _binding!!
 
+    // 진단결과 받아올 바디
+    private lateinit var requestBody : RequestBodyModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestBody = intent.getSerializableExtra("answer_list") as RequestBodyModel
 
         _binding = ActivityDiagnosisResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -24,7 +30,7 @@ class DiagnosisResultActivity : AppCompatActivity() {
     private fun initViewPager()
     {//adapter setting
         var viewPager2Adapter = ViewPager2Adapter(this)
-        viewPager2Adapter.addFragment(ResultTabAFragment())
+        viewPager2Adapter.addFragment(ResultTabAFragment.newInstance(requestBody))
         viewPager2Adapter.addFragment(ResultTabBFragment())
 
         binding.viewpager.apply{
@@ -44,7 +50,6 @@ class DiagnosisResultActivity : AppCompatActivity() {
                 1 -> tab.text = getResources().getString(R.string.recommend)
             }
         }.attach()
-
     }
 
     override fun onDestroy() {
