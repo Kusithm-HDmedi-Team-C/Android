@@ -57,6 +57,8 @@ class DiagnosisActivity : AppCompatActivity() {
                 diagnosisVM.refreshPb(position+1)
                 binding.vpDiagnosisContents.isUserInputEnabled = diagnosisVM.answerList.value[position] != -1
                 nowPage = position
+
+                diagnosisContentsViewPagerAdapter.setAnswerList(diagnosisVM.answerList.value)
             }
         })
 
@@ -76,9 +78,6 @@ class DiagnosisActivity : AppCompatActivity() {
             dialog.show(supportFragmentManager, "")
         }
 
-        binding.ivBack.setOnClickListener {
-
-        }
     }
 
     private fun subscribeUi() {
@@ -86,7 +85,6 @@ class DiagnosisActivity : AppCompatActivity() {
         repeatOnStarted {
             diagnosisVM.questionList.collect {
                 diagnosisContentsViewPagerAdapter = DiagnosisContentsViewPagerAdapter(this@DiagnosisActivity, it)
-
                 binding.vpDiagnosisContents.adapter = diagnosisContentsViewPagerAdapter
 
                 diagnosisContentsViewPagerAdapter.setItemClickListener(object : DiagnosisContentsViewPagerAdapter.OnItemClickListener {
@@ -101,10 +99,10 @@ class DiagnosisActivity : AppCompatActivity() {
         // 답변 목록이 유지되는 옵저빙
         repeatOnStarted {
             diagnosisVM.answerList.collect {
+                Log.d("taag", it.contentToString())
                 binding.vpDiagnosisContents.isUserInputEnabled = it[nowPage] != -1
                 var sum = 0
                 it.map { sum+=it }
-                Log.d("taag", sum.toString())
             }
         }
 

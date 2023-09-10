@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,42 +21,61 @@ class DiagnosisContentsViewPagerAdapter(
     private val questionList: List<QuestionResponse>
 ): RecyclerView.Adapter<DiagnosisContentsViewPagerAdapter.PagerViewHolder>() {
     private lateinit var itemClickListener: OnItemClickListener
+    private var answerList = Array<Int>(18) {-1}
 
     inner class PagerViewHolder(private val binding: FragmentDiagnosisContentsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: QuestionResponse) {
             binding.response = item
 
-            if (position == questionList.size - 1) {
+            resetAnswerBoxUi()
+            when (answerList[adapterPosition]) {
+                0 -> {
+                    selectedAnswerBoxUi(binding.llAnswer1, binding.ivCheck1, binding.tvAnswer1)
+                }
+                1 -> {
+                    selectedAnswerBoxUi(binding.llAnswer2, binding.ivCheck2, binding.tvAnswer2)
+                }
+                2 -> {
+                    selectedAnswerBoxUi(binding.llAnswer3, binding.ivCheck3, binding.tvAnswer3)
+                }
+                3 -> {
+                    selectedAnswerBoxUi(binding.llAnswer4, binding.ivCheck4, binding.tvAnswer4)
+                }
+            }
+
+            if (adapterPosition == questionList.size - 1) {
                 binding.tvFinish.visibility = View.VISIBLE
 
                 binding.tvFinish.setOnClickListener {
                     finishDiagnosis()
                 }
+            } else {
+                binding.tvFinish.visibility = View.INVISIBLE
             }
 
             binding.llAnswer1.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer1, binding.ivCheck1, binding.tvAnswer1)
 
-                itemClickListener.onClickAnswer(it, position, 0)
+                itemClickListener.onClickAnswer(it, adapterPosition, 0)
             }
             binding.llAnswer2.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer2, binding.ivCheck2, binding.tvAnswer2)
 
-                itemClickListener.onClickAnswer(it, position, 1)
+                itemClickListener.onClickAnswer(it, adapterPosition, 1)
             }
             binding.llAnswer3.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer3, binding.ivCheck3, binding.tvAnswer3)
 
-                itemClickListener.onClickAnswer(it, position, 2)
+                itemClickListener.onClickAnswer(it, adapterPosition, 2)
             }
             binding.llAnswer4.setOnClickListener {
                 resetAnswerBoxUi()
                 selectedAnswerBoxUi(binding.llAnswer4, binding.ivCheck4, binding.tvAnswer4)
 
-                itemClickListener.onClickAnswer(it, position, 3)
+                itemClickListener.onClickAnswer(it, adapterPosition, 3)
             }
 
         }
@@ -87,6 +107,11 @@ class DiagnosisContentsViewPagerAdapter(
         tvQuestion.setTextColor(Color.parseColor("#4E7FFF"))
     }
 
+    fun setAnswerList(newAnswerList: Array<Int>) {
+        answerList = newAnswerList
+        notifyDataSetChanged()
+    }
+
     fun finishDiagnosis() {
         activity.startActivity(Intent(activity, DiagnosisResultActivity::class.java))
         activity.finish()
@@ -107,6 +132,7 @@ class DiagnosisContentsViewPagerAdapter(
 
     override fun onBindViewHolder(holder: DiagnosisContentsViewPagerAdapter.PagerViewHolder, position: Int) {
         holder.bind(questionList[position])
+
     }
 
     override fun getItemCount() = questionList.size
