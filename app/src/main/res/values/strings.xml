@@ -17,4 +17,17 @@
     <string name="확인">확인</string>
     <string name="자가진단을_종료하시겠습니까_">자가진단을 종료하시겠습니까?</string>
     <string name="기록된_사항은_저장되지_않아요">기록된 사항은 저장되지 않아요.</string>
+
+    <string name="diagnosisResult">진단 결과</string>
+    <string name="recommend">추천 정보</string>
+    <string name="resulta1">주의단계로, \n전문가의 진단이 필요합니다.</string>
+    <string name="totalscore">/54점</string>
+    <string name="totalscorebelow">18점 이하: 안전/ 19점 이상: 주의</string>
+    <string name="uncareful_score">부주의 점수</string>
+    <string name="activity_score">과잉활동∙충동성 점수</string>
+    <string name="bannerTitle">ADHD 약, 부작용을 확인하고 관리하세요</string>
+    <string name="bannerContent">아이약 알아보기</string>
+    <string name="resultdetail1">ADHD가 의심되면, 미루지 않고 전문가의 진단과 치료를 받는 것이 좋습니다. 소아 ADHD의 50~60%는 성인까지 지속될 수 있다고 해요.\n이로 인해 주의 집중력이 저하될 경우, 학업에 지장이 발생할 수 있고, 충동성이 높다면 대인관계의 어려움으로 이어질 수 있어요. 이로 인해 부정적인 자아상과 우울감이 누적될 수 있기에, 적절한 시기의 치료가 필요해요.</string>
+    <string name="resultdetail2">아동 ADHD,\n빨리 발견하고 치료할수록 좋아요</string>
+    <string name="store">저장하기</string>
 </resources>

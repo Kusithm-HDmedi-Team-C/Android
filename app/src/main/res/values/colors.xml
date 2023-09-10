@@ -4,4 +4,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_blue">#5E6EF9</color>
     <color name="diagnosisTopbackground">#F2F4F8</color>
+    <color name="Tabunselected">#707885</color>
+    <color name="resultbox">#F3F6FC</color>
+    <color name="resultboxstroke">#E2EAFF</color>
+    <color name="resultscore">#353C49</color>
+    <color name="fullscore">#B9C0CD</color>
+    <color name="boxcontainercolor">#C9DBFF</color>
+    <color name="bannerBG">#F4F4F4</color>
+    <color name="bannerTitle">#A0A8B8</color>
+    <color name="store">#DADDDF</color>
+
 </resources>
