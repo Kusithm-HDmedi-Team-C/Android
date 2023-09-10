@@ -25,7 +25,7 @@ class DiagnosisViewModel: ViewModel() {
     }
 
     fun refreshPb(nowPage: Int) {
-        val oneStep = 100/questionList.value.size
+        val oneStep = 90/questionList.value.size
         pbStepSize.value = oneStep * nowPage
     }
 

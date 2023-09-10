@@ -107,7 +107,7 @@
                     android:id="@+id/pb_diagnosis"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:max="100"
+                    android:max="90"
                     android:layout_gravity="bottom"
                     android:progressDrawable="@drawable/style_diagnosis_progress"
                     style="@android:style/Widget.ProgressBar.Horizontal"/>
