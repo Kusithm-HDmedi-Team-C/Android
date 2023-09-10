@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="com.example.kusithms_hdmedi_project.view.DiagnosisActivity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -44,7 +47,6 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_marginLeft="24dp">
 
                         <ImageView
@@ -71,6 +73,7 @@
                     style="@style/Theme.TransparentStatusBar"
                     app:layout_collapseMode="pin"
                     app:contentInsetStart="0dp"
+                    android:layout_marginBottom="10dp"
                     app:contentInsetStartWithNavigation="0dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -81,6 +84,7 @@
 
                         <ImageView
                             android:id="@+id/iv_back"
+                            android:visibility="invisible"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_back"
@@ -99,73 +103,32 @@
                             app:tint="@color/white" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.Toolbar>
+                <ProgressBar
+                    android:id="@+id/pb_diagnosis"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:max="90"
+                    android:layout_gravity="bottom"
+                    android:progressDrawable="@drawable/style_diagnosis_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"/>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_diagnosis_contents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="40sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="28sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="40sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="28sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="40sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="40sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="40sp"
-                    android:textColor="@color/black"
-                    android:paddingVertical="28dp"
-                    android:text="텍스트트트트ㅡ트트" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"/>
         </androidx.core.widget.NestedScrollView>
+
+        <FrameLayout
+            android:id="@+id/fl_init"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
