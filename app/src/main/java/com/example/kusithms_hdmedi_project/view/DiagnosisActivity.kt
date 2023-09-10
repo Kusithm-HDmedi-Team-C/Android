@@ -33,6 +33,9 @@ class DiagnosisActivity : AppCompatActivity() {
         binding.activity = this@DiagnosisActivity
         setContentView(binding.root)
 
+        supportFragmentManager.beginTransaction().add(R.id.fl_init, DiagnosisInitFragment()).commit()
+
+
         diagnosisVM.getQuestionList()
         subscribeUi()
 
@@ -55,8 +58,16 @@ class DiagnosisActivity : AppCompatActivity() {
                 super.onPageSelected(position)
 
                 diagnosisVM.refreshPb(position+1)
-                binding.vpDiagnosisContents.isUserInputEnabled = diagnosisVM.answerList.value[position] != -1
                 nowPage = position
+
+//                // 답변 선택하지 않은 경우
+//                if (diagnosisVM.answerList.value[position] == -1) {
+//                    if (position > binding.vpDiagnosisContents.currentItem) {
+//                        binding.vpDiagnosisContents.isUserInputEnabled = false
+//                    }
+//                }
+
+                binding.vpDiagnosisContents.isUserInputEnabled = diagnosisVM.answerList.value[position] != -1
 
                 diagnosisContentsViewPagerAdapter.setAnswerList(diagnosisVM.answerList.value)
             }
