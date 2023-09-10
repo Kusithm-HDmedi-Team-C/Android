@@ -13,5 +13,11 @@
     <color name="bannerBG">#F4F4F4</color>
     <color name="bannerTitle">#A0A8B8</color>
     <color name="store">#DADDDF</color>
+    <color name="diveder2">#F2F4F8</color>
+    <color name="common">#4E7FFF</color>
+    <color name="number">#DAE0EC</color>
+    <color name="questiontitle">#49505B</color>
+    <color name="reference">#F9F9F9</color>
+    <color name="reference1">#8D94A0</color>
 
 </resources>

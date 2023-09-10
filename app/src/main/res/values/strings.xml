@@ -21,6 +21,8 @@
     <string name="diagnosisResult">진단 결과</string>
     <string name="recommend">추천 정보</string>
     <string name="resulta1">주의단계로, \n전문가의 진단이 필요합니다.</string>
+    <string name="resulta2">안전단계로, \nADHD일 가능성이 낮습니다.</string>
+
     <string name="totalscore">/54점</string>
     <string name="totalscorebelow">18점 이하: 안전/ 19점 이상: 주의</string>
     <string name="uncareful_score">부주의 점수</string>
@@ -29,5 +31,24 @@
     <string name="bannerContent">아이약 알아보기</string>
     <string name="resultdetail1">ADHD가 의심되면, 미루지 않고 전문가의 진단과 치료를 받는 것이 좋습니다. 소아 ADHD의 50~60%는 성인까지 지속될 수 있다고 해요.\n이로 인해 주의 집중력이 저하될 경우, 학업에 지장이 발생할 수 있고, 충동성이 높다면 대인관계의 어려움으로 이어질 수 있어요. 이로 인해 부정적인 자아상과 우울감이 누적될 수 있기에, 적절한 시기의 치료가 필요해요.</string>
     <string name="resultdetail2">아동 ADHD,\n빨리 발견하고 치료할수록 좋아요</string>
+    <string name="resultdetail3">정확한 판단을 원한다면, 전문 기관의 추가 검사 및 전문가와의 상담을 받아보세요. 또한 아동 청소년은 성장기에 언제든 급격한 변화를 보일 수 있으므로 늘 자녀에게 많은 관심을 기울여주세요.</string>
     <string name="store">저장하기</string>
+    <string name="retry">다시하기</string>
+    <string name="common">자주 묻는 질문</string>
+    <string name="howto1">어떻게 검사하나요?</string>
+    <string name="howto11">정확한 진단을 위해 부모님, 선생님, 주변 사람들로부터 얻은 다양한 정보를 통합해 기능상의 문제점을 알아보고 소아정신건강의학과 전문의가 진찰해 아이의 행동, 대인관계, 문제 해결능력, 정서반응 등을 관찰하여 종합적인 진단을 내리게 됩니다.</string>
+     <string name="howto2">어떻게 치료하나요?</string>
+    <string name="howto22">ADHD의 치료 방법 중 약물치료가 가장 효과적인 방법으로 알려져 있어요. 중추신경자극제인 메틸 페니데이트가 치료에 우수한 효과를 보이는데, ADHD 환자의 70~85%에서 과잉행동이 감소하고, 주의집중력을 증가시켜 학업을 개선시키는 효과가 있습니다.\n\n약물치료와 함께 인지 행동 치료, 환경 조절, 부모 상담을 병행하는 것이 효과적이에요. 이 밖에 사회 기술 훈련, 정신·놀이치료, 뉴로 피드백 등의 방법도 함께 사용해요.</string>
+    <string name="howto3">ADHD 약물 치료, 부작용은 없나요?</string>
+    <string name="howto33">식욕부진, 구역, 수면장애 등의 부작용이 나타날 가능성이 있어요. 적응기간이 지나면 이러한 반응은 대부분 점차 사라지지만, 이러한 상황이 지속된다면 약물 교체 또는 용량 조절을 통해 충분히 부작용을 극복하고 경감할 수 있어요.\n\n약물치료는 가장 필수적인 치료이므로, 약물치료를 시작한다고 해서 아이가 심각한 상태라고 생각하거나, 약물치료는 최후의 방법이라는 선입견을 가질 필요는 없어요.\n\n약물치료 시 규칙적으로 정확하게 처방 받은 용량을 일정 기간 동안 꾸준히 복용해야 하며, 임의로 복용을 중단하지 않는다면 안전하고 효과적인 치료가 가능해요.\n\n약물의 부작용 사례를 알아보고, 꾸준하게 관리하고 싶다면 아이약 서비스를 이용해보세요.</string>
+
+    <string name="num1">병력 조사 / 설문지 검사</string>
+    <string name="num2">전문의 상담</string>
+    <string name="num3">심리 검사</string>
+    <string name="num4">발달과정 평가</string>
+    <string name="num5">전산화 주의력 검사</string>
+    <string name="num6">ADHD 진단</string>
+
+    <string name="reference1">자가진단 및 분석 결과 출처</string>
+    <string name="reference2">송파구 보건소, 국립나주병원, 명지병원</string>
 </resources>

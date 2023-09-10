@@ -23,6 +23,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/resultscore"
+        app:tabTextColor="@color/Tabunselected"
+        app:tabIndicatorColor="@color/resultscore"
+        app:tabIndicatorHeight="2dp"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/indicator"
         >
 
         <com.google.android.material.tabs.TabItem

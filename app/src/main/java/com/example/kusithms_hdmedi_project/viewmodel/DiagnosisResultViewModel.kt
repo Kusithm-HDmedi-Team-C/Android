@@ -1,5 +1,6 @@
 package com.example.kusithms_hdmedi_project.viewmodel
 
+import android.text.BoringLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,6 +41,22 @@ class DiagnosisResultViewModel:ViewModel() {
     val impulsitive : LiveData<Int>
         get() = _impulsitive
 
+    val _iswarning = MutableLiveData<Boolean>()
+    val iswarning:LiveData<Boolean>
+        get()=_iswarning
+
+    fun iswarning(totalscore:Int)
+    {
+        if(totalscore >= 19)
+        {
+            _iswarning.postValue(true)
+        }
+        else
+        {
+            _iswarning.postValue(false)
+        }
+    }
+
     fun updatetotal(totalscore : Int)
     {
         _totalscore.postValue(totalscore)
@@ -67,6 +84,7 @@ class DiagnosisResultViewModel:ViewModel() {
                 updateCareless(carelessnessScore!!)
                 updateimpulsitive(impulsivityScore!!)
             }
+            iswarning(totalScore)
         }
     }
     fun postDataApi(requestBodyModel: RequestBodyModel) = viewModelScope.launch {

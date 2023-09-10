@@ -16,10 +16,20 @@ class DiagnosisResultActivity : AppCompatActivity() {
 
     // 진단결과 받아올 바디
     private lateinit var requestBody : RequestBodyModel
+    //private var requestBody : RequestBodyModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestBody = intent.getSerializableExtra("answer_list") as RequestBodyModel
+        //null check위헤서
+//        val serializable = intent.getSerializableExtra("answer_list")
+//        if(serializable != null)
+//        {
+//            requestBody = serializable as RequestBodyModel
+//        }else{
+//            println("진단값이 없습니다")
+//            finish()
+//        }
 
         _binding = ActivityDiagnosisResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -29,27 +39,33 @@ class DiagnosisResultActivity : AppCompatActivity() {
 
     private fun initViewPager()
     {//adapter setting
-        var viewPager2Adapter = ViewPager2Adapter(this)
-        viewPager2Adapter.addFragment(ResultTabAFragment.newInstance(requestBody))
-        viewPager2Adapter.addFragment(ResultTabBFragment())
+        if(requestBody != null)
+        {
+            var viewPager2Adapter = ViewPager2Adapter(this)
+            viewPager2Adapter.addFragment(ResultTabAFragment.newInstance(requestBody!!))
+            viewPager2Adapter.addFragment(ResultTabBFragment())
 
-        binding.viewpager.apply{
-            adapter = viewPager2Adapter
+            binding.viewpager.apply{
+                adapter = viewPager2Adapter
 
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                }
-            })
-        }
-        TabLayoutMediator(binding.tablayout, binding.viewpager){
-                tab, position->
-            when(position){
-                //String helloString = getResources().getString(R.string.hello_string);
-                0 -> tab.text = getResources().getString(R.string.diagnosisResult)
-                1 -> tab.text = getResources().getString(R.string.recommend)
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                    }
+                })
             }
-        }.attach()
+            TabLayoutMediator(binding.tablayout, binding.viewpager){
+                    tab, position->
+                when(position){
+                    //String helloString = getResources().getString(R.string.hello_string);
+                    0 -> tab.text = getResources().getString(R.string.diagnosisResult)
+                    1 -> tab.text = getResources().getString(R.string.recommend)
+                }
+            }.attach()
+        }
+        else{
+            finish()
+        }
     }
 
     override fun onDestroy() {
