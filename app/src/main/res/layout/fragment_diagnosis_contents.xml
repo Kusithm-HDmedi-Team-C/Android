@@ -181,7 +181,7 @@
                 tools:visibility="visible"
                 android:fontFamily="@font/pretendard_semibold"
                 android:background="@drawable/bg_rad_48"
-                android:backgroundTint="@color/main_blue"
+                android:backgroundTint="#DAE0EC"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"

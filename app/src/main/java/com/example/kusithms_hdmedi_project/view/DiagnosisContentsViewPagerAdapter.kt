@@ -2,6 +2,7 @@ package com.example.kusithms_hdmedi_project.view
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.api.ApiService
@@ -51,15 +53,24 @@ class DiagnosisContentsViewPagerAdapter(
             if (adapterPosition == questionList.size - 1) {
                 binding.tvFinish.visibility = View.VISIBLE
 
-                binding.tvFinish.setOnClickListener {
-                    val list = mutableListOf<SurveyResult>()
-                    answerList.forEachIndexed { index, i ->
-                        list.add(SurveyResult(surveyId = index+1, score = i))
-                    }
-                    val requestBody = RequestBodyModel(list)
+                if (answerList[adapterPosition] == -1) {
+                    // 마지막 문항인데 아직 답변 선택 안한 경우
 
-                    finishDiagnosis(requestBody)
+                } else {
+                    binding.tvFinish.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(activity, R.color.main_blue))
+
+                    binding.tvFinish.setOnClickListener {
+                        val list = mutableListOf<SurveyResult>()
+                        answerList.forEachIndexed { index, i ->
+                            list.add(SurveyResult(surveyId = index+1, score = i))
+                        }
+                        val requestBody = RequestBodyModel(list)
+
+                        finishDiagnosis(requestBody)
+                    }
                 }
+
+
             } else {
                 binding.tvFinish.visibility = View.INVISIBLE
             }

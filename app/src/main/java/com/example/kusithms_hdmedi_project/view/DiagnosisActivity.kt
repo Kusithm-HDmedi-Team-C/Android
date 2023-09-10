@@ -101,6 +101,7 @@ class DiagnosisActivity : AppCompatActivity() {
                     override fun onClickAnswer(v: View, position: Int, answerNumber: Int) {
                         binding.appBarLayout.setExpanded(false, true)
                         diagnosisVM.setAnswerList(position, answerNumber)
+                        diagnosisContentsViewPagerAdapter.setAnswerList(diagnosisVM.answerList.value)
                     }
                 })
             }
