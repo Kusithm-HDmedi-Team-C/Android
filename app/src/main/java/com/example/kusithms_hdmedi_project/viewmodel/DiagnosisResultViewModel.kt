@@ -44,6 +44,16 @@ class DiagnosisResultViewModel:ViewModel() {
     val _iswarning = MutableLiveData<Boolean>()
     val iswarning:LiveData<Boolean>
         get()=_iswarning
+    val _isclose=MutableLiveData<Boolean>()
+    val isclose : LiveData<Boolean>
+        get() = _isclose
+    init{
+        _isclose.postValue(true)
+    }
+    fun isclose()
+    {
+        _isclose.value = _isclose.value?.let { !it } ?: false
+    }
 
     fun iswarning(totalscore:Int)
     {

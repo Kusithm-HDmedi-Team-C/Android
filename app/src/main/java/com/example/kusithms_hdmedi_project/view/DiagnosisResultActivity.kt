@@ -16,20 +16,10 @@ class DiagnosisResultActivity : AppCompatActivity() {
 
     // 진단결과 받아올 바디
     private lateinit var requestBody : RequestBodyModel
-    //private var requestBody : RequestBodyModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestBody = intent.getSerializableExtra("answer_list") as RequestBodyModel
-        //null check위헤서
-//        val serializable = intent.getSerializableExtra("answer_list")
-//        if(serializable != null)
-//        {
-//            requestBody = serializable as RequestBodyModel
-//        }else{
-//            println("진단값이 없습니다")
-//            finish()
-//        }
 
         _binding = ActivityDiagnosisResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
