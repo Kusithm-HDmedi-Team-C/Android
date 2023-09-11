@@ -1,5 +1,8 @@
 package com.example.kusithms_hdmedi_project.view
 
+import android.content.ContentValues
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,11 +15,36 @@ import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.api.RequestBodyModel
 import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabABinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.net.Uri
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
+import android.widget.ScrollView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
 class ResultTabAFragment : Fragment() {
     private var _binding : FragmentResultTabABinding? = null
     private val viewModel: DiagnosisResultViewModel by viewModels()
     private val binding get() = _binding!!
+
+    //api로부터 권한 요청 결과 콜백으로 수신
+    val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){permissions->
+        if(permissions.entries.all{it.value}){
+            Log.e("success","권한승인")
+        }
+        else{
+            Log.e("fail","권한거부")
+        }
+    }
 
     private lateinit var requestBody : RequestBodyModel
 
@@ -34,12 +62,17 @@ class ResultTabAFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val wes = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+
+        val storebtn = binding.storebtn
+        val scrollview = binding.myscroll
 
         binding.mainCharacter.startAnimation(
             android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
 
         Log.d("taag", requestBody.toString())
         viewModel.postDataApi(requestBody)
+
 
         viewModel.totalscore.observe(viewLifecycleOwner, Observer{
                 totalscore->
@@ -53,6 +86,38 @@ class ResultTabAFragment : Fragment() {
                 impulsitive->
             binding.activityScore.text = impulsitive.toString()
         })
+
+        storebtn.setOnClickListener{
+            if(Build.VERSION.SDK_INT < 29){
+                if(ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        wes
+                    )!= PackageManager.PERMISSION_GRANTED){
+                    //권한 요청 api작동
+                    permissionLauncher.launch(arrayOf(wes))
+                }
+            }
+            //현재 화면 비트맵에 그린다
+            val bitmap = takeScreenshot(scrollview)
+            val uri = saveToGallery(requireContext(), bitmap)
+            if(uri != null)
+            {
+                println("이미지 저장")
+            }
+            else{
+                println("이미지 실패")
+            }
+        }
+
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.mainCharacter.startAnimation(
+            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
+
 
     }
 
@@ -70,5 +135,40 @@ class ResultTabAFragment : Fragment() {
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
+    }
+
+    private fun takeScreenshot(scrollView:ScrollView):Bitmap{
+        val width = scrollView.getChildAt(0).width
+        val height = scrollView.getChildAt(0).height
+        var bitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888)
+        var canvas = Canvas(bitmap)
+        scrollView.draw(canvas)
+        return bitmap
+    }
+    private fun saveToGallery(context: Context, bitmap:Bitmap ): Uri?{
+        val filename = "screenshot_${System.currentTimeMillis()}.png"
+        var fos: OutputStream? = null
+        var imageUri: Uri? = null
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            val resolver = context.contentResolver
+            val contentValues = ContentValues()
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+
+            imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+            fos = resolver.openOutputStream(imageUri!!)
+        } else {
+            val imageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val imageFile = File(imageDir, filename)
+            fos = FileOutputStream(imageFile)
+
+            imageUri = Uri.fromFile(imageFile)
+        }
+        fos.use {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
+        }
+        return imageUri
     }
 }
