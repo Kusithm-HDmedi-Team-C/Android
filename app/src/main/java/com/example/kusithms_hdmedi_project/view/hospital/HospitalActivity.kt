@@ -1,10 +1,8 @@
 package com.example.kusithms_hdmedi_project.view.hospital
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.kusithms_hdmedi_project.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kusithms_hdmedi_project.databinding.ActivityHospitalBinding
-import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
 
 class HospitalActivity : AppCompatActivity() {
     private var _binding : ActivityHospitalBinding? = null

@@ -74,6 +74,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/tv_home_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_bold"
@@ -127,10 +128,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/tv_home_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_bold"
-        android:text="@string/우리_아이_혹시_ADHD일까_"
+        android:text="@string/ADHD_어떻게_치료해야_할까_"
         android:textColor="#707885"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
