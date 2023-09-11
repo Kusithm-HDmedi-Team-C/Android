@@ -33,7 +33,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_diagnosis"
         android:layout_width="match_parent"
-        android:layout_height="132dp"
+        android:layout_height="148dp"
         android:background="@drawable/bg_rad_20"
         android:backgroundTint="@color/white"
         android:layout_marginTop="12dp"
@@ -87,7 +87,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_hospital"
         android:layout_width="match_parent"
-        android:layout_height="132dp"
+        android:layout_height="148dp"
         android:background="@drawable/bg_rad_20"
         android:backgroundTint="@color/white"
         android:layout_marginTop="12dp"
@@ -141,7 +141,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_i"
         android:layout_width="match_parent"
-        android:layout_height="132dp"
+        android:layout_height="148dp"
         android:background="@drawable/bg_rad_20"
         android:backgroundTint="@color/white"
         android:layout_marginTop="12dp"
