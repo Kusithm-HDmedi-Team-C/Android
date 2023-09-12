@@ -25,8 +25,7 @@ class DiagnosisLoadingFragment : Fragment() {
         requestBody = arguments?.getSerializable("requestBody") as RequestBodyModel
 
         lifecycleScope.launch {
-            delay(2000)
-//            parentFragmentManager.beginTransaction().remove(this@DiagnosisLoadingFragment).commit()
+            delay(1500)
             finishDiagnosis()
         }
     }

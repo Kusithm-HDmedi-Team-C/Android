@@ -65,7 +65,6 @@ class DiagnosisContentsViewPagerAdapter(
                     }
                 }
 
-
             } else {
                 binding.tvFinish.visibility = View.INVISIBLE
             }
@@ -98,7 +97,7 @@ class DiagnosisContentsViewPagerAdapter(
         }
 
         /** 체크된 답변 UI상태 초기화하는 함수 **/
-        fun resetAnswerBoxUi() {
+        private fun resetAnswerBoxUi() {
             binding.llAnswer1.setBackgroundResource(R.drawable.bg_diagnosis_question_check_off)
             binding.ivCheck1.setImageResource(R.drawable.ic_check_off)
             binding.tvAnswer1.setTextColor(Color.parseColor("#8D94A0"))

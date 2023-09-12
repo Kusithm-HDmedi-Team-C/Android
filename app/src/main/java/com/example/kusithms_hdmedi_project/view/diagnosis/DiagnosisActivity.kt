@@ -82,7 +82,6 @@ class DiagnosisActivity : AppCompatActivity() {
             )
             dialog.show(supportFragmentManager, "")
         }
-
     }
 
     private fun subscribeUi() {
@@ -121,7 +120,7 @@ class DiagnosisActivity : AppCompatActivity() {
             }
         }
 
-        // 상단에 설문 진행률 프로그레스
+        // 상단에 설문 진행률 프로그레스바
         diagnosisVM.pbStepSize.observe(this) {
             binding.pbDiagnosis.progress = it
         }
