@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.api.RequestBodyModel
-import com.example.kusithms_hdmedi_project.view.DiagnosisResultActivity
+import com.example.kusithms_hdmedi_project.view.diagnosisResult.DiagnosisResultActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

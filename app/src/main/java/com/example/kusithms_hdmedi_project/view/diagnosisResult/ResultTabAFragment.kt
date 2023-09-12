@@ -1,7 +1,8 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosisResult
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -22,11 +23,9 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.ScrollView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -57,15 +56,21 @@ class ResultTabAFragment : Fragment() {
         _binding = FragmentResultTabABinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        //viewModel.postDataApi(requestBody)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val wes = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-
         val storebtn = binding.storebtn
         val scrollview = binding.myscroll
+        val minidot = binding.miniDescription
+        minidot.getLocationOnScreen(viewModel.location)
+        val x = viewModel.location[0]
+        val y = viewModel.location[1]
 
         binding.mainCharacter.startAnimation(
             android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
@@ -86,6 +91,17 @@ class ResultTabAFragment : Fragment() {
                 impulsitive->
             binding.activityScore.text = impulsitive.toString()
         })
+        
+        //미니 설명창
+        minidot.setOnClickListener{
+            val dialogFragment = MiniFragment()
+            dialogFragment.show(parentFragmentManager,"tag" )
+        }
+
+        binding.retrybtn.setOnClickListener{
+            val intent = Intent(requireActivity(), DiagnosisPrevActivity::class.java)
+            startActivity(intent)
+        }
 
         storebtn.setOnClickListener{
             if(Build.VERSION.SDK_INT < 29){
@@ -102,7 +118,7 @@ class ResultTabAFragment : Fragment() {
             val uri = saveToGallery(requireContext(), bitmap)
             if(uri != null)
             {
-                println("이미지 저장")
+                StoreToast.createToast(requireActivity(), "진단결과가 앨범에 저장되었습니다.")?.show()
             }
             else{
                 println("이미지 실패")

@@ -1,7 +1,6 @@
 package com.example.kusithms_hdmedi_project.view.diagnosis
 
 import android.app.Activity
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -16,7 +15,6 @@ import com.example.kusithms_hdmedi_project.api.RequestBodyModel
 import com.example.kusithms_hdmedi_project.api.SurveyResult
 import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisContentsBinding
 import com.example.kusithms_hdmedi_project.model.QuestionResponse
-import com.example.kusithms_hdmedi_project.view.DiagnosisResultActivity
 
 class DiagnosisContentsViewPagerAdapter(
     private val activity: Activity,
