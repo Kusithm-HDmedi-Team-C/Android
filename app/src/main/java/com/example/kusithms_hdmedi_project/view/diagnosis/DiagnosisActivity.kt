@@ -68,19 +68,15 @@ class DiagnosisActivity : AppCompatActivity() {
         })
 
         binding.ivClose.setOnClickListener {
-            val dialog = BaseDialog(
+             BaseDialog(
                 this,
                 getString(R.string.자가진단을_종료하시겠습니까_),
                 getString(R.string.기록된_사항은_저장되지_않아요),
                 positive = {
                     finish()
-                    Toast.makeText(this, "중단되었습니다.", Toast.LENGTH_SHORT).show()
                 },
-                negative = {
-                    Toast.makeText(this, "취소취소", Toast.LENGTH_SHORT).show()
-                }
-            )
-            dialog.show(supportFragmentManager, "")
+                negative = {}
+            ).show(supportFragmentManager, "")
         }
     }
 

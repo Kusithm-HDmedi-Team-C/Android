@@ -93,4 +93,10 @@
     <string name="ADHD_어디에서_진단받지">ADHD, 어디에서 진단받지?</string>
     <string name="ADHD_어떻게_치료해야_할까_">ADHD, 어떻게 치료해야 할까?</string>
 
+    <string name="후기_작성을_위해서는_병원_방문내역_">후기 작성을 위해서는 병원 방문내역 인증이 필요합니다.</string>
+    <string name="모든_리뷰는_비공개_익명_처리됩니다_">모든 리뷰는 비공개 익명 처리됩니다.</string>
+    <string name="다음_중_한_가지를_업로드하세요_">다음 중 한 가지를 업로드하세요.\n반드시 병원명이 드러나야 합니다.</string>
+    <string name="사진_업로드">사진 업로드</string>
+    <string name="후기_작성하기">후기 작성하기</string>
+    <string name="후기_작성을_종료하시겠습니까_">후기 작성을 종료하시겠습니까?</string>
 </resources>

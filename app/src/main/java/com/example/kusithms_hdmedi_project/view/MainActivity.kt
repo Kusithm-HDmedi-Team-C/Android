@@ -14,6 +14,7 @@ import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import com.example.kusithms_hdmedi_project.view.hospital.HospitalActivity
+import com.example.kusithms_hdmedi_project.view.hospital.WriteReviewActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnHospital.setOnClickListener {
-            startActivity(Intent(this, HospitalActivity::class.java))
+            startActivity(Intent(this, WriteReviewActivity::class.java))
         }
 
         val str1 = resources.getString(R.string.ADHD_어디에서_진단받지)
