@@ -35,7 +35,7 @@
             android:name=".view.diagnosis.DiagnosisActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DiagnosisResultActivity"
+            android:name=".view.diagnosisResult.DiagnosisResultActivity"
             android:exported="false" />
     </application>
 

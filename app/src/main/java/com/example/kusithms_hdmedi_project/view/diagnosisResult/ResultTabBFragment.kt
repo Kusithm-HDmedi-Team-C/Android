@@ -1,9 +1,8 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosisResult
 
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
@@ -13,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabABinding
 import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabBBinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
 

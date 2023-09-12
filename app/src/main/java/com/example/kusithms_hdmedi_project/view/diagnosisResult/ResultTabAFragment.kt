@@ -1,4 +1,4 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosisResult
 
 import android.content.ContentValues
 import android.content.Context
@@ -23,10 +23,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.ScrollView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import java.io.File
@@ -121,7 +118,7 @@ class ResultTabAFragment : Fragment() {
             val uri = saveToGallery(requireContext(), bitmap)
             if(uri != null)
             {
-                StoreToast.createToast(requireActivity(),"진단결과가 앨범에 저장되었습니다.")?.show()
+                StoreToast.createToast(requireActivity(), "진단결과가 앨범에 저장되었습니다.")?.show()
             }
             else{
                 println("이미지 실패")

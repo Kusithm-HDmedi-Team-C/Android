@@ -1,12 +1,10 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosisResult
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.api.RequestBodyModel
-import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisResultBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

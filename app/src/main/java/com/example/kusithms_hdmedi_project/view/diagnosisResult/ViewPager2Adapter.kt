@@ -1,4 +1,4 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosisResult
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

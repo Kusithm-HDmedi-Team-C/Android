@@ -1,8 +1,7 @@
-package com.example.kusithms_hdmedi_project.view
+package com.example.kusithms_hdmedi_project.view.diagnosisResult
 
 import android.content.Context
 import android.content.res.Resources
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
