@@ -1,22 +1,22 @@
-package com.example.kusithms_hdmedi_project.view.hospital
+package com.example.kusithms_hdmedi_project.view.hospital.review
 
+import android.content.Intent
 import android.content.res.ColorStateList
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.base.BaseDialog
-import com.example.kusithms_hdmedi_project.databinding.ActivityHospitalBinding
-import com.example.kusithms_hdmedi_project.databinding.ActivityWriteReviewBinding
+import com.example.kusithms_hdmedi_project.databinding.ActivityImageUploadBinding
 
-class WriteReviewActivity : AppCompatActivity() {
-    private var _binding : ActivityWriteReviewBinding? = null
+class ImageUploadActivity : AppCompatActivity() {
+    private var _binding : ActivityImageUploadBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityWriteReviewBinding.inflate(layoutInflater)
+        _binding = ActivityImageUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.tvUploadImage.setOnClickListener {
@@ -25,7 +25,7 @@ class WriteReviewActivity : AppCompatActivity() {
 
         binding.btnClose.setOnClickListener {
             BaseDialog(
-                context = this@WriteReviewActivity,
+                context = this@ImageUploadActivity,
                 title = resources.getString(R.string.후기_작성을_종료하시겠습니까_),
                 subTitle = "",
                 positive = {
@@ -41,7 +41,11 @@ class WriteReviewActivity : AppCompatActivity() {
         binding.llImageUploadOn.visibility = View.VISIBLE
         binding.tvWriteReview.apply {
             isClickable = true
-            backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@WriteReviewActivity, R.color.main_blue))
+            backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImageUploadActivity, R.color.main_blue))
+
+            setOnClickListener {
+                startActivity(Intent(this@ImageUploadActivity, WriteReviewActivity::class.java))
+            }
         }
     }
 
