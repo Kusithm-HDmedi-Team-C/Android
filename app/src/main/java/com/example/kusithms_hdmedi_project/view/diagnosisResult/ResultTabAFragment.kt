@@ -55,6 +55,7 @@ class ResultTabAFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        // api 여기서 안부르고 DiagnosisResultActivity에서 부를거라 주석처리 했어요
         //viewModel.postDataApi(requestBody)
 
         return binding.root
