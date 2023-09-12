@@ -19,5 +19,6 @@
     <color name="questiontitle">#49505B</color>
     <color name="reference">#F9F9F9</color>
     <color name="reference1">#8D94A0</color>
+    <color name="close">#555D6A</color>
 
 </resources>

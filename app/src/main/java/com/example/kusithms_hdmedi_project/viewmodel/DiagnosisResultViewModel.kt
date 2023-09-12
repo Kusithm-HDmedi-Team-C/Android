@@ -18,6 +18,7 @@ import retrofit2.Response
 import java.lang.Exception
 
 class DiagnosisResultViewModel:ViewModel() {
+    val location=IntArray(2)
     val apiService = RetrofitInstance.retrofit.create(ApiService::class.java)
 
     //api응답을 저장하기 위해
@@ -44,15 +45,65 @@ class DiagnosisResultViewModel:ViewModel() {
     val _iswarning = MutableLiveData<Boolean>()
     val iswarning:LiveData<Boolean>
         get()=_iswarning
-    val _isclose=MutableLiveData<Boolean>()
-    val isclose : LiveData<Boolean>
-        get() = _isclose
+    val _isclose1=MutableLiveData<Boolean>()
+    val isclose1 : LiveData<Boolean>
+        get() = _isclose1
+    val _isclose2=MutableLiveData<Boolean>()
+    val isclose2 : LiveData<Boolean>
+        get() = _isclose2
+    val _isclose4=MutableLiveData<Boolean>()
+    val isclose4 : LiveData<Boolean>
+        get() = _isclose4
+    val _isclose5=MutableLiveData<Boolean>()
+    val isclose5 : LiveData<Boolean>
+        get() = _isclose5
+    val _isclose6 =MutableLiveData<Boolean>()
+    val isclose6 : LiveData<Boolean>
+        get() = _isclose6
+    val _isclose7=MutableLiveData<Boolean>()
+    val isclose7 : LiveData<Boolean>
+        get() = _isclose7
+
+    val _isclose8=MutableLiveData<Boolean>()
+    val isclose8: LiveData<Boolean>
+        get() = _isclose8
     init{
-        _isclose.postValue(true)
+        _isclose1.postValue(true)
+        _isclose2.postValue(true)
+        _isclose4.postValue(true)
+        _isclose5.postValue(true)
+        _isclose6.postValue(true)
+        _isclose7.postValue(true)
+        _isclose8.postValue(true)
+
     }
-    fun isclose()
+    fun isclose1()
     {
-        _isclose.value = _isclose.value?.let { !it } ?: false
+        _isclose1.value = _isclose1.value?.let { !it } ?: false
+    }
+    fun isclose2()
+    {
+        _isclose2.value = _isclose2.value?.let { !it } ?: false
+    }
+    fun isclose4()
+    {
+        _isclose4.value = _isclose4.value?.let { !it } ?: false
+    }
+    fun isclose5()
+    {
+        _isclose5.value = _isclose5.value?.let { !it } ?: false
+    }
+    fun isclose6()
+    {
+        _isclose6.value = _isclose6.value?.let { !it } ?: false
+    }
+    fun isclose7()
+    {
+        _isclose7.value = _isclose7.value?.let { !it } ?: false
+    }
+    fun isclose8()
+    {
+        _isclose8.value = _isclose8.value?.let { !it } ?: false
     }
 
     fun iswarning(totalscore:Int)

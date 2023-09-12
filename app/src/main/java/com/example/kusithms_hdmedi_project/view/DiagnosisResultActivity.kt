@@ -24,6 +24,12 @@ class DiagnosisResultActivity : AppCompatActivity() {
         _binding = ActivityDiagnosisResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val closebtn = binding.close
+
+        closebtn.setOnClickListener{
+            finish()
+        }
+
         initViewPager()
     }
 
