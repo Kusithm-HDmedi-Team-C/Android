@@ -3,6 +3,7 @@ package com.example.kusithms_hdmedi_project.view.hospital.review
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisInitBind
 import com.example.kusithms_hdmedi_project.databinding.FragmentReviewStep1Binding
 import com.example.kusithms_hdmedi_project.util.Extensions.repeatOnStarted
 import com.example.kusithms_hdmedi_project.viewmodel.ReviewViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.update
 
 class ReviewStep1Fragment : Fragment() {
     private var _binding : FragmentReviewStep1Binding? = null
@@ -29,14 +32,12 @@ class ReviewStep1Fragment : Fragment() {
 
         binding.etReview.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
+            override fun afterTextChanged(p0: Editable?) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 binding.tvReviewCnt.text = "${p0?.length.toString()} / 1000"
 
-                viewmodel.step1Complete(!p0.isNullOrEmpty())
+                viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(contents = p0.toString()) }
             }
-
-            override fun afterTextChanged(p0: Editable?) {}
         })
 
 

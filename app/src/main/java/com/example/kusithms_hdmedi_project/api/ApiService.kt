@@ -1,6 +1,7 @@
 package com.example.kusithms_hdmedi_project.api
 
 import com.example.kusithms_hdmedi_project.model.WriteReviewBody
+import com.example.kusithms_hdmedi_project.model.WriteReviewResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -12,5 +13,5 @@ interface ApiService {
 
     // 리뷰 작성
     @POST("/api/v1/review")
-    suspend fun postReview(@Body body : WriteReviewBody) : Response<Any>
+    suspend fun postReview(@Body body : WriteReviewBody) : Response<WriteReviewResponse>
 }

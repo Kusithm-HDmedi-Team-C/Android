@@ -42,9 +42,10 @@ class WriteReviewActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi() {
+
         repeatOnStarted {
-            viewmodel.step1CompleteStatus.collect {
-                if (it) {
+            viewmodel.writeReviewBody.collect {
+                if (it.contents.isNotEmpty()) {
                     binding.tvNext.apply {
                         isClickable = true
                         setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.sub_blue))
