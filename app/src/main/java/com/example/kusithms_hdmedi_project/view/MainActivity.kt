@@ -6,14 +6,11 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
-import com.example.kusithms_hdmedi_project.view.hospital.HospitalActivity
+import com.example.kusithms_hdmedi_project.view.hospital.review.ImageUploadActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnHospital.setOnClickListener {
-            startActivity(Intent(this, HospitalActivity::class.java))
+            startActivity(Intent(this, ImageUploadActivity::class.java))
         }
 
         val str1 = resources.getString(R.string.ADHD_어디에서_진단받지)

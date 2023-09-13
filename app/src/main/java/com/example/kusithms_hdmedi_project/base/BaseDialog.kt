@@ -39,7 +39,12 @@ class BaseDialog(
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvTitle.text = title
-        binding.tvSubTitle.text = subTitle
+
+        if (subTitle.isEmpty()) {
+            binding.tvSubTitle.visibility = View.GONE
+        } else {
+            binding.tvSubTitle.text = subTitle
+        }
 
         // 확인, Positive 버튼 터치 시 람다로 들어온 positive() 실행
         binding.btnOk.setOnClickListener {
