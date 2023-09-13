@@ -23,4 +23,8 @@ interface ApiService {
     suspend fun searchHospitalsFromName(
         @Query("hospitalName") hospitalName: String
     ): Response<HospitalListResponse>
+
+    // PostData랑 똑같은데 Response 반환
+    @POST("/api/v1/survey/result")
+    suspend fun postDataToResponse(@Body requestBody: RequestBodyModel): Response<ApiResponse>
 }

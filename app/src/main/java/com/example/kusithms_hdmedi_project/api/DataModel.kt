@@ -6,13 +6,13 @@ data class ApiResponse(
     val status: Int,
     val message: String,
     val data: ResponseData
-)
+): Serializable
 
 data class ResponseData(
     val totalScore: Int,
     val carelessnessScore: Int,
     val impulsivityScore: Int
-)
+): Serializable
 
 data class RequestBodyModel(
     val surveyResults:List<SurveyResult>
