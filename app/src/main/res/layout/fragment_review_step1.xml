@@ -1,63 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/main_blue"/>
-
-    <EditText
-        android:id="@+id/et_review"
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="자유롭게 후기를 남겨주세요."
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:textSize="17sp"
-        android:textColor="#1A1E27"
-        android:lineHeight="23sp"
-        android:textColorHint="#8D94A0"
-        android:background="@null"
-        android:layout_marginHorizontal="24dp"/>
-
-    <TextView
-        android:id="@+id/tv_review_cnt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#8D94A0"
-        android:text="0 / 1000"
-        android:fontFamily="@font/pretendard_medium"
         android:layout_marginHorizontal="24dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="36dp"/>
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_search_bar"
+        android:paddingVertical="15dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:fontFamily="@font/pretendard_medium"
+            android:hint="병원명"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#49505B"
+            android:textColorHint="#C2CCDD"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_search" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:textColor="#49505B"
-        android:text="@string/다음과_같은_내용이_많은_분들께_"
-        android:fontFamily="@font/pretendard_medium"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="12dp"
-        android:lineHeight="19sp"
-        android:textColor="#8D94A0"
-        android:text="@string/의사_선생님께_상세한_진단_설명을_받았나요_"
-        android:layout_marginBottom="72dp"
-        android:fontFamily="@font/pretendard_medium"/>
-</LinearLayout>
+        <EditText
+            android:id="@+id/et_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@null"
+            android:fontFamily="@font/pretendard_medium"
+            android:hint="자유롭게 후기를 남겨주세요."
+            android:lineHeight="23sp"
+            android:textColor="#1A1E27"
+            android:textColorHint="#8D94A0"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_review_cnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="0 / 1000"
+            android:textColor="#8D94A0"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/다음과_같은_내용이_많은_분들께_"
+            android:textColor="#49505B" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="72dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:lineHeight="19sp"
+            android:text="@string/의사_선생님께_상세한_진단_설명을_받았나요_"
+            android:textColor="#8D94A0" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

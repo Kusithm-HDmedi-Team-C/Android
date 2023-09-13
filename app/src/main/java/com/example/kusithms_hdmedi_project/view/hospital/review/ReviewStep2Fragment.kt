@@ -85,11 +85,6 @@ class ReviewStep2Fragment : Fragment() {
             strAmount = ""
         }
 
-        repeatOnStarted {
-            viewmodel.writeReviewBody.collect {
-                Log.d("taag ob", it.toString())
-            }
-        }
     }
 
     private fun setFlexBox() {

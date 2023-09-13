@@ -18,6 +18,8 @@ class WriteReviewActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     val viewmodel by viewModels<ReviewViewModel>()
 
+    private var nextStatus = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityWriteReviewBinding.inflate(layoutInflater)

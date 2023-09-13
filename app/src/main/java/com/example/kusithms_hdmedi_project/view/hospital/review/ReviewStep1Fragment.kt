@@ -30,6 +30,20 @@ class ReviewStep1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.isNullOrEmpty()) {
+                    binding.ivSearch.setImageResource(R.drawable.ic_search)
+                } else {
+                    binding.ivSearch.setImageResource(R.drawable.ic_close)
+
+                    viewmodel.searchHospitalsFromName(p0.toString())
+                }
+            }
+        })
+
         binding.etReview.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {}
@@ -40,7 +54,11 @@ class ReviewStep1Fragment : Fragment() {
             }
         })
 
-
+        repeatOnStarted {
+            viewmodel.searchedHospitalList.collect {
+                Log.d("taag", it.toString())
+            }
+        }
     }
 
     override fun onDestroy() {
