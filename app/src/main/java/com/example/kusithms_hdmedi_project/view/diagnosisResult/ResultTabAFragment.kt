@@ -181,6 +181,7 @@ class ResultTabAFragment : Fragment() {
         textView.text = spannableStringBuilder
     }
 
+    //결과화면 전체 스크롤뷰 갤러리 저장용
     private fun saveToGallery(context: Context, bitmap:Bitmap ): Uri?{
         val filename = "screenshot_${System.currentTimeMillis()}.png"
         var fos: OutputStream? = null
