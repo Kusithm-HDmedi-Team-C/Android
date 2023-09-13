@@ -91,7 +91,6 @@ class DiagnosisContentsViewPagerAdapter(
 
                 itemClickListener.onClickAnswer(it, adapterPosition, 3)
             }
-
         }
 
         /** 체크된 답변 UI상태 초기화하는 함수 **/

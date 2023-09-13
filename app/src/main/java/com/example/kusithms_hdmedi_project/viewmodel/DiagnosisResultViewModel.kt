@@ -148,17 +148,11 @@ class DiagnosisResultViewModel:ViewModel() {
             iswarning(totalScore)
         }
     }
+
     fun postDataApi(requestBodyModel: RequestBodyModel) = viewModelScope.launch {
         try{
             val requestBody = requestBodyModel
-//            val requestBody = RequestBodyModel(
-//                surveyResults = listOf(
-//                    SurveyResult(surveyId = 1, score=2 ),
-//                    SurveyResult(surveyId = 2, score=3 ),
-//                    SurveyResult(surveyId = 3, score=2 ),
-//                    SurveyResult(surveyId = 4, score=3 ),
-//                )
-//            )
+
             val call = apiService.postData(requestBody)
             call.enqueue(object : retrofit2.Callback<ApiResponse>{
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
@@ -184,6 +178,11 @@ class DiagnosisResultViewModel:ViewModel() {
         }catch (e: Exception){
             println("통신 실패 ${e.message}")
         }
+    }
+
+    fun postDiagnosisResult(apiResponse: ApiResponse) {
+        _apiResponse.postValue(apiResponse)
+        updateScoreFromApi(apiResponse)
     }
 
 

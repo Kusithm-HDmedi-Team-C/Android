@@ -18,13 +18,19 @@ import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabABinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import java.io.File
 import java.io.FileOutputStream
@@ -32,7 +38,7 @@ import java.io.OutputStream
 
 class ResultTabAFragment : Fragment() {
     private var _binding : FragmentResultTabABinding? = null
-    private val viewModel: DiagnosisResultViewModel by viewModels()
+    private val viewModel: DiagnosisResultViewModel by activityViewModels()
     private val binding get() = _binding!!
 
     //api로부터 권한 요청 결과 콜백으로 수신
@@ -47,16 +53,14 @@ class ResultTabAFragment : Fragment() {
 
     private lateinit var requestBody : RequestBodyModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         requestBody = arguments?.getSerializable("answer_list") as RequestBodyModel
 
         _binding = FragmentResultTabABinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        // api 여기서 안부르고 DiagnosisResultActivity에서 부를거라 주석처리 했어요
         //viewModel.postDataApi(requestBody)
 
         return binding.root
@@ -75,22 +79,19 @@ class ResultTabAFragment : Fragment() {
         binding.mainCharacter.startAnimation(
             android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
 
-        Log.d("taag", requestBody.toString())
-        viewModel.postDataApi(requestBody)
+//        viewModel.postDataApi(requestBody)
 
-
-        viewModel.totalscore.observe(viewLifecycleOwner, Observer{
-                totalscore->
+        viewModel.totalscore.observe(viewLifecycleOwner) { totalscore->
             binding.score.text = totalscore.toString()
-        })
-        viewModel.careless.observe(viewLifecycleOwner, Observer{
-                careless->
+        }
+
+        viewModel.careless.observe(viewLifecycleOwner) { careless->
             binding.uncarefulScore.text = careless.toString()
-        })
-        viewModel.impulsitive.observe(viewLifecycleOwner,Observer{
-                impulsitive->
+        }
+
+        viewModel.impulsitive.observe(viewLifecycleOwner) { impulsitive->
             binding.activityScore.text = impulsitive.toString()
-        })
+        }
         
         //미니 설명창
         minidot.setOnClickListener{
@@ -125,16 +126,17 @@ class ResultTabAFragment : Fragment() {
             }
         }
 
+        getBoldText(binding.question1content,getString(R.string.howto11),listOf("종합적인 진단"))
+        getBoldText(binding.question1content2,getString(R.string.howto22),listOf("약물치료가 가장 효과적인 방법","인지 행동 치료, 환경 조절, 부모 상담을 병행"))
+        getBoldText(binding.question1content3,getString(R.string.howto33),listOf("약물치료는 가장 필수적인 치료","규칙적으로 정확하게 처방 받은 용량을 일정 기간 동안 꾸준히 복용"))
+
 
 
     }
 
     override fun onResume() {
         super.onResume()
-        binding.mainCharacter.startAnimation(
-            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
-
-
+        binding.mainCharacter.startAnimation(android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
     }
 
     companion object {
@@ -161,6 +163,25 @@ class ResultTabAFragment : Fragment() {
         scrollView.draw(canvas)
         return bitmap
     }
+
+    //주요글자 bold처리 위해
+    fun getBoldText(textView: TextView, fullText:String, wordsToBold:List<String>)
+    {
+        val spannableStringBuilder =  SpannableStringBuilder(fullText)
+        for(wordToBold in wordsToBold)
+        {
+            var startIndex = fullText.indexOf(wordToBold)
+            while(startIndex != -1)
+            {
+                val endIndex = startIndex + wordToBold.length
+                spannableStringBuilder.setSpan(StyleSpan(Typeface.BOLD),startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                startIndex = fullText.indexOf(wordToBold, endIndex)
+            }
+        }
+        textView.text = spannableStringBuilder
+    }
+
+    //결과화면 전체 스크롤뷰 갤러리 저장용
     private fun saveToGallery(context: Context, bitmap:Bitmap ): Uri?{
         val filename = "screenshot_${System.currentTimeMillis()}.png"
         var fos: OutputStream? = null

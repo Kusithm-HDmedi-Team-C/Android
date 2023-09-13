@@ -14,4 +14,8 @@ interface ApiService {
     // 리뷰 작성
     @POST("/api/v1/review")
     suspend fun postReview(@Body body : WriteReviewBody) : Response<WriteReviewResponse>
+  
+    // PostData랑 똑같은데 Response 반환
+    @POST("/api/v1/survey/result")
+    suspend fun postDataToResponse(@Body requestBody: RequestBodyModel): Response<ApiResponse>
 }

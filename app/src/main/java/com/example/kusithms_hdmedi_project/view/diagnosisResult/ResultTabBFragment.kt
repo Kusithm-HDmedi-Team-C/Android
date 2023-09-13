@@ -65,29 +65,30 @@ class ResultTabBFragment : Fragment() {
         }
 
 
-        getBoldText(binding.tipdetail1,getString(R.string.tipdetail1),"‘주의전환’ 능력")
-        getBoldText(binding.tipdetail2,getString(R.string.tipdetail2),"1) 주의력 결핍 유형, 2) 과잉행동・충동성 유형, 3) 복합형")
-        getBoldText(binding.tipdetail3,getString(R.string.tipdetail3),"가장 효과적인 방법")
-        getBoldText(binding.tipdetail5,getString(R.string.tipdetail5),"주의 집중 능력을 조절하는 신경전달 물질이 불균형")
-        getBoldText(binding.tipdetail6,getString(R.string.tipdetail6),"자녀의 연령과 발달 수준, 성향을 고려하여 진료를 받는 이유")
-        getBoldText(binding.tipdetail7,getString(R.string.tipdetail7),"ADHD")
-        getBoldText(binding.tipdetail7,getString(R.string.tipdetail7),"아이의 특성을 고려하여 적절하게 발달할 수 있도록 도와주시는 것")
-        getBoldText(binding.tipdetail7,getString(R.string.tipdetail7),"아이의 노력과 태도의 영역이 아님")
+        getBoldText(binding.tipdetail1,getString(R.string.tipdetail1),listOf("‘주의전환’ 능력"))
+        getBoldText(binding.tipdetail2,getString(R.string.tipdetail2),listOf("1) 주의력 결핍 유형, 2) 과잉행동・충동성 유형, 3) 혼합형"))
+        getBoldText(binding.tipdetail3,getString(R.string.tipdetail3),listOf("가장 효과적인 방법"))
+        getBoldText(binding.tipdetail5,getString(R.string.tipdetail5),listOf("주의 집중 능력을 조절하는 신경전달 물질이 불균형"))
+        getBoldText(binding.tipdetail6,getString(R.string.tipdetail6),listOf("자녀의 연령과 발달 수준, 성향을 고려하여 진료를 받는 이유"))
+        getBoldText(binding.tipdetail7,getString(R.string.tipdetail7),listOf("ADHD","아이의 특성을 고려하여 적절하게 발달할 수 있도록 도와주시는 것","아이의 노력과 태도의 영역이 아님"))
 
 
 
 
     }
 
-    fun getBoldText(textView: TextView, fullText:String, wordToBold:String)
+    fun getBoldText(textView: TextView, fullText:String, wordsToBold:List<String>)
     {
         val spannableStringBuilder =  SpannableStringBuilder(fullText)
-        var startIndex = fullText.indexOf(wordToBold)
-        while(startIndex != -1)
+        for(wordToBold in wordsToBold)
         {
-            val endIndex = startIndex + wordToBold.length
-            spannableStringBuilder.setSpan(StyleSpan(Typeface.BOLD),startIndex,endIndex,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            startIndex = fullText.indexOf(wordToBold, endIndex)
+            var startIndex = fullText.indexOf(wordToBold)
+            while(startIndex != -1)
+            {
+                val endIndex = startIndex + wordToBold.length
+                spannableStringBuilder.setSpan(StyleSpan(Typeface.BOLD),startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                startIndex = fullText.indexOf(wordToBold, endIndex)
+            }
         }
         textView.text = spannableStringBuilder
     }
