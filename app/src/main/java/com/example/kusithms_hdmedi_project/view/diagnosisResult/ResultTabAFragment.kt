@@ -30,6 +30,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import java.io.File
 import java.io.FileOutputStream
@@ -37,7 +38,7 @@ import java.io.OutputStream
 
 class ResultTabAFragment : Fragment() {
     private var _binding : FragmentResultTabABinding? = null
-    private val viewModel: DiagnosisResultViewModel by viewModels()
+    private val viewModel: DiagnosisResultViewModel by activityViewModels()
     private val binding get() = _binding!!
 
     //api로부터 권한 요청 결과 콜백으로 수신
@@ -52,16 +53,14 @@ class ResultTabAFragment : Fragment() {
 
     private lateinit var requestBody : RequestBodyModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         requestBody = arguments?.getSerializable("answer_list") as RequestBodyModel
 
         _binding = FragmentResultTabABinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        // api 여기서 안부르고 DiagnosisResultActivity에서 부를거라 주석처리 했어요
         //viewModel.postDataApi(requestBody)
 
         return binding.root
@@ -80,22 +79,19 @@ class ResultTabAFragment : Fragment() {
         binding.mainCharacter.startAnimation(
             android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
 
-        Log.d("taag", requestBody.toString())
-        viewModel.postDataApi(requestBody)
+//        viewModel.postDataApi(requestBody)
 
-
-        viewModel.totalscore.observe(viewLifecycleOwner, Observer{
-                totalscore->
+        viewModel.totalscore.observe(viewLifecycleOwner) { totalscore->
             binding.score.text = totalscore.toString()
-        })
-        viewModel.careless.observe(viewLifecycleOwner, Observer{
-                careless->
+        }
+
+        viewModel.careless.observe(viewLifecycleOwner) { careless->
             binding.uncarefulScore.text = careless.toString()
-        })
-        viewModel.impulsitive.observe(viewLifecycleOwner,Observer{
-                impulsitive->
+        }
+
+        viewModel.impulsitive.observe(viewLifecycleOwner) { impulsitive->
             binding.activityScore.text = impulsitive.toString()
-        })
+        }
         
         //미니 설명창
         minidot.setOnClickListener{
@@ -140,10 +136,7 @@ class ResultTabAFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.mainCharacter.startAnimation(
-            android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
-
-
+        binding.mainCharacter.startAnimation(android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
     }
 
     companion object {

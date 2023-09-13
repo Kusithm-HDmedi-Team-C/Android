@@ -3,6 +3,9 @@ package com.example.kusithms_hdmedi_project.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kusithms_hdmedi_project.api.ApiResponse
+import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.api.RetrofitInstance.service
 import com.example.kusithms_hdmedi_project.model.QuestionResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +20,8 @@ class DiagnosisViewModel: ViewModel() {
     val answerList = _answerList.asStateFlow()    // 사용자가 문항에 답한 답변 리스트
 
     val pbStepSize = MutableLiveData<Int>(0)
+
+    val diagnosisResult = MutableLiveData<ApiResponse>()
 
     fun setAnswerList(index: Int, answerNumber: Int) {
         val prevAnswerList = _answerList.value.copyOf()
@@ -51,5 +56,12 @@ class DiagnosisViewModel: ViewModel() {
         testList.add(QuestionResponse(18,"다른 사람을 방해하거나 간섭한다.","다른 사람의 대화나 게임, 활동에 참견한다. 다른 사람에게 묻거나 허락을 받지 않고 다른 사람의 물건을 사용한다."))
 
         _questionList.value = testList
+    }
+
+    fun postDataToResponse(requestBodyModel: RequestBodyModel) {
+        viewModelScope.launch {
+            val response = service.postDataToResponse(requestBodyModel)
+            diagnosisResult.postValue(response.body())
+        }
     }
 }
