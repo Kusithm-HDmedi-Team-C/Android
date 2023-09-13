@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityMainBinding
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
+import com.example.kusithms_hdmedi_project.view.hospital.HospitalActivity
 import com.example.kusithms_hdmedi_project.view.hospital.review.ImageUploadActivity
 
 
@@ -27,7 +28,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, DiagnosisPrevActivity::class.java))
         }
 
-        binding.btnHospital.setOnClickListener {
+        binding.btnHospitalDiagnosis.setOnClickListener {
+            startActivity(Intent(this, HospitalActivity::class.java))
+        }
+
+        binding.btnReviewWrite.setOnClickListener {
             startActivity(Intent(this, ImageUploadActivity::class.java))
         }
 
