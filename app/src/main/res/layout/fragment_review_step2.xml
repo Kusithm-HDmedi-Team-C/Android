@@ -119,4 +119,14 @@
         android:textColor="#49505B"
         android:textSize="16sp"
         android:text="@string/받은_진료를_모두_선택해주세요_"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_diagnosis_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:nestedScrollingEnabled="false"
+        android:layout_marginRight="50dp"
+        tools:listitem="@layout/item_diagnosis_category"
+        android:layout_marginTop="26dp"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

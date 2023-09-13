@@ -59,7 +59,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.8.0")
 
     implementation("com.airbnb.android:lottie:5.0.2")
-
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
 
 
     implementation("androidx.activity:activity-ktx:1.7.2")

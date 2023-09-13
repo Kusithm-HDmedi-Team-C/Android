@@ -10,7 +10,6 @@ interface ApiService {
     @POST("/api/v1/survey/result")
     fun postData(@Body requestBody: RequestBodyModel): Call<ApiResponse>
 
-
     // 리뷰 작성
     @POST("/api/v1/review")
     suspend fun postReview(@Body body : WriteReviewBody) : Response<Any>

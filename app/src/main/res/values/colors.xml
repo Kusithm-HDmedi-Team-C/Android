@@ -22,4 +22,11 @@
     <color name="reference1">#8D94A0</color>
     <color name="close">#555D6A</color>
 
+    <color name="category_bg">#F1F3F8</color>
+    <color name="category_green_text">#29A8AF</color>
+    <color name="category_green_bg">#ABEEF2</color>
+    <color name="category_red_text">#FF4646</color>
+    <color name="category_red_bg">#FFC0C0</color>
+    <color name="category_blue_text">#735EF1</color>
+    <color name="category_blue_bg">#D1CAFF</color>
 </resources>
