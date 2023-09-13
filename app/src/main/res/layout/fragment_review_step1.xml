@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/main_blue"/>
+
+    <EditText
+        android:id="@+id/et_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="자유롭게 후기를 남겨주세요."
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:textSize="17sp"
+        android:textColor="#1A1E27"
+        android:lineHeight="23sp"
+        android:textColorHint="#8D94A0"
+        android:background="@null"
+        android:layout_marginHorizontal="24dp"/>
+
+    <TextView
+        android:id="@+id/tv_review_cnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#8D94A0"
+        android:text="0 / 1000"
+        android:fontFamily="@font/pretendard_medium"
+        android:layout_marginHorizontal="24dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="36dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:textColor="#49505B"
+        android:text="@string/다음과_같은_내용이_많은_분들께_"
+        android:fontFamily="@font/pretendard_medium"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="12dp"
+        android:lineHeight="19sp"
+        android:textColor="#8D94A0"
+        android:text="@string/의사_선생님께_상세한_진단_설명을_받았나요_"
+        android:layout_marginBottom="72dp"
+        android:fontFamily="@font/pretendard_medium"/>
+</LinearLayout>
