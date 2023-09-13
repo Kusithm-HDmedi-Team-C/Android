@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="24dp"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.willy.ratingbar.ScaleRatingBar
+                android:id="@+id/ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:srb_numStars="5"
+                app:srb_stepSize="1"
+                app:srb_rating="0"
+                app:srb_clearRatingEnabled="false"
+                app:srb_starWidth="30dp"
+                app:srb_starHeight="30dp"
+                app:srb_drawableEmpty="@drawable/start_off"
+                app:srb_drawableFilled="@drawable/start_on"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textColor="#49505B"
+                android:textSize="16sp"
+                android:text="@string/주치의의_성함은_무엇인가요_"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_border_gray_rad_8">
+
+                <EditText
+                    android:id="@+id/et_doc_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#DAE0EC"
+                    android:textColor="#1A1E27"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:background="@null"
+                    android:textSize="17sp"
+                    android:layout_gravity="center_vertical"
+                    android:hint="홍길동"/>
+
+                <ImageView
+                    android:id="@+id/iv_clear_name"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_close"
+                    android:layout_gravity="end|center_vertical"
+                    app:tint="@color/white"
+                    android:clipToOutline="true"
+                    android:padding="4dp"
+                    android:background="@drawable/bg_rad_48"
+                    android:backgroundTint="#C9D1DD"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textColor="#49505B"
+                android:textSize="16sp"
+                android:text="@string/진료_비용은_얼마였나요_"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_border_gray_rad_8">
+
+                <EditText
+                    android:id="@+id/et_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#DAE0EC"
+                    android:background="@null"
+                    android:textColor="#1A1E27"
+                    android:textSize="17sp"
+                    android:inputType="number"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:layout_gravity="center_vertical"
+                    android:hint="금액"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#8D94A0"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:textSize="17sp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginRight="36dp"
+                    android:text="원"/>
+
+                <ImageView
+                    android:id="@+id/iv_clear_price"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_close"
+                    android:layout_gravity="end|center_vertical"
+                    app:tint="@color/white"
+                    android:clipToOutline="true"
+                    android:padding="4dp"
+                    android:background="@drawable/bg_rad_48"
+                    android:backgroundTint="#C9D1DD"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textColor="#49505B"
+                android:textSize="16sp"
+                android:text="@string/받은_진료를_모두_선택해주세요_"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_diagnosis_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginRight="50dp"
+                tools:listitem="@layout/item_diagnosis_category"
+                android:layout_marginTop="26dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
