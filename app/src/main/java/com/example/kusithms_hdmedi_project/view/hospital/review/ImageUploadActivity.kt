@@ -39,9 +39,7 @@ class ImageUploadActivity : AppCompatActivity() {
             } else {
                 // 권한이 허용되지 않은 경우, 권한을 요청합니다.
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), STORAGE_PERMISSION_CODE)
-
             }
-//            imageUploadComplete()
         }
 
         binding.btnClose.setOnClickListener {
@@ -60,7 +58,7 @@ class ImageUploadActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == STORAGE_PERMISSION_CODE) {
+        if (requestCode == STORAGE_PERMISSION_CODE && data!=null && data.data != null) {
             Toast.makeText(this,"사진 업로드가 완료되었습니다.", Toast.LENGTH_SHORT).show()
             imageUploadComplete()
         }
@@ -75,6 +73,7 @@ class ImageUploadActivity : AppCompatActivity() {
 
             setOnClickListener {
                 startActivity(Intent(this@ImageUploadActivity, WriteReviewActivity::class.java))
+                finish()
             }
         }
     }
@@ -84,16 +83,12 @@ class ImageUploadActivity : AppCompatActivity() {
 
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // 사용자가 권한을 승인한 경우
-
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 intent.type = "image/*"
                 startActivityForResult(intent, STORAGE_PERMISSION_CODE)
             } else {
-                // 사용자가 권한을 거부한 경우
                 Toast.makeText(this,"이미지 업로드를 위해 접근권한 동의가 필요합니다.", Toast.LENGTH_SHORT);
-
             }
         }
     }
