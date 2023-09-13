@@ -18,11 +18,16 @@ import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabABinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
@@ -125,6 +130,10 @@ class ResultTabAFragment : Fragment() {
             }
         }
 
+        getBoldText(binding.question1content,getString(R.string.howto11),listOf("종합적인 진단"))
+        getBoldText(binding.question1content2,getString(R.string.howto22),listOf("약물치료가 가장 효과적인 방법","인지 행동 치료, 환경 조절, 부모 상담을 병행"))
+        getBoldText(binding.question1content3,getString(R.string.howto33),listOf("약물치료는 가장 필수적인 치료","규칙적으로 정확하게 처방 받은 용량을 일정 기간 동안 꾸준히 복용"))
+
 
 
     }
@@ -161,6 +170,24 @@ class ResultTabAFragment : Fragment() {
         scrollView.draw(canvas)
         return bitmap
     }
+
+    //주요글자 bold처리 위해
+    fun getBoldText(textView: TextView, fullText:String, wordsToBold:List<String>)
+    {
+        val spannableStringBuilder =  SpannableStringBuilder(fullText)
+        for(wordToBold in wordsToBold)
+        {
+            var startIndex = fullText.indexOf(wordToBold)
+            while(startIndex != -1)
+            {
+                val endIndex = startIndex + wordToBold.length
+                spannableStringBuilder.setSpan(StyleSpan(Typeface.BOLD),startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                startIndex = fullText.indexOf(wordToBold, endIndex)
+            }
+        }
+        textView.text = spannableStringBuilder
+    }
+
     private fun saveToGallery(context: Context, bitmap:Bitmap ): Uri?{
         val filename = "screenshot_${System.currentTimeMillis()}.png"
         var fos: OutputStream? = null
