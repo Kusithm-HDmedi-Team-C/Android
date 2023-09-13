@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.api.RequestBodyModel
-import com.example.kusithms_hdmedi_project.api.SurveyResult
+import com.example.kusithms_hdmedi_project.model.RequestBodyModel
+import com.example.kusithms_hdmedi_project.model.SurveyResult
 import com.example.kusithms_hdmedi_project.databinding.FragmentDiagnosisContentsBinding
 import com.example.kusithms_hdmedi_project.model.QuestionResponse
 

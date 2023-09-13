@@ -3,11 +3,10 @@ package com.example.kusithms_hdmedi_project.view.diagnosisResult
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.api.ApiResponse
-import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.model.ApiResponse
+import com.example.kusithms_hdmedi_project.model.RequestBodyModel
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisResultBinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
 import com.google.android.material.tabs.TabLayoutMediator

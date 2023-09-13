@@ -1,4 +1,4 @@
-package com.example.kusithms_hdmedi_project.api
+package com.example.kusithms_hdmedi_project.model
 
 import java.io.Serializable
 
@@ -22,3 +22,5 @@ data class SurveyResult(
     val surveyId:Int,
     val score : Int
 ): Serializable
+
+

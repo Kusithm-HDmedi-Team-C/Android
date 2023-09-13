@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.model.RequestBodyModel
 import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.util.Extensions.repeatOnStarted

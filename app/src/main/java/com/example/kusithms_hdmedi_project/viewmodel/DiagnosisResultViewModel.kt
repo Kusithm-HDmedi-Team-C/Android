@@ -1,15 +1,13 @@
 package com.example.kusithms_hdmedi_project.viewmodel
 
-import android.text.BoringLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kusithms_hdmedi_project.api.ApiResponse
+import com.example.kusithms_hdmedi_project.model.ApiResponse
 import com.example.kusithms_hdmedi_project.api.ApiService
-import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.model.RequestBodyModel
 import com.example.kusithms_hdmedi_project.api.RetrofitInstance
-import com.example.kusithms_hdmedi_project.api.SurveyResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

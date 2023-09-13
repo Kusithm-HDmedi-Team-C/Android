@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_blue">#5E6EF9</color>
+    <color name="sub_blue">#5988FF</color>
     <color name="diagnosisTopbackground">#F2F4F8</color>
     <color name="Tabunselected">#707885</color>
     <color name="resultbox">#F3F6FC</color>
@@ -20,5 +21,9 @@
     <color name="reference">#F9F9F9</color>
     <color name="reference1">#8D94A0</color>
     <color name="close">#555D6A</color>
+    <color name="searchbox">#F6F8FD</color>
+    <color name="searchtxt">#C2CCDD</color>
+    <color name="score">#1A1E27</color>
+    <color name="dividercolor">#E9EBF0</color>
 
 </resources>
