@@ -48,6 +48,7 @@
             android:layout_gravity="center_vertical"
             android:hint="홍길동"/>
         <ImageView
+            android:id="@+id/iv_clear_name"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:src="@drawable/ic_close"
@@ -86,8 +87,19 @@
             android:inputType="number"
             android:fontFamily="@font/pretendard_medium"
             android:layout_gravity="center_vertical"
-            android:hint="홍길동"/>
+            android:hint="금액"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#8D94A0"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="17sp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginRight="36dp"
+            android:text="원"/>
         <ImageView
+            android:id="@+id/iv_clear_price"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:src="@drawable/ic_close"
@@ -98,4 +110,13 @@
             android:background="@drawable/bg_rad_48"
             android:backgroundTint="#C9D1DD"/>
     </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textColor="#49505B"
+        android:textSize="16sp"
+        android:text="@string/받은_진료를_모두_선택해주세요_"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -32,7 +32,6 @@ class ReviewStep2Fragment : Fragment() {
 
         binding.etPrice.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (!TextUtils.isEmpty(p0.toString()) && p0.toString() != strAmount) {
                     strAmount = makeStringComma(p0.toString().replace(",", ""))!!
@@ -41,9 +40,17 @@ class ReviewStep2Fragment : Fragment() {
                     Selection.setSelection(editable, strAmount.length)
                 }
             }
-
             override fun afterTextChanged(p0: Editable?) {}
         })
+
+        binding.ivClearName.setOnClickListener {
+            binding.etDocName.setText("")
+        }
+
+        binding.ivClearPrice.setOnClickListener {
+            binding.etPrice.setText("")
+            strAmount = ""
+        }
     }
 
     private fun makeStringComma(str: String): String? {    // 천단위 콤마설정.
