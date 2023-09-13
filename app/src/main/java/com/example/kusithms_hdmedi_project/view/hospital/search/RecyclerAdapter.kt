@@ -1,15 +1,14 @@
-package com.example.kusithms_hdmedi_project.view.hospital
+package com.example.kusithms_hdmedi_project.view.hospital.search
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.model.Hospital
+import com.example.kusithms_hdmedi_project.model.Hospitals
 
-class HospitalAdapter(private val hospitals: List<Hospital>) :
+class HospitalAdapter(private val hospitals: List<Hospitals>) :
     RecyclerView.Adapter<HospitalAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

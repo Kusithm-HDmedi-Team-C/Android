@@ -1,13 +1,11 @@
-package com.example.kusithms_hdmedi_project.view.hospital
+package com.example.kusithms_hdmedi_project.view.hospital.search
 
 import android.content.Intent
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityHospitalBinding
-import com.example.kusithms_hdmedi_project.model.Hospital
+import com.example.kusithms_hdmedi_project.model.Hospitals
 import com.example.kusithms_hdmedi_project.view.MainActivity
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel
@@ -24,7 +22,7 @@ class HospitalActivity : AppCompatActivity() {
     private var _binding : ActivityHospitalBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HospitalSearchViewModel by viewModels()
-    private lateinit var hospitalAdapter:HospitalAdapter
+    private lateinit var hospitalAdapter: HospitalAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +61,6 @@ class HospitalActivity : AppCompatActivity() {
 
         //리싸이클러뷰 초기화
         val recyclerView = binding.hospitalList
-        //recyclerView.layoutManager = LinearLayoutManager(this)
         var current:Int = 0
 
         //api호출
@@ -78,15 +75,13 @@ class HospitalActivity : AppCompatActivity() {
                 if(viewModel.hasNextPage == true && lastItem == totalItemCount-1)
                 {
                     current +=1
-//                    if(current == 15)
-//                        return
                     viewModel.getHospitalApiResponse(current)
 
                 }
             }
         })
         viewModel.hospitalData.observe(this, {sortedMap->
-            val combinedList = mutableListOf<Hospital>()
+            val combinedList = mutableListOf<Hospitals>()
             for(list in sortedMap.values){
                 combinedList.addAll(list)
             }

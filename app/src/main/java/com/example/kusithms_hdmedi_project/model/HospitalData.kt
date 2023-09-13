@@ -1,6 +1,6 @@
 package com.example.kusithms_hdmedi_project.model
 
-data class Hospital(
+data class Hospitals(
     val hospitalId:Int,
     val name:String,
     val averageRating:Double,
@@ -14,7 +14,7 @@ data class HospitalApiResponse(
     val data:Data
 )
 data class Data(
-    val hospitals:List<Hospital>,
+    val hospitals:List<Hospitals>,
     val pageNumber:Int,
     val count:Int,
     val hasNextPage:Boolean

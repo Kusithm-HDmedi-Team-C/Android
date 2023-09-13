@@ -8,6 +8,7 @@ import com.example.kusithms_hdmedi_project.api.ApiService
 import com.example.kusithms_hdmedi_project.api.RetrofitInstance
 import com.example.kusithms_hdmedi_project.model.Hospital
 import com.example.kusithms_hdmedi_project.model.HospitalApiResponse
+import com.example.kusithms_hdmedi_project.model.Hospitals
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,8 +20,8 @@ class HospitalSearchViewModel: ViewModel() {
 
     //받은 병원데이터 관리
     //private val _hospitalData = MutableLiveData<List<Hospital>>()
-    private val _hospitalData = MutableLiveData<SortedMap<Int,List<Hospital>>>()
-    val hospitalData : LiveData<SortedMap<Int,List<Hospital>>> = _hospitalData
+    private val _hospitalData = MutableLiveData<SortedMap<Int,List<Hospitals>>>()
+    val hospitalData : LiveData<SortedMap<Int,List<Hospitals>>> = _hospitalData
     var hasNextPage = true
 
 
