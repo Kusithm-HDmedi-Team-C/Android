@@ -51,6 +51,7 @@ android {
 
 dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
 
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -58,6 +59,8 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.8.0")
 
     implementation("com.airbnb.android:lottie:5.0.2")
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+    implementation("com.github.ome450901:SimpleRatingBar:1.5.1")
 
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.fragment:fragment-ktx:1.6.1")

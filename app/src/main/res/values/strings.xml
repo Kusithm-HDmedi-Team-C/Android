@@ -93,8 +93,4 @@
     <string name="ADHD_어디에서_진단받지">ADHD, 어디에서 진단받지?</string>
     <string name="ADHD_어떻게_치료해야_할까_">ADHD, 어떻게 치료해야 할까?</string>
 
-    <string name="hinttxt">병원 검색하기</string>
-    <string name="menu1">만족도 순</string>
-    <string name="menu2">후기 많은 순</string>
-
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_diagnosis_category"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_rad_8"
+    android:backgroundTint="#F1F3F8"
+    android:gravity="center_vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tv_diagnosis_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="#707885"
+        android:text="종류"
+        android:layout_marginRight="12dp"
+        android:textSize="18sp"/>
+
+    <ImageView
+        android:id="@+id/iv_diagnosis_category"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_check_off"
+        android:layout_gravity="end|center_vertical"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
