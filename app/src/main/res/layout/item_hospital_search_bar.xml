@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연세건강정신과"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/location"
+        android:drawablePadding="6dp"
+        android:text="서울시 광진구 동일로 11-4"
+        android:textColor="@color/questiontitle"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/pretendard_medium" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/star"
+            android:drawablePadding="4dp"
+            android:text="3/5"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="12sp"
+            android:textColor="@color/score"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="후기 n개"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="12sp"
+            android:textColor="@color/questiontitle"
+            android:includeFontPadding="false"
+            android:layout_marginLeft="12dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#B9C0CD"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
