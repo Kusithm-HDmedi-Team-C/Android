@@ -53,6 +53,8 @@ class WriteReviewActivity : AppCompatActivity() {
                 if (value.rating != 0 && value.doctor.isNotEmpty() && value.price != 0 && value.examinations.isNotEmpty()) {
                     val bitmap : Bitmap = BitmapFactory.decodeResource(resources, R.drawable.jpg_img)
                     viewmodel.postReview(bitmap)
+                } else {
+                    Toast.makeText(this@WriteReviewActivity, "내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
