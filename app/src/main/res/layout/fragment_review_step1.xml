@@ -47,6 +47,8 @@
         android:id="@+id/rv_search_hospital"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+
         tools:visibility="visible"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout2"

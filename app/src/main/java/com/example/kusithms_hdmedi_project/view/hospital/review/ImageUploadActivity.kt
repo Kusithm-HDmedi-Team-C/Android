@@ -4,6 +4,10 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.media.Image
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -17,11 +21,13 @@ import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityImageUploadBinding
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
+import java.io.File
 
 class ImageUploadActivity : AppCompatActivity() {
     private var _binding : ActivityImageUploadBinding? = null
     private val binding get() = _binding!!
     private val STORAGE_PERMISSION_CODE = 1
+    private lateinit var bitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +66,7 @@ class ImageUploadActivity : AppCompatActivity() {
 
         if (requestCode == STORAGE_PERMISSION_CODE && data!=null && data.data != null) {
             Toast.makeText(this,"사진 업로드가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+//            bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(contentResolver, data.data!!))
             imageUploadComplete()
         }
     }
@@ -72,7 +79,8 @@ class ImageUploadActivity : AppCompatActivity() {
             backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImageUploadActivity, R.color.main_blue))
 
             setOnClickListener {
-                startActivity(Intent(this@ImageUploadActivity, WriteReviewActivity::class.java))
+                val intent = Intent(this@ImageUploadActivity, WriteReviewActivity::class.java)
+                startActivity(intent)
                 finish()
             }
         }
