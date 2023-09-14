@@ -25,7 +25,7 @@
             android:name=".view.hospital.review.ImageUploadActivity"
             android:exported="false" />
         <activity
-            android:name=".view.hospital.HospitalActivity"
+            android:name=".view.hospital.search.HospitalActivity"
             android:exported="false" />
         <activity
             android:name=".view.diagnosis.DiagnosisPrevActivity"

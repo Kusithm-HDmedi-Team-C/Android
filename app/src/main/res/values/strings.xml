@@ -87,6 +87,7 @@
     <string name="type1">주의력 결핍형</string>
     <string name="type2">과잉행동∙충동형</string>
     <string name="type3">혼합형</string>
+    <string name="hinttxt">병원 검색하기</string>
 
     <string name="typedetail1">과잉행동∙충동 점수 00점 이상</string>
     <string name="typedetail2">부주의 점수 00점 이상</string>
@@ -102,6 +103,7 @@
     <string name="다음_중_한_가지를_업로드하세요_">다음 중 한 가지를 업로드하세요.\n반드시 병원명이 드러나야 합니다.</string>
     <string name="사진_업로드">사진 업로드</string>
     <string name="후기_작성하기">후기 작성하기</string>
+
     <string name="다음">다음</string>
     <string name="후기_작성을_종료하시겠습니까_">후기 작성을 종료하시겠습니까?</string>
 
@@ -111,4 +113,6 @@
     <string name="주치의의_성함은_무엇인가요_">주치의의 성함은 무엇인가요?</string>
     <string name="진료_비용은_얼마였나요_">진료 비용은 얼마였나요?</string>
     <string name="받은_진료를_모두_선택해주세요_">받은 진료를 모두 선택해주세요.</string>
+
+
 </resources>

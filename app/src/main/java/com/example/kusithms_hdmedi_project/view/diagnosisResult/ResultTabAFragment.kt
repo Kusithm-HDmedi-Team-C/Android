@@ -10,10 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.kusithms_hdmedi_project.R
-import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.model.RequestBodyModel
 import com.example.kusithms_hdmedi_project.databinding.FragmentResultTabABinding
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisResultViewModel
 import android.graphics.Bitmap

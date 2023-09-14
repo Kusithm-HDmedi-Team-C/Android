@@ -3,8 +3,8 @@ package com.example.kusithms_hdmedi_project.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kusithms_hdmedi_project.api.ApiResponse
-import com.example.kusithms_hdmedi_project.api.RequestBodyModel
+import com.example.kusithms_hdmedi_project.model.ApiResponse
+import com.example.kusithms_hdmedi_project.model.RequestBodyModel
 import com.example.kusithms_hdmedi_project.api.RetrofitInstance.service
 import com.example.kusithms_hdmedi_project.model.QuestionResponse
 import kotlinx.coroutines.flow.MutableStateFlow

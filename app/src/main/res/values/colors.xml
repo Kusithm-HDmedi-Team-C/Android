@@ -21,6 +21,10 @@
     <color name="reference">#F9F9F9</color>
     <color name="reference1">#8D94A0</color>
     <color name="close">#555D6A</color>
+    <color name="searchbox">#F6F8FD</color>
+    <color name="searchtxt">#C2CCDD</color>
+    <color name="score">#1A1E27</color>
+    <color name="dividercolor">#E9EBF0</color>
 
     <color name="category_bg">#F1F3F8</color>
     <color name="category_green_text">#29A8AF</color>
