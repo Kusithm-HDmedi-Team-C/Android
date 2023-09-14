@@ -44,7 +44,6 @@ class WriteReviewActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi() {
-
         repeatOnStarted {
             viewmodel.writeReviewBody.collect {
                 if (it.contents.isNotEmpty()) {

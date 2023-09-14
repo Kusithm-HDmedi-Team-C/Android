@@ -1,8 +1,12 @@
 package com.example.kusithms_hdmedi_project.view.hospital.review
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +47,12 @@ class ReviewStep1Fragment : Fragment() {
                 }
             }
         })
+        binding.ivSearch.setOnClickListener {
+            if (binding.etSearch.text.isNotEmpty()) {
+                binding.etSearch.setText("")
+                binding.ivSearch.setImageResource(R.drawable.ic_search)
+            }
+        }
 
         binding.etReview.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
