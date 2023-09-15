@@ -4,7 +4,7 @@ data class Hospitals(
     val hospitalId:Int,
     val name:String,
     val averageRating:Double,
-    val numberOfReviews:Int,
+    val numberOfReview:Int,
     val address:String
 )
 

@@ -51,8 +51,9 @@ class HospitalSearchViewModel: ViewModel() {
         get() = _isresultOfSearch
 
     fun changeSearchState()
-    {
-        _isresultOfSearch.postValue(true)
+    {//_isFocus.value = !(isFocus.value ?: false)
+        //_isresultOfSearch.postValue(true)
+        _isresultOfSearch.value = !(isresultOfSearch.value ?: false)
     }
 
 
@@ -99,7 +100,6 @@ class HospitalSearchViewModel: ViewModel() {
                 val hospitalListResponse = response.body()
                 val hospitals=hospitalListResponse?.data?.hospitals ?: emptyList()
                 _nameofHospitalData.postValue(hospitals)
-                changeSearchState()
 
             }
             else{

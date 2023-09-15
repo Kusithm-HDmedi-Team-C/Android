@@ -30,7 +30,7 @@ class HospitalAdapter(private var hospitals: List<Hospitals>) :
         holder.hospitalNameTextView.text = hospital.name
         holder.hospitalAddress.text = hospital.address
         holder.ratingTextView.text = hospital.averageRating.toString()
-        holder.reviewsTextView.text = hospital.numberOfReviews.toString()
+        holder.reviewsTextView.text = hospital.numberOfReview.toString()
     }
 
     override fun getItemCount(): Int {

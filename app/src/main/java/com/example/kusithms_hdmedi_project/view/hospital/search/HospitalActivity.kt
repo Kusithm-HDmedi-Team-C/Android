@@ -9,11 +9,13 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
@@ -54,6 +56,18 @@ class HospitalActivity : AppCompatActivity() {
                 transaction.remove(fragment)
                 transaction.commit()
             }
+            viewModel.changefocus()
+            Log.e("dd","ple")
+            viewModel.changeSearchState()
+            Log.e("dd","${viewModel.isresultOfSearch.value}")
+            searchbox.setText("")
+        }
+        if(viewModel.isFocus.value == true)
+        {
+            //edittext 위치 동적 변경
+            val params = searchbox.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 19
+            searchbox.layoutParams = params
         }
 
         //focus시 fragment로 이동
@@ -134,42 +148,34 @@ class HospitalActivity : AppCompatActivity() {
 
             }
         }
+
         //api호출
         viewModel.getHospitalApiResponse()
 
         //리싸이클러뷰 초기화
         val recyclerView = binding.hospitalList
-        viewModel.hospitalData.observe(this, {hospitals->
-            hospitalAdapter.updateSearchList(hospitals)
-        })
-        recyclerView.addOnScrollListener(object:RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val totalItemCount = layoutManager.itemCount
-                val lastItem = layoutManager.findLastVisibleItemPosition()
-                if(viewModel.hasNextPage == true && lastItem == totalItemCount-1)
-                {
-                    viewModel.getHospitalApiResponse()
+        var hospitalDataObserver: Observer<List<Hospitals>>?= null
+        var nameofHospitalDataObserver: Observer<List<Hospitals>>?= null
+
+        viewModel.isresultOfSearch.observe(this, { isTrue ->
+            // 이전에 Observe했던 Observer를 제거
+            nameofHospitalDataObserver?.let { viewModel.nameofHospitalData.removeObserver(it) }
+            hospitalDataObserver?.let { viewModel.hospitalData.removeObserver(it) }
+
+            if (isTrue) {
+                nameofHospitalDataObserver = Observer { hospitals ->
+                    hospitalAdapter.updateSearchList(hospitals)
                 }
+                viewModel.nameofHospitalData.observe(this, nameofHospitalDataObserver!!)
+            } else {
+                hospitalDataObserver = Observer { hospitals ->
+                    hospitalAdapter.updateSearchList(hospitals)
+                }
+                viewModel.hospitalData.observe(this, hospitalDataObserver!!)
             }
         })
 
-
-
-        viewModel.isresultOfSearch.observe(this,{
-            istrue->
-                //검색했음
-                    viewModel.nameofHospitalData.observe(this,{
-                            hospitals->
-                        hospitalAdapter.updateSearchList(hospitals)
-                        Log.e("eee","edkd")
-                    })
-
-
-
-        })
-        hospitalAdapter = HospitalAdapter(emptyList())
+    hospitalAdapter = HospitalAdapter(emptyList())
         recyclerView.adapter = hospitalAdapter
 
 
