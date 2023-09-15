@@ -63,7 +63,7 @@
     <string name="아이약">아이약</string>
     <string name="진료_후기">진료 후기</string>
     <string name="후기_작성">후기 작성</string>
-    <string name="다른_사람들이_방문한_병원_후기">다른 사람들이\n방문한 병원 후기</string>
+    <string name="다른_사람들이_방문한_병원_후기">사람들이 추천하는\n병원을 한눈에!</string>
     <string name="방문한_병원_진료_후기_쓰기">방문한 병원\n진료 후기 쓰기</string>
 
     <string name="tiptitle1">우리 아이는 집중을 잘 하는데, ADHD일\n수 있나요?</string>
@@ -96,7 +96,7 @@
     <string name="우리_아이_ADHD_빨리_알수록_좋으니까">우리 아이 ADHD,\n빨리 알수록 좋으니까</string>
     <string name="우리_아이_혹시_ADHD일까_">우리 아이, 혹시 ADHD일까?</string>
     <string name="ADHD_어디에서_진단받지">ADHD, 어디에서 진단받지?</string>
-    <string name="ADHD_어떻게_치료해야_할까_">ADHD, 어떻게 치료해야 할까?</string>
+    <string name="ADHD_부작용_없이_치료할_수_있을까_">ADHD, 부작용 없이 치료할 수 있을?</string>
 
     <string name="후기_작성을_위해서는_병원_방문내역_">후기 작성을 위해서는 병원 방문내역 인증이 필요합니다.</string>
     <string name="모든_리뷰는_비공개_익명_처리됩니다_">모든 리뷰는 비공개 익명 처리됩니다.</string>

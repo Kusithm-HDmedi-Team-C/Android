@@ -29,7 +29,7 @@ class ReviewViewModel: ViewModel() {
     val step1Status = MutableLiveData<Boolean>()
 
     val writeReviewBody = MutableStateFlow<WriteReviewBody>(WriteReviewBody())   // 작성하고 있는 전체 리뷰 내용 유지
-    val writeReviewResponse = MutableLiveData(0)
+    val writeReviewResponse = MutableLiveData<Int>()
 
     private val _searchedHospitalList = MutableStateFlow<HospitalData>(HospitalData())
     val searchedHospitalList get() = _searchedHospitalList.asStateFlow()    // 이름으로 검색된 병원 목록
@@ -58,7 +58,7 @@ class ReviewViewModel: ViewModel() {
             val file = RequestBody.create(MultipartBody.FORM, "")
             val body = MultipartBody.Part.createFormData("file","", file)
 
-            val bitmapRequestBody = bitmap.let { BitmapRequestBody(it) }
+            val bitmapRequestBody = BitmapRequestBody(bitmap)
             val bitmapMultipartBody: MultipartBody.Part? =
                 if (bitmapRequestBody == null) null
                 else MultipartBody.Part.createFormData("file", "file", bitmapRequestBody)

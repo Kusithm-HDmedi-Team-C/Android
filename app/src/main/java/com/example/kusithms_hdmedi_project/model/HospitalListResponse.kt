@@ -17,6 +17,6 @@ data class Hospital(
     val address: String = "",
     val hospitalId: Int = 0,
     val name: String = "",
-    val averageRating: Int = 0,
+    val averageRating: Double = 0.0,
     val numberOfReview: Int = 0
 )

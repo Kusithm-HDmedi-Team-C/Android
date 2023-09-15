@@ -10,10 +10,7 @@ import com.example.kusithms_hdmedi_project.databinding.ItemHospitalBinding
 import com.example.kusithms_hdmedi_project.databinding.ItemHospitalSearchBarBinding
 import com.example.kusithms_hdmedi_project.model.Hospital
 
-
-class SearchHospitalAdapter(
-    private val context: Context,
-)
+class SearchHospitalAdapter(private val context: Context)
     : RecyclerView.Adapter<SearchHospitalAdapter.CustomViewHolder>() {
     private var searchResultList = listOf<Hospital>()
     private lateinit var itemClickListener: OnItemClickListener
@@ -22,6 +19,8 @@ class SearchHospitalAdapter(
         fun bind(item: Hospital) {
             binding.title.text = item.name
             binding.address.text = item.address
+            binding.rating.text = "${item.averageRating.toInt()}/5"
+            binding.tvReviewCnt.text = "후기 ${item.numberOfReview}개"
         }
     }
 
