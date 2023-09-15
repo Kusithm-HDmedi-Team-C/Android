@@ -17,6 +17,7 @@
     <string name="확인">확인</string>
     <string name="자가진단을_종료하시겠습니까_">자가진단을 종료하시겠습니까?</string>
     <string name="기록된_사항은_저장되지_않아요">기록된 사항은 저장되지 않아요.</string>
+    <string name="지도_바로가기">지도 바로가기</string>
 
     <string name="diagnosisResult">진단 결과</string>
     <string name="recommend">추천 정보</string>

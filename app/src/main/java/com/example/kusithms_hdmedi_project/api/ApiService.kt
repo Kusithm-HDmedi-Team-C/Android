@@ -35,5 +35,10 @@ interface ApiService {
     @GET("/api/v1/hospital?")
     fun getHospitalApiResponse(@Query("pageNumber") value:Int): Call<HospitalApiResponse>
 
+    //이름으로 주소조회(병원 검색창에서 평점및 기타 데이터들도 필요하기에)
+    @GET("/api/v1/hospital/search?")
+    suspend fun searchHospitals(
+        @Query("hospitalName") hospitalName: String
+    ): Response<HospitalApiResponse>
 
 }
