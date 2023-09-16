@@ -56,16 +56,14 @@ class HospitalDetailFragment : Fragment(),onReviewClickListener {
             binding.detailPhnum.text = phnum
 
             binding.gotoMap.setOnClickListener{
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("${urlAddress}"))
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(urlAddress)
                 startActivity(intent)
             }
 
         }
-//
+
          val recyclerView = binding.reviewRecycler
-//         val adapter = ReviewAdapter(emptyList(),this)
-//        recyclerView.layoutManager = LinearLayoutManager(context)
-//        recyclerView.adapter = adapter
 
         viewModel.reviewData.observe(viewLifecycleOwner)
         {

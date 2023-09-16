@@ -24,6 +24,7 @@ import com.example.kusithms_hdmedi_project.model.Hospital
 import com.example.kusithms_hdmedi_project.model.Hospitals
 import com.example.kusithms_hdmedi_project.view.MainActivity
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
+import com.example.kusithms_hdmedi_project.view.hospital.review.WriteReviewActivity
 import com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel
 
 class HospitalActivity : AppCompatActivity(),onDetailClickListener {
@@ -57,6 +58,9 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
         backbtn.setOnClickListener{
             val intent = Intent(MainActivity(), DiagnosisPrevActivity::class.java)
             startActivity(intent)
+        }
+        binding.reviewWritebtn.setOnClickListener{
+            val intent = Intent(MainActivity(), WriteReviewActivity::class.java)
         }
         //취소버튼 이전화면
         binding.cancelTxt.setOnClickListener(){
