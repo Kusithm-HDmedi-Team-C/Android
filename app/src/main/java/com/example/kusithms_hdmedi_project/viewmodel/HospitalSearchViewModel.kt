@@ -7,10 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kusithms_hdmedi_project.api.ApiService
 import com.example.kusithms_hdmedi_project.api.RetrofitInstance
+import com.example.kusithms_hdmedi_project.model.ApiResponseDetail
 import com.example.kusithms_hdmedi_project.model.Hospital
 import com.example.kusithms_hdmedi_project.model.HospitalApiResponse
+import com.example.kusithms_hdmedi_project.model.HospitalDetailData
 import com.example.kusithms_hdmedi_project.model.HospitalListResponse
 import com.example.kusithms_hdmedi_project.model.Hospitals
+import com.example.kusithms_hdmedi_project.model.Review
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +29,7 @@ class HospitalSearchViewModel: ViewModel() {
     val _isFocus=MutableLiveData<Boolean>()
     val isFocus :LiveData<Boolean>
         get() = _isFocus
-    private var currentpage =1
+    //private var current =0
 
     //focus여부 전환 함수
     fun changefocus() {
@@ -50,9 +53,38 @@ class HospitalSearchViewModel: ViewModel() {
     val isresultOfSearch : LiveData<Boolean>
         get() = _isresultOfSearch
 
+    //병원 상세 조회용
+    private val _detailHospital = MutableLiveData<List<HospitalDetailData>>()
+    val detailHospital : LiveData<List<HospitalDetailData>> = _detailHospital
+
+    //리뷰 박스 visible용
+    private val _reviewClick = MutableLiveData<Boolean>()
+    val reviewClick : LiveData<Boolean> = _reviewClick
+
+//    private val _hospitalTitle = MutableLiveData<String>()
+//    val hospitalTitle:LiveData<String> = _hospitalTitle
+//
+//    private val _rating = MutableLiveData<Int>()
+//    var rating:LiveData<Int> = _rating
+//
+//    private val _reviewNum = MutableLiveData<Int>()
+//    var reviewNum:LiveData<Int> = _reviewNum
+//
+//    private val _detailAddress = MutableLiveData<String>()
+//    var detailAddress:LiveData<String> = _detailAddress
+//
+//    private val _detailPhnum = MutableLiveData<String>()
+//    var detailPhnum:LiveData<String> = _detailPhnum
+
+
+
+
+    //병원 리뷰 저장용
+    private val _reviewData = MutableLiveData<List<Review>>()
+    val reviewData:LiveData<List<Review>> = _reviewData
+
     fun changeSearchState()
-    {//_isFocus.value = !(isFocus.value ?: false)
-        //_isresultOfSearch.postValue(true)
+    {
         _isresultOfSearch.value = !(isresultOfSearch.value ?: false)
     }
 
@@ -61,13 +93,19 @@ class HospitalSearchViewModel: ViewModel() {
     init{
         _isFocus.postValue(false)
         _isresultOfSearch.postValue(false)
+        _reviewClick.postValue(false)
+    }
+
+    fun updateReviewClick()
+    {
+        _reviewClick.value = !(reviewClick.value ?: false)
     }
 
     //api요청 보내기
-    fun getHospitalApiResponse()
+    fun getHospitalApiResponse(searchType:String, current:Int)
     {
         if(hasNextPage == false) return
-        val call: Call<HospitalApiResponse> = apiService.getHospitalApiResponse(currentpage)
+        val call: Call<HospitalApiResponse> = apiService.getHospitalApiResponse(searchType,current)
         call.enqueue(object : Callback<HospitalApiResponse>{
             override fun onResponse(
                 call: Call<HospitalApiResponse>,
@@ -79,7 +117,7 @@ class HospitalSearchViewModel: ViewModel() {
                     val currentHospitals = _hospitalData.value ?: emptyList()
                     val combinedHospitals =  currentHospitals + newHospitals
                     _hospitalData.postValue(combinedHospitals)
-                    currentpage+=1
+                    //current+=1
                 }
                 else{
                     Log.e("fail","api 요청에 실패했습니다")
@@ -106,6 +144,57 @@ class HospitalSearchViewModel: ViewModel() {
                 Log.e("fail","api 요청에 실패했습니다")
             }
         }
+    }
+
+//    fun getHospitalDetail(id:Int)
+//    {
+//        val response = apiService.getHospitalDetails(id)
+//        if(response.isSuccessful)
+//        {
+//            val hospitalDetailResponse = response.body()
+//
+//            val details = hospitalDetailResponse?.data
+//            val detailList = details?.let {listOf(it)} ?: emptyList()
+//
+//            val reviews = hospitalDetailResponse?.data?.reviews ?: emptyList()
+//
+//            _detailHospital.postValue(detailList)
+//            _reviewData.postValue(reviews)
+//
+//        }
+//        else{
+//            Log.e("fail","api 요청에 실패했습니다")
+//        }
+//
+//    }
+    fun getHospitalDetail(id:Int)
+    {
+        apiService.getHospitalDetails(id).enqueue(object :Callback<ApiResponseDetail>{
+            override fun onResponse(
+                call: Call<ApiResponseDetail>,
+                response: Response<ApiResponseDetail>
+            ) {
+                if(response.isSuccessful)
+                {
+                    val hospitalDetailResponse = response.body()
+
+                    val details = hospitalDetailResponse?.data
+                    val detailList = details?.let {listOf(it)} ?: emptyList()
+
+                    val reviews = hospitalDetailResponse?.data?.reviews ?: emptyList()
+
+                    _detailHospital.postValue(detailList)
+                    _reviewData.postValue(reviews)
+                }
+                else{
+                    Log.e("fail","api 요청에 실패했습니다")
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponseDetail>, t: Throwable) {
+                Log.e("fail","failure")
+            }
+        })
     }
 
 }

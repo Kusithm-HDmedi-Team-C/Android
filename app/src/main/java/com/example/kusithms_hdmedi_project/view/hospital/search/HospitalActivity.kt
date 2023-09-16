@@ -26,11 +26,21 @@ import com.example.kusithms_hdmedi_project.view.MainActivity
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
 import com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel
 
-class HospitalActivity : AppCompatActivity() {
+class HospitalActivity : AppCompatActivity(),onDetailClickListener {
     private var _binding : ActivityHospitalBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HospitalSearchViewModel by viewModels()
     private lateinit var hospitalAdapter: HospitalAdapter
+
+    override fun onDetailItemClicked(hospitalId:Int)
+    {
+        viewModel.getHospitalDetail(hospitalId)
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentDetail.id,HospitalDetailFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +48,11 @@ class HospitalActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         setContentView(binding.root)
+        val recyclerView = binding.hospitalList
 
         val backbtn = binding.backbtn
         val searchbox = binding.searchbox
+        var current = 0
 
         backbtn.setOnClickListener{
             val intent = Intent(MainActivity(), DiagnosisPrevActivity::class.java)
@@ -76,7 +88,6 @@ class HospitalActivity : AppCompatActivity() {
             {
                 if(hasFocus)
                 {
-                    Log.e("log","ggg")
                     supportFragmentManager.beginTransaction()
                         .add(binding.fragmentcontainer.id,SearchListFragment())
                         .addToBackStack(null)
@@ -136,10 +147,40 @@ class HospitalActivity : AppCompatActivity() {
                      0 ->
                      {
                          //만족도 순 정렬 api호출
+                         viewModel.getHospitalApiResponse("averageRating",current)
+                         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                                 super.onScrolled(recyclerView, dx, dy)
+
+                                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                                 val totalItemCount = layoutManager.itemCount
+                                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                                 if(totalItemCount <= lastVisibleItem+2)
+                                 {
+                                     current +=1
+                                     viewModel.getHospitalApiResponse("averageRating",current)
+                                 }
+                             }
+                         })
                      }
                     1->
                     {
                         //후기 많은 순 api호출
+                        viewModel.getHospitalApiResponse("numberOfReviews",current)
+                        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                                super.onScrolled(recyclerView, dx, dy)
+
+                                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                                val totalItemCount = layoutManager.itemCount
+                                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                                if(totalItemCount <= lastVisibleItem+2)
+                                {
+                                    current +=1
+                                    viewModel.getHospitalApiResponse("numberOfReviews",current)
+                                }
+                            }
+                        })
                     }
                 }
             }
@@ -150,10 +191,10 @@ class HospitalActivity : AppCompatActivity() {
         }
 
         //api호출
-        viewModel.getHospitalApiResponse()
+        viewModel.getHospitalApiResponse("averageRating",0)
 
         //리싸이클러뷰 초기화
-        val recyclerView = binding.hospitalList
+       // val recyclerView = binding.hospitalList
         var hospitalDataObserver: Observer<List<Hospitals>>?= null
         var nameofHospitalDataObserver: Observer<List<Hospitals>>?= null
 
@@ -175,14 +216,16 @@ class HospitalActivity : AppCompatActivity() {
             }
         })
 
-    hospitalAdapter = HospitalAdapter(emptyList())
+
+    hospitalAdapter = HospitalAdapter(emptyList(),this)
         recyclerView.adapter = hospitalAdapter
 
-
-
-
-
     }
+
+
+
+
+
 
 
     override fun onDestroy() {
