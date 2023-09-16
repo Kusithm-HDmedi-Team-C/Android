@@ -62,6 +62,10 @@ class DiagnosisPrevFragment: Fragment() {
             requireActivity().finish()
         }
 
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
+        }
+
     }
 
     /** 체크할 때 마다 다음단계의 View Visible, 애니메이션 처리 **/
