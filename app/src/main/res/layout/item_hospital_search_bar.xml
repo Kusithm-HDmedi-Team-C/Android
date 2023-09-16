@@ -47,6 +47,7 @@
             android:includeFontPadding="false" />
 
         <TextView
+            android:id="@+id/tv_review_cnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="후기 n개"

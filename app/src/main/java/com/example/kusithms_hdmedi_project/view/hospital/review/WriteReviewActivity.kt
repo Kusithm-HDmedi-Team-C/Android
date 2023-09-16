@@ -1,27 +1,33 @@
 package com.example.kusithms_hdmedi_project.view.hospital.review
 
+import android.app.Dialog
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityImageUploadBinding
 import com.example.kusithms_hdmedi_project.databinding.ActivityWriteReviewBinding
 import com.example.kusithms_hdmedi_project.util.Extensions.repeatOnStarted
 import com.example.kusithms_hdmedi_project.viewmodel.ReviewViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class WriteReviewActivity : AppCompatActivity() {
     private var _binding : ActivityWriteReviewBinding? = null
     private val binding get() = _binding!!
     val viewmodel by viewModels<ReviewViewModel>()
-
 
     private var nowPage = 1
 
@@ -71,8 +77,12 @@ class WriteReviewActivity : AppCompatActivity() {
 
         viewmodel.writeReviewResponse.observe(this) {
             if (it == 200) {
-                finish()
-                Toast.makeText(this@WriteReviewActivity, "리뷰 작성 완료", Toast.LENGTH_SHORT).show()
+                val customDialog = CustomDialog(this)
+                customDialog.show()
+                lifecycleScope.launch {
+                    delay(2000L)
+                    finish()
+                }
             } else {
                 Toast.makeText(this@WriteReviewActivity, "리뷰 작성 실패", Toast.LENGTH_SHORT).show()
             }
@@ -85,7 +95,13 @@ class WriteReviewActivity : AppCompatActivity() {
         }
     }
 
-
+    inner class CustomDialog(context: Context) : Dialog(context) {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.dialog_review_finish)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+    }
 
     override fun onDestroy() {
         _binding = null

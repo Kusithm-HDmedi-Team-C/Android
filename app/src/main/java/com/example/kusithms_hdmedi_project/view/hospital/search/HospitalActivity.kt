@@ -55,12 +55,13 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
         val searchbox = binding.searchbox
         var current = 0
 
-        backbtn.setOnClickListener{
-            val intent = Intent(MainActivity(), DiagnosisPrevActivity::class.java)
-            startActivity(intent)
-        }
+//        backbtn.setOnClickListener{
+//            val intent = Intent(this@HospitalActivity, DiagnosisPrevActivity::class.java)
+//            startActivity(intent)
+//        }
         binding.reviewWritebtn.setOnClickListener{
-            val intent = Intent(MainActivity(), WriteReviewActivity::class.java)
+            val intent = Intent(this@HospitalActivity, WriteReviewActivity::class.java)
+            startActivity(intent)
         }
         //취소버튼 이전화면
         binding.cancelTxt.setOnClickListener(){

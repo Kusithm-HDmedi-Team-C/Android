@@ -100,6 +100,7 @@ class ResultTabAFragment : Fragment() {
         binding.retrybtn.setOnClickListener{
             val intent = Intent(requireActivity(), DiagnosisPrevActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
 
         storebtn.setOnClickListener{
@@ -115,8 +116,7 @@ class ResultTabAFragment : Fragment() {
             //현재 화면 비트맵에 그린다
             val bitmap = takeScreenshot(scrollview)
             val uri = saveToGallery(requireContext(), bitmap)
-            if(uri != null)
-            {
+            if(uri != null) {
                 StoreToast.createToast(requireActivity(), "진단결과가 앨범에 저장되었습니다.")?.show()
             }
             else{

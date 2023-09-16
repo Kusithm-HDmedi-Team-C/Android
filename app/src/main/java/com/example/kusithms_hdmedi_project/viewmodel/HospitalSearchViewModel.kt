@@ -66,8 +66,7 @@ class HospitalSearchViewModel: ViewModel() {
     private val _reviewData = MutableLiveData<List<Review>>()
     val reviewData:LiveData<List<Review>> = _reviewData
 
-    fun changeSearchState()
-    {
+    fun changeSearchState() {
         _isresultOfSearch.value = !(isresultOfSearch.value ?: false)
     }
 

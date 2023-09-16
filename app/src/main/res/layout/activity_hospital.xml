@@ -26,8 +26,6 @@
         android:layout_marginTop="32.49dp"
         android:visibility="@{viewModel.isFocus ? View.GONE : View.VISIBLE}">
 
-
-
         <ImageView
             android:id="@+id/backbtn"
             android:layout_width="wrap_content"
@@ -98,8 +96,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchbox"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintBottom_toBottomOf="parent">
 
     </FrameLayout>
 
@@ -116,8 +113,7 @@
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:paddingRight="22dp"
-        android:forceHasOverlappingRendering="false"
-        />
+        android:forceHasOverlappingRendering="false" />
     
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hospital_list"
@@ -130,8 +126,7 @@
         android:layout_marginTop="13dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/item_hospital"
-        />
+        tools:listitem="@layout/item_hospital" />
 
     <LinearLayout
         android:id="@+id/reviewWritebtn"
@@ -140,6 +135,7 @@
         android:background="@drawable/retrystyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="32dp"
         android:orientation="horizontal"
@@ -156,8 +152,7 @@
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
             android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            />
+            android:paddingBottom="16dp" />
 
     </LinearLayout>
 

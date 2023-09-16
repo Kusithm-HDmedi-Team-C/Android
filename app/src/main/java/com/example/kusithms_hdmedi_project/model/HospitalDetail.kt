@@ -22,6 +22,7 @@ data class HospitalDetailData(
     @SerializedName("count") val count: Int,
     @SerializedName("hasNextPage") val hasNextPage: Boolean
 )
+
 data class Review(
     @SerializedName("reviewId") val reviewId: Int,
     @SerializedName("rating") val rating: Int,

@@ -1,7 +1,10 @@
 package com.example.kusithms_hdmedi_project.view
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -38,13 +41,14 @@ class MainActivity : AppCompatActivity() {
 
         val str1 = resources.getString(R.string.ADHD_어디에서_진단받지)
         val ssb1 = SpannableStringBuilder(str1)
-        val str2 = resources.getString(R.string.ADHD_어떻게_치료해야_할까_)
+        val str2 = resources.getString(R.string.ADHD_부작용_없이_치료할_수_있을까_)
         val ssb2 = SpannableStringBuilder(str2)
         ssb1.setSpan(ForegroundColorSpan(Color.parseColor("#4E7FFF")),11,13,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvHome2.text = ssb1
 
-        ssb2.setSpan(ForegroundColorSpan(Color.parseColor("#4E7FFF")),10,12,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ssb2.setSpan(ForegroundColorSpan(Color.parseColor("#4E7FFF")),13,15,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvHome3.text = ssb2
+
     }
 
     override fun onDestroy() {
