@@ -31,8 +31,8 @@ interface ApiService {
     @Multipart
     @POST("/api/v1/review")
     suspend fun postReview(
-        @Part("createReviewRequestDto") createReviewRequestDto: RequestBody,
-        @Part file: MultipartBody.Part?
+    @Part("createReviewRequestDto") createReviewRequestDto: RequestBody,
+    @Part file: MultipartBody.Part?
     ) : Response<WriteReviewResponse>
 
     // 이름으로 병원 조회
@@ -49,20 +49,11 @@ interface ApiService {
     @GET("/api/v1/hospital?")
     fun getHospitalApiResponse(@Query("searchType") searchType: String, @Query("pageNumber") value:Int): Call<HospitalApiResponse>
 
-//    //만족도순 조회
-//    @GET("/api/v1/hospital")
-//    fun getHospitalDataRating(@Query("searchType") searchType: String = "averageRating", @Query("pageNumber") pageNumber: Int): Call<HospitalApiResponse>
-//
-//    //리뷰순 조회
-//    @GET("/api/v1/hospital")
-//    fun getHospitalDataReview(@Query("searchType") searchType: String = "numberOfReviews", @Query("pageNumber") pageNumber: Int): Call<HospitalApiResponse>
-
-
     //이름으로 주소조회(병원 검색창에서 평점및 기타 데이터들도 필요하기에)
     @GET("/api/v1/hospital/search?")
-    suspend fun searchHospitals(
+    fun searchHospitals(
         @Query("hospitalName") hospitalName: String
-    ): Response<HospitalApiResponse>
+    ): Call<HospitalApiResponse>
 
     //병원 상세 조회
     @GET("/api/v1/hospital/details/{id}?pageNumber=0&pageSize=10")

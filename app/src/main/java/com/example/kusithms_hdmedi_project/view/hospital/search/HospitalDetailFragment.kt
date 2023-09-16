@@ -45,7 +45,9 @@ class HospitalDetailFragment : Fragment(),onReviewClickListener {
             detailList->
             val name = detailList[0].name
             val rating = detailList[0].averageRating
+            //잘못됨
             val reviewNum = detailList[0].count
+
             val detailAddress = detailList[0].address
             val phnum = detailList[0].telephone
             val urlAddress = detailList[0].mapUrl
