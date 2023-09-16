@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -59,12 +60,14 @@ class WriteReviewActivity : AppCompatActivity() {
             if (nowPage == 1) {
                 supportFragmentManager.beginTransaction().add(R.id.fl_top, ReviewStep2Fragment()).commit()
                 binding.tvNext.text = "완료"
+                binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.fullscore))
                 nowPage = 2
             } else if (nowPage == 2) {
                 val value = viewmodel.writeReviewBody.value
                 if (value.rating != 0 && value.doctor.isNotEmpty() && value.price != 0 && value.examinations.isNotEmpty()) {
                     val bitmap : Bitmap = BitmapFactory.decodeResource(resources, R.drawable.jpg_img)
                     viewmodel.postReview(bitmap)
+                    binding.llTop.isClickable = false
                 } else {
                     Toast.makeText(this@WriteReviewActivity, "내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
@@ -97,6 +100,12 @@ class WriteReviewActivity : AppCompatActivity() {
         repeatOnStarted {
             viewmodel.writeReviewBody.collect {
                 binding.tvNext.isClickable = it.contents.isNotEmpty()
+                Log.d("taag", it.toString())
+                if (it.rating != 0 && it.doctor.isNotEmpty() && it.price != 0 && it.examinations.isNotEmpty()) {
+                    binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.main_blue))
+                } else {
+                    binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.fullscore))
+                }
             }
         }
     }
