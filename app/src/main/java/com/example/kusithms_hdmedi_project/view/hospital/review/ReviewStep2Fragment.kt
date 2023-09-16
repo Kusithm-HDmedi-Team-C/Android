@@ -49,6 +49,7 @@ class ReviewStep2Fragment : Fragment() {
 
         setFlexBox()
 
+        // 별점 리스너
         binding.ratingbar.setOnRatingChangeListener { ratingBar, rating, _ ->
             viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(rating = rating.toInt()) }
         }
@@ -75,6 +76,7 @@ class ReviewStep2Fragment : Fragment() {
             }
         })
 
+        // EditText 초기화
         binding.ivClearName.setOnClickListener {
             binding.etDocName.setText("")
             viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(doctor = "") }
