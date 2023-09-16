@@ -74,6 +74,9 @@ class ResultTabAFragment : Fragment() {
         val x = viewModel.location[0]
         val y = viewModel.location[1]
 
+
+        binding.seekbar.setOnTouchListener{v,event -> true}
+
         binding.mainCharacter.startAnimation(
             android.view.animation.AnimationUtils.loadAnimation(requireContext(), R.anim.jump))
 
