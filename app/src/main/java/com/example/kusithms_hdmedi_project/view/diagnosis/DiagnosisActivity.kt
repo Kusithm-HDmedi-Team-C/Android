@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.model.RequestBodyModel
@@ -12,6 +13,7 @@ import com.example.kusithms_hdmedi_project.base.BaseDialog
 import com.example.kusithms_hdmedi_project.databinding.ActivityDiagnosisBinding
 import com.example.kusithms_hdmedi_project.util.Extensions.repeatOnStarted
 import com.example.kusithms_hdmedi_project.viewmodel.DiagnosisViewModel
+import com.google.android.material.appbar.AppBarLayout
 import kotlin.math.abs
 
 class DiagnosisActivity : AppCompatActivity() {
@@ -57,6 +59,11 @@ class DiagnosisActivity : AppCompatActivity() {
                 binding.vpDiagnosisContents.isUserInputEnabled = diagnosisVM.answerList.value[position] != -1
 
                 diagnosisContentsViewPagerAdapter.setAnswerList(diagnosisVM.answerList.value)
+
+                if (position != 0) {
+                    binding.appBarLayout.isActivated = false
+                    binding.appBarLayout.setExpanded(false, false)
+                }
             }
         })
 

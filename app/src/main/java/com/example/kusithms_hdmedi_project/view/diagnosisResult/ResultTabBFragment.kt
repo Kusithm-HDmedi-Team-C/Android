@@ -34,13 +34,13 @@ class ResultTabBFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val arrow1 = binding.arrow1
-        val arrow2 = binding.arrow2
-        val arrow4 = binding.arrow4
-        val arrow5 = binding.arrow5
-        val arrow6 = binding.arrow6
-        val arrow7 = binding.arrow7
-        val arrow8 = binding.arrow8
+        val arrow1 = binding.tiptitle1
+        val arrow2 = binding.tiptitle3
+        val arrow4 = binding.tiptitle4
+        val arrow5 = binding.tiptitle5
+        val arrow6 = binding.tiptitle6
+        val arrow7 = binding.tiptitle7
+        val arrow8 = binding.tiptitle2
 
         arrow1.setOnClickListener {
             viewModel.isclose1()

@@ -51,7 +51,8 @@ class WriteReviewActivity : AppCompatActivity() {
                 ).show(supportFragmentManager, "")
             } else if (nowPage == 2) {
                 supportFragmentManager.beginTransaction().remove(supportFragmentManager.findFragmentById(R.id.fl_top)!!).commit()
-                nowPage=1
+                binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.sub_blue))
+                nowPage = 1
             }
 
         }
@@ -77,10 +78,12 @@ class WriteReviewActivity : AppCompatActivity() {
 
     private fun subscribeUi() {
         viewmodel.step1Status.observe(this) {
-            if (it) {
-                binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.sub_blue))
-            } else {
-                binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.fullscore))
+            if (nowPage == 1) {
+                if (it) {
+                    binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.sub_blue))
+                } else {
+                    binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.fullscore))
+                }
             }
         }
 
@@ -99,12 +102,13 @@ class WriteReviewActivity : AppCompatActivity() {
 
         repeatOnStarted {
             viewmodel.writeReviewBody.collect {
-                binding.tvNext.isClickable = it.contents.isNotEmpty()
-                Log.d("taag", it.toString())
-                if (it.rating != 0 && it.doctor.isNotEmpty() && it.price != 0 && it.examinations.isNotEmpty()) {
-                    binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.main_blue))
-                } else {
-                    binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.fullscore))
+                if (nowPage == 2) {
+                    binding.tvNext.isClickable = it.contents.isNotEmpty()
+                    if (it.rating != 0 && it.doctor.isNotEmpty() && it.price != 0 && it.examinations.isNotEmpty()) {
+                        binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.main_blue))
+                    } else {
+                        binding.tvNext.setTextColor(ContextCompat.getColor(this@WriteReviewActivity, R.color.fullscore))
+                    }
                 }
             }
         }
