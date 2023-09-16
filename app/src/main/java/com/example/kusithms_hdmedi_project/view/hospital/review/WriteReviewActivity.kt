@@ -40,18 +40,24 @@ class WriteReviewActivity : AppCompatActivity() {
         subscribeUi()
 
         binding.ivBack.setOnClickListener {
-            BaseDialog(
-                context = this@WriteReviewActivity,
-                title = "후기 작성을 종료하시겠습니까?",
-                subTitle = "기록된 사항은 저장되지 않아요.",
-                positive = { finish() },
-                negative = {}
-            ).show(supportFragmentManager, "")
+            if (nowPage == 1) {
+                BaseDialog(
+                    context = this@WriteReviewActivity,
+                    title = "후기 작성을 종료하시겠습니까?",
+                    subTitle = "기록된 사항은 저장되지 않아요.",
+                    positive = { finish() },
+                    negative = {}
+                ).show(supportFragmentManager, "")
+            } else if (nowPage == 2) {
+                supportFragmentManager.beginTransaction().remove(supportFragmentManager.findFragmentById(R.id.fl_top)!!).commit()
+                nowPage=1
+            }
+
         }
 
         binding.tvNext.setOnClickListener {
             if (nowPage == 1) {
-                supportFragmentManager.beginTransaction().replace(R.id.fl_top, ReviewStep2Fragment()).commit()
+                supportFragmentManager.beginTransaction().add(R.id.fl_top, ReviewStep2Fragment()).commit()
                 binding.tvNext.text = "완료"
                 nowPage = 2
             } else if (nowPage == 2) {
