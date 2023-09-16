@@ -1,6 +1,7 @@
 package com.example.kusithms_hdmedi_project.api
 
 import com.example.kusithms_hdmedi_project.model.ApiResponse
+import com.example.kusithms_hdmedi_project.model.ApiResponseDetail
 import com.example.kusithms_hdmedi_project.model.HospitalApiResponse
 import com.example.kusithms_hdmedi_project.model.RequestBodyModel
 import com.example.kusithms_hdmedi_project.model.HospitalListResponse
@@ -14,8 +15,10 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+
 import retrofit2.http.Part
 import retrofit2.http.PartMap
+
 import retrofit2.http.Query
 
 interface ApiService {
@@ -45,7 +48,25 @@ interface ApiService {
 
     //전체 주소 조회
     @GET("/api/v1/hospital?")
-    fun getHospitalApiResponse(@Query("pageNumber") value:Int): Call<HospitalApiResponse>
+    fun getHospitalApiResponse(@Query("searchType") searchType: String, @Query("pageNumber") value:Int): Call<HospitalApiResponse>
 
+//    //만족도순 조회
+//    @GET("/api/v1/hospital")
+//    fun getHospitalDataRating(@Query("searchType") searchType: String = "averageRating", @Query("pageNumber") pageNumber: Int): Call<HospitalApiResponse>
+//
+//    //리뷰순 조회
+//    @GET("/api/v1/hospital")
+//    fun getHospitalDataReview(@Query("searchType") searchType: String = "numberOfReviews", @Query("pageNumber") pageNumber: Int): Call<HospitalApiResponse>
+
+
+    //이름으로 주소조회(병원 검색창에서 평점및 기타 데이터들도 필요하기에)
+    @GET("/api/v1/hospital/search?")
+    suspend fun searchHospitals(
+        @Query("hospitalName") hospitalName: String
+    ): Response<HospitalApiResponse>
+
+    //병원 상세 조회
+    @GET("/api/v1/hospital/details/{id}?pageNumber=0&pageSize=10")
+    fun getHospitalDetails(@Path("id") id:Int): Call<ApiResponseDetail>
 
 }

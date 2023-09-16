@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/reviewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+        <TextView
+            android:id="@+id/reviewId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/questiontitle"
+            android:textSize="17sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="익명1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="24dp"
+            android:includeFontPadding="false"
+            />
+        <TextView
+            android:id="@+id/createDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="15sp"
+            android:text="2022.02.02"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:includeFontPadding="false"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:id="@+id/ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintTop_toBottomOf="@id/reviewContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srb_numStars="5"
+        app:srb_stepSize="1"
+        app:srb_rating="2"
+        app:srb_isIndicator="true"
+        app:srb_starPadding="2dp"
+        app:srb_clearRatingEnabled="false"
+        app:srb_starWidth="16dp"
+        app:srb_starHeight="16dp"
+        app:srb_drawableEmpty="@drawable/start_off"
+        app:srb_drawableFilled="@drawable/start_on"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/reviewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingbar"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:textSize="15sp"
+        android:text="형식적인 약처방을 위한 문진이 아니라 정말 근본적인 해결책을 찾아주려하세요."
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/reviewInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reviewContent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/resultbox"
+        android:visibility="@{viewModel.reviewClick ? View.VISIBLE : View.GONE}"
+        >
+
+        <TextView
+            android:id="@+id/maindoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/주치의"
+            android:fontFamily="@font/pretendard_semibold"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/questiontitle"
+            />
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/진료비용"
+            android:fontFamily="@font/pretendard_semibold"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/maindoc"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/questiontitle"
+            />
+        <TextView
+            android:id="@+id/experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/받은진료"
+            android:fontFamily="@font/pretendard_semibold"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="23dp"
+            android:textColor="@color/questiontitle"
+            />
+
+        <TextView
+            android:id="@+id/maindoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/maindoc"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="15sp"
+            android:textColor="@color/Tabunselected"
+            android:text="홍길동"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="41dp"
+            />
+        <TextView
+            android:id="@+id/reviewerPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/maindoctor"
+            app:layout_constraintLeft_toRightOf="@id/price"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="15sp"
+            android:textColor="@color/Tabunselected"
+            android:text="150000원"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="24dp"
+            />
+        <TextView
+            android:id="@+id/reviewerService1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/reviewerPrice"
+            app:layout_constraintLeft_toRightOf="@+id/experience"
+            android:background="@drawable/dental_type1"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="17sp"
+            android:text="@string/CAT"
+            android:textColor="@color/category_green_text"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="24dp"
+            />
+
+
+        <TextView
+            android:id="@+id/reviewerService2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/reviewerPrice"
+            app:layout_constraintLeft_toRightOf="@+id/reviewerService1"
+            android:background="@drawable/dental_type1"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="17sp"
+            android:text="@string/CAT"
+            android:textColor="@color/category_green_text"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="8dp"
+            />
+
+        <TextView
+            android:id="@+id/reviewerService3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/reviewerPrice"
+            app:layout_constraintLeft_toRightOf="@+id/reviewerService2"
+            android:background="@drawable/dental_type1"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="17sp"
+            android:text="@string/CAT"
+            android:textColor="@color/category_green_text"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="8dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        android:background="@drawable/divider3"
+        app:layout_constraintTop_toBottomOf="@+id/reviewInfo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

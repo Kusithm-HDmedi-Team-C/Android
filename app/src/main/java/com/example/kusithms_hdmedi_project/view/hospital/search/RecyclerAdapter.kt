@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.model.Hospitals
 
-class HospitalAdapter(private val hospitals: List<Hospitals>) :
+class HospitalAdapter(private var hospitals: List<Hospitals>,
+                      private val listener:onDetailClickListener) :
     RecyclerView.Adapter<HospitalAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,9 +32,18 @@ class HospitalAdapter(private val hospitals: List<Hospitals>) :
         holder.hospitalAddress.text = hospital.address
         holder.ratingTextView.text = hospital.averageRating.toString()
         holder.reviewsTextView.text = hospital.numberOfReviews.toString()
+
+        holder.itemView.setOnClickListener{
+            listener.onDetailItemClicked(hospital.hospitalId)
+        }
     }
 
     override fun getItemCount(): Int {
         return hospitals.size
+    }
+    fun updateSearchList(newData:List<Hospitals>)
+    {
+        this.hospitals = newData
+        notifyDataSetChanged()
     }
 }

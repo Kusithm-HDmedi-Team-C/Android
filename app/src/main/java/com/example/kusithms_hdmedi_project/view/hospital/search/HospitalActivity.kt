@@ -3,55 +3,190 @@ package com.example.kusithms_hdmedi_project.view.hospital.search
 import android.content.Intent
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnFocusChangeListener
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.ActivityHospitalBinding
+import com.example.kusithms_hdmedi_project.model.Hospital
 import com.example.kusithms_hdmedi_project.model.Hospitals
 import com.example.kusithms_hdmedi_project.view.MainActivity
 import com.example.kusithms_hdmedi_project.view.diagnosis.DiagnosisPrevActivity
+import com.example.kusithms_hdmedi_project.view.hospital.review.WriteReviewActivity
 import com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel
 
-class HospitalActivity : AppCompatActivity() {
+class HospitalActivity : AppCompatActivity(),onDetailClickListener {
     private var _binding : ActivityHospitalBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HospitalSearchViewModel by viewModels()
     private lateinit var hospitalAdapter: HospitalAdapter
 
+    override fun onDetailItemClicked(hospitalId:Int)
+    {
+        viewModel.getHospitalDetail(hospitalId)
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentDetail.id,HospitalDetailFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityHospitalBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         setContentView(binding.root)
+        val recyclerView = binding.hospitalList
 
         val backbtn = binding.backbtn
-        val searchBox = binding.searchbox
+        val searchbox = binding.searchbox
+        var current = 0
 
         backbtn.setOnClickListener{
             val intent = Intent(MainActivity(), DiagnosisPrevActivity::class.java)
             startActivity(intent)
         }
+        binding.reviewWritebtn.setOnClickListener{
+            val intent = Intent(MainActivity(), WriteReviewActivity::class.java)
+        }
+        //취소버튼 이전화면
+        binding.cancelTxt.setOnClickListener(){
+            val fragmentManager = supportFragmentManager
+            val fragment = fragmentManager.findFragmentById(R.id.fragmentcontainer)
+            if(fragment != null)
+            {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.remove(fragment)
+                transaction.commit()
+            }
+            viewModel.changefocus()
+            Log.e("dd","ple")
+            viewModel.changeSearchState()
+            Log.e("dd","${viewModel.isresultOfSearch.value}")
+            searchbox.setText("")
+        }
+        if(viewModel.isFocus.value == true)
+        {
+            //edittext 위치 동적 변경
+            val params = searchbox.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 19
+            searchbox.layoutParams = params
+        }
 
-        //돋보기 마진 설정용
-        val searchicon = ContextCompat.getDrawable(this, R.drawable.search)
-        val insetimg = InsetDrawable(searchicon,0,16,14,15)
-        searchBox.setCompoundDrawablesWithIntrinsicBounds(null,null,insetimg,null)
+        //focus시 fragment로 이동
+        searchbox.setOnFocusChangeListener(object:OnFocusChangeListener{
+            override fun onFocusChange(view: View, hasFocus:Boolean)
+            {
+                if(hasFocus)
+                {
+                    supportFragmentManager.beginTransaction()
+                        .add(binding.fragmentcontainer.id,SearchListFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    viewModel.changefocus()
+                    Log.e("error","${viewModel.isFocus.value.toString()}")
+
+                }
+//                viewModel.changefocus()
+//                Log.e("error","${viewModel.isFocus.value.toString()}")
+            }
+        })
+
+        //edittext내부 지우기 버튼
+        searchbox.setOnTouchListener(View.OnTouchListener{
+
+            v,event->
+            if(event.action == MotionEvent.ACTION_UP){
+                val drawableRightXStart = searchbox.right - searchbox.totalPaddingRight
+                if(event.rawX>=drawableRightXStart)
+                {
+                    searchbox.setText("")
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        searchbox.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.getHospitalFromName(p0.toString())
+            }
+        })
+
+
 
         val arrayList=ArrayList<String>()
         arrayList.add("만족도 순")
         arrayList.add("후기 많은 순")
         val spinner = binding.menu
-        val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,arrayList)
-        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(this, R.layout.spinner_dropdown,arrayList)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown)
         spinner.adapter = adapter
+        spinner.post{
+            spinner.dropDownHorizontalOffset = spinner.height
+        }
         spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val selectedItem = p0?.getItemAtPosition(p2).toString()
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                //val selectedItem = p0?.getItemAtPosition(p2).toString()
+                when(position){
+                     0 ->
+                     {
+                         //만족도 순 정렬 api호출
+                         viewModel.getHospitalApiResponse("averageRating",current)
+                         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                                 super.onScrolled(recyclerView, dx, dy)
+
+                                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                                 val totalItemCount = layoutManager.itemCount
+                                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                                 if(totalItemCount <= lastVisibleItem+2)
+                                 {
+                                     current +=1
+                                     viewModel.getHospitalApiResponse("averageRating",current)
+                                 }
+                             }
+                         })
+                     }
+                    1->
+                    {
+                        //후기 많은 순 api호출
+                        viewModel.getHospitalApiResponse("numberOfReviews",current)
+                        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                                super.onScrolled(recyclerView, dx, dy)
+
+                                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                                val totalItemCount = layoutManager.itemCount
+                                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                                if(totalItemCount <= lastVisibleItem+2)
+                                {
+                                    current +=1
+                                    viewModel.getHospitalApiResponse("numberOfReviews",current)
+                                }
+                            }
+                        })
+                    }
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -59,37 +194,43 @@ class HospitalActivity : AppCompatActivity() {
             }
         }
 
-        //리싸이클러뷰 초기화
-        val recyclerView = binding.hospitalList
-        var current:Int = 0
-
         //api호출
-        viewModel.getHospitalApiResponse(current)
+        viewModel.getHospitalApiResponse("averageRating",0)
 
-        recyclerView.addOnScrollListener(object:RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val totalItemCount = layoutManager.itemCount
-                val lastItem = layoutManager.findLastVisibleItemPosition()
-                if(viewModel.hasNextPage == true && lastItem == totalItemCount-1)
-                {
-                    current +=1
-                    viewModel.getHospitalApiResponse(current)
+        //리싸이클러뷰 초기화
+       // val recyclerView = binding.hospitalList
+        var hospitalDataObserver: Observer<List<Hospitals>>?= null
+        var nameofHospitalDataObserver: Observer<List<Hospitals>>?= null
 
+        viewModel.isresultOfSearch.observe(this, { isTrue ->
+            // 이전에 Observe했던 Observer를 제거
+            nameofHospitalDataObserver?.let { viewModel.nameofHospitalData.removeObserver(it) }
+            hospitalDataObserver?.let { viewModel.hospitalData.removeObserver(it) }
+
+            if (isTrue) {
+                nameofHospitalDataObserver = Observer { hospitals ->
+                    hospitalAdapter.updateSearchList(hospitals)
                 }
+                viewModel.nameofHospitalData.observe(this, nameofHospitalDataObserver!!)
+            } else {
+                hospitalDataObserver = Observer { hospitals ->
+                    hospitalAdapter.updateSearchList(hospitals)
+                }
+                viewModel.hospitalData.observe(this, hospitalDataObserver!!)
             }
         })
-        viewModel.hospitalData.observe(this, {sortedMap->
-            val combinedList = mutableListOf<Hospitals>()
-            for(list in sortedMap.values){
-                combinedList.addAll(list)
-            }
-            hospitalAdapter = HospitalAdapter(combinedList)
-            recyclerView.adapter = hospitalAdapter
-        })
+
+
+    hospitalAdapter = HospitalAdapter(emptyList(),this)
+        recyclerView.adapter = hospitalAdapter
 
     }
+
+
+
+
+
+
 
     override fun onDestroy() {
         _binding = null

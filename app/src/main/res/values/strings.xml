@@ -17,6 +17,7 @@
     <string name="확인">확인</string>
     <string name="자가진단을_종료하시겠습니까_">자가진단을 종료하시겠습니까?</string>
     <string name="기록된_사항은_저장되지_않아요">기록된 사항은 저장되지 않아요.</string>
+    <string name="지도_바로가기">지도 바로가기</string>
 
     <string name="diagnosisResult">진단 결과</string>
     <string name="recommend">추천 정보</string>
@@ -113,6 +114,17 @@
     <string name="주치의의_성함은_무엇인가요_">주치의의 성함은 무엇인가요?</string>
     <string name="진료_비용은_얼마였나요_">진료 비용은 얼마였나요?</string>
     <string name="받은_진료를_모두_선택해주세요_">받은 진료를 모두 선택해주세요.</string>
+    
+    <string name="주치의">주치의</string>
+    <string name="진료비용">진료 비용</string>
+    <string name="받은진료">받은 진료</string>
+
+    <string name="CAT">CAT 검사</string>
+    <string name="FULL_BATTERY">풀배터리 검사</string>
+    <string name="EEG">정량 뇌파 검사</string>
+    <string name="COUNSEL">상담</string>
+    <string name="MEDICINE">약 처방</string>
+    <string name="ETC">기타</string>
 
 
 </resources>
