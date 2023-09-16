@@ -32,12 +32,10 @@ class SearchListFragment : Fragment(),onHospitalItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentSearchListBinding.inflate(inflater,container,false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
-        //viewModel = ViewModelProvider(this).get(HospitalSearchViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

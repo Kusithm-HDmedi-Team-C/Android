@@ -61,23 +61,6 @@ class HospitalSearchViewModel: ViewModel() {
     private val _reviewClick = MutableLiveData<Boolean>()
     val reviewClick : LiveData<Boolean> = _reviewClick
 
-//    private val _hospitalTitle = MutableLiveData<String>()
-//    val hospitalTitle:LiveData<String> = _hospitalTitle
-//
-//    private val _rating = MutableLiveData<Int>()
-//    var rating:LiveData<Int> = _rating
-//
-//    private val _reviewNum = MutableLiveData<Int>()
-//    var reviewNum:LiveData<Int> = _reviewNum
-//
-//    private val _detailAddress = MutableLiveData<String>()
-//    var detailAddress:LiveData<String> = _detailAddress
-//
-//    private val _detailPhnum = MutableLiveData<String>()
-//    var detailPhnum:LiveData<String> = _detailPhnum
-
-
-
 
     //병원 리뷰 저장용
     private val _reviewData = MutableLiveData<List<Review>>()
@@ -131,42 +114,30 @@ class HospitalSearchViewModel: ViewModel() {
     }
     fun getHospitalFromName(text : String)
     {
-        viewModelScope.launch(Dispatchers.IO) {
-            val response=apiService.searchHospitals(text)
-            if(response.isSuccessful){
-                //val hospitals=apiResponse?.data?.hospitals ?: emptyList()
-                val hospitalListResponse = response.body()
-                val hospitals=hospitalListResponse?.data?.hospitals ?: emptyList()
-                _nameofHospitalData.postValue(hospitals)
+        val call : Call<HospitalApiResponse> = apiService.searchHospitals(text)
+        call.enqueue(object : Callback<HospitalApiResponse>{
+            override fun onResponse(
+                call: Call<HospitalApiResponse>,
+                response: Response<HospitalApiResponse>
+            ) {
+                if(response.isSuccessful){
+                    val hospitalListResponse = response.body()
+                    val hospitals=hospitalListResponse?.data?.hospitals ?: emptyList()
+                    _nameofHospitalData.postValue(hospitals)
+                    Log.e("get", "${nameofHospitalData.value}")
+                }
+                else{
+                    Log.e("fail","api 요청에 실패했습니다")
+                }
+            }
 
+            override fun onFailure(call: Call<HospitalApiResponse>, t: Throwable) {
+                Log.e("fail","api 요청에 실패했습니다2")
             }
-            else{
-                Log.e("fail","api 요청에 실패했습니다")
-            }
-        }
+        })
+
     }
 
-//    fun getHospitalDetail(id:Int)
-//    {
-//        val response = apiService.getHospitalDetails(id)
-//        if(response.isSuccessful)
-//        {
-//            val hospitalDetailResponse = response.body()
-//
-//            val details = hospitalDetailResponse?.data
-//            val detailList = details?.let {listOf(it)} ?: emptyList()
-//
-//            val reviews = hospitalDetailResponse?.data?.reviews ?: emptyList()
-//
-//            _detailHospital.postValue(detailList)
-//            _reviewData.postValue(reviews)
-//
-//        }
-//        else{
-//            Log.e("fail","api 요청에 실패했습니다")
-//        }
-//
-//    }
     fun getHospitalDetail(id:Int)
     {
         apiService.getHospitalDetails(id).enqueue(object :Callback<ApiResponseDetail>{

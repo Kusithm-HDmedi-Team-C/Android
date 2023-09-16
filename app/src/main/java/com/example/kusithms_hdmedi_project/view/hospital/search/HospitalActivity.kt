@@ -197,8 +197,6 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
         //api호출
         viewModel.getHospitalApiResponse("averageRating",0)
 
-        //리싸이클러뷰 초기화
-       // val recyclerView = binding.hospitalList
         var hospitalDataObserver: Observer<List<Hospitals>>?= null
         var nameofHospitalDataObserver: Observer<List<Hospitals>>?= null
 
