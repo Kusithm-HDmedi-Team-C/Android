@@ -55,10 +55,9 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
         val searchbox = binding.searchbox
         var current = 0
 
-//        backbtn.setOnClickListener{
-//            val intent = Intent(this@HospitalActivity, DiagnosisPrevActivity::class.java)
-//            startActivity(intent)
-//        }
+        backbtn.setOnClickListener{
+            onBackPressed()
+        }
         binding.reviewWritebtn.setOnClickListener{
             val intent = Intent(this@HospitalActivity, WriteReviewActivity::class.java)
             startActivity(intent)
@@ -74,10 +73,9 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
                 transaction.commit()
             }
             viewModel.changefocus()
-            Log.e("dd","ple")
             viewModel.changeSearchState()
-            Log.e("dd","${viewModel.isresultOfSearch.value}")
             searchbox.setText("")
+            searchbox.clearFocus()
         }
         if(viewModel.isFocus.value == true)
         {

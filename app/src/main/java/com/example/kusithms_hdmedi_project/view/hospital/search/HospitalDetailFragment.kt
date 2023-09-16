@@ -65,14 +65,18 @@ class HospitalDetailFragment : Fragment(){
 
         }
 
-         val recyclerView = binding.reviewRecycler
+
+
 
         viewModel.reviewData.observe(viewLifecycleOwner)
         {
             reviews->
-            ReviewAdapter = ReviewAdapter(reviews,viewModel)
-            recyclerView.adapter = ReviewAdapter
+            val recyclerView = binding.reviewRecycler
+            val adapter = ReviewAdapter(emptyList(),viewModel)
+            recyclerView.adapter = adapter
+            adapter.reviews = reviews
             Log.e("err", "${viewModel.reviewData.value}")
+            //recyclerView.itemAnimator = null
         }
 
 

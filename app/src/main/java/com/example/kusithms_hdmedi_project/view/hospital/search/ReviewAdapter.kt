@@ -13,7 +13,7 @@ import com.example.kusithms_hdmedi_project.model.Review
 import com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel
 import com.willy.ratingbar.ScaleRatingBar
 
-class ReviewAdapter(private var reviews : List<Review>, private val viewModel:HospitalSearchViewModel): RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
+class ReviewAdapter(var reviews : List<Review>, private val viewModel:HospitalSearchViewModel): RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
     //private lateinit var viewModel:HospitalSearchViewModel
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
     {
@@ -59,7 +59,6 @@ class ReviewAdapter(private var reviews : List<Review>, private val viewModel:Ho
             holder.exam4.visibility = if(review.examinations[i] == "COUNSEL") View.VISIBLE else View.GONE
             holder.exam5.visibility = if(review.examinations[i] == "MEDICINE") View.VISIBLE else View.GONE
             holder.exam6.visibility = if(review.examinations[i] == "ETC") View.VISIBLE else View.GONE
-
         }
     }
 
