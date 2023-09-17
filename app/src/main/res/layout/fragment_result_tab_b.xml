@@ -36,6 +36,7 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginTop="24dp"
+                android:paddingVertical="10dp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,8 +44,6 @@
                     android:text="@string/more"
                     android:fontFamily="@font/pretendard_semibold"
                     android:textSize="20sp"
-                    android:paddingTop="24dp"
-                    android:paddingBottom="22dp"
                     android:paddingLeft="24dp"
                     />
             </LinearLayout>
@@ -56,7 +55,7 @@
                 android:background="@drawable/mostmany"
                 app:layout_constraintTop_toBottomOf="@id/topbox"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginLeft="24dp">
 
                 <TextView
@@ -75,7 +74,7 @@
 
             <TextView
                 android:id="@+id/tiptitle1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/symptombox"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -83,7 +82,7 @@
                 android:layout_marginTop="28dp"
                 android:text="@string/tiptitle1"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -109,7 +108,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail1"
                 android:visibility="@{viewModel.isclose1 ? View.GONE : View.VISIBLE}"
@@ -124,22 +123,22 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/divider3"
                 android:orientation="vertical"
                 />
 
             <TextView
                 android:id="@+id/tiptitle2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/divider1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/tiptitle2"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -165,7 +164,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail2"
                 android:visibility="@{viewModel.isclose8 ? View.GONE : View.VISIBLE}"
@@ -180,7 +179,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/divider3"
                 android:orientation="vertical"
                 />
@@ -192,7 +191,7 @@
                 android:background="@drawable/mostmany"
                 app:layout_constraintTop_toBottomOf="@+id/divider2"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginLeft="24dp">
 
                 <TextView
@@ -211,7 +210,7 @@
 
             <TextView
                 android:id="@+id/tiptitle3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/symptombox2"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -219,7 +218,7 @@
                 android:layout_marginTop="24dp"
                 android:text="@string/tiptitle3"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -245,7 +244,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail3"
                 android:visibility="@{viewModel.isclose2 ? View.GONE : View.VISIBLE}"
@@ -260,7 +259,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/divider3"
                 android:orientation="vertical"
                 />
@@ -272,10 +271,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/tiptitle4"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -301,7 +300,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail4"
                 android:visibility="@{viewModel.isclose4 ? View.GONE : View.VISIBLE}"
@@ -328,7 +327,7 @@
                 android:background="@drawable/mostmany"
                 app:layout_constraintTop_toBottomOf="@+id/divider4"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginLeft="24dp">
 
                 <TextView
@@ -347,7 +346,7 @@
 
             <TextView
                 android:id="@+id/tiptitle5"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/symptombox3"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -355,7 +354,7 @@
                 android:layout_marginTop="28dp"
                 android:text="@string/tiptitle5"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -381,7 +380,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail5"
                 android:visibility="@{viewModel.isclose5 ? View.GONE : View.VISIBLE}"
@@ -396,22 +395,22 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/divider3"
                 android:orientation="vertical"
                 />
 
             <TextView
                 android:id="@+id/tiptitle6"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/divider5"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/tiptitle6"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -437,7 +436,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail6"
                 android:visibility="@{viewModel.isclose6 ? View.GONE : View.VISIBLE}"
@@ -452,22 +451,22 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/divider3"
                 android:orientation="vertical"
                 />
 
             <TextView
                 android:id="@+id/tiptitle7"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/divider6"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/tiptitle7"
                 android:fontFamily="@font/pretendard_semibold"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/questiontitle"
                 />
             <ImageView
@@ -493,7 +492,7 @@
                 android:layout_marginTop="24dp"
                 android:textColor="@color/Tabunselected"
                 android:lineSpacingExtra="2sp"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/pretendard_medium"
                 android:text="@string/tipdetail7"
                 android:visibility="@{viewModel.isclose7 ? View.GONE : View.VISIBLE}"
@@ -510,6 +509,7 @@
                 android:background="@drawable/referencebox"
                 android:layout_marginRight="24dp"
                 android:layout_marginLeft="24dp"
+                android:paddingVertical="10dp"
                 android:layout_marginTop="48dp"
                 android:layout_marginBottom="80dp">
 
@@ -519,8 +519,7 @@
                     android:text="@string/reference3"
                     android:textColor="@color/reference1"
                     android:fontFamily="@font/pretendard_medium"
-                    android:textSize="13sp"
-                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="16dp"
                     />
 
@@ -530,12 +529,10 @@
                     android:text="@string/reference4"
                     android:textColor="@color/questiontitle"
                     android:fontFamily="@font/pretendard_medium"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:layout_marginTop="3dp"
                     android:layout_marginLeft="16dp"
                     />
-
-
 
             </LinearLayout>
 
