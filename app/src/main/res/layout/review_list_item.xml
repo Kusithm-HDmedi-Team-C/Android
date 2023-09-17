@@ -172,7 +172,6 @@
             android:layout_marginLeft="24dp"
             android:layout_marginBottom="23dp"
             android:layout_marginRight="16dp"
-            android:layout_gravity="center"
             >
             <TextView
             android:layout_width="wrap_content"
