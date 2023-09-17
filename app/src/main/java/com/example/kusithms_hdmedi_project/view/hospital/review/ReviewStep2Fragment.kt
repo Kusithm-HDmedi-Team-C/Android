@@ -120,7 +120,9 @@ class ReviewStep2Fragment : Fragment() {
             holder.itemView.setOnClickListener {
                 if (touchStatus[position]) {
                     selectDiagnosisCategory.remove(enumlist[position])
-                    viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(examinations = selectDiagnosisCategory) }
+                    val list = mutableListOf<String>()
+                    list.addAll(selectDiagnosisCategory)
+                    viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(examinations = list) }
                     touchStatus[position] = false
 
                     tvCategory.setTextColor(ContextCompat.getColor(requireContext(), R.color.Tabunselected))
@@ -128,7 +130,9 @@ class ReviewStep2Fragment : Fragment() {
                     ivChecked.setImageResource(R.drawable.ic_check_off)
                 } else {
                     selectDiagnosisCategory.add(enumlist[position])
-                    viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(examinations = selectDiagnosisCategory) }
+                    val list = mutableListOf<String>()
+                    list.addAll(selectDiagnosisCategory)
+                    viewmodel.writeReviewBody.update { viewmodel.writeReviewBody.value.copy(examinations = list) }
                     touchStatus[position] = true
 
                     when (position) {
