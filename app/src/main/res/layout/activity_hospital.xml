@@ -108,11 +108,8 @@
         app:layout_constraintTop_toBottomOf="@+id/searchbox"
         android:layout_marginRight="24dp"
         android:layout_marginTop="12dp"
+        style="@style/dropdownStyle"
         android:background="@drawable/optionmenu"
-        android:paddingLeft="12dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:paddingRight="22dp"
         android:forceHasOverlappingRendering="false" />
     
     <androidx.recyclerview.widget.RecyclerView

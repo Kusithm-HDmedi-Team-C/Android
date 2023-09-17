@@ -46,6 +46,7 @@
                         android:textSize="20sp"
                         android:lineHeight="28dp"
                         android:layout_marginLeft="24dp"
+                        android:layout_marginTop="24dp"
                         />
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/container"
@@ -84,32 +85,39 @@
                             android:fontFamily="@font/pretendard_bold"
                             android:layout_marginTop="27dp"
                             />
-                        <ImageView
-                            android:id="@+id/main_character"
-                            android:layout_width="156dp"
-                            android:layout_height="156dp"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            android:src="@{viewModel.iswarning ? @drawable/main_sad : @drawable/main_nice}"
-                            android:layout_marginRight="6dp"
-                            android:layout_marginTop="2dp"
-                            />
-                        <SeekBar
-                            android:id="@+id/seekbar"
-                            android:layout_width="94dp"
-                            android:layout_height="14dp"
-                            app:layout_constraintTop_toBottomOf="@id/main_character"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:layout_marginRight="25dp"
-                            android:max="54"
-                            android:thumb="@drawable/seekbarthumb"
-                            android:background="@{viewModel.iswarning ? @drawable/seekbarred : @drawable/seekbarblue}"
-                            android:splitTrack="false"
-                            android:progress="@{viewModel.totalscore}"
-                            android:progressDrawable="@drawable/transparent_progress"
-                            android:saveEnabled="false"
-                            android:focusableInTouchMode="false"
-                            />
+                            app:layout_constraintBottom_toBottomOf="@+id/divider"
+                            android:gravity="center"
+                            >
+
+                            <ImageView
+                                android:id="@+id/main_character"
+                                android:layout_width="156dp"
+                                android:layout_height="156dp"
+                                android:layout_marginTop="2dp"
+                                android:src="@drawable/main_sad" />
+
+                            <SeekBar
+                                android:id="@+id/seekbar"
+                                android:layout_width="94dp"
+                                android:layout_height="14dp"
+                                android:max="54"
+                                android:thumb="@drawable/seekbarthumb"
+                                android:background="@drawable/seekbarblue"
+                                android:splitTrack="false"
+                                android:progress="@{viewModel.totalscore}"
+                                android:progressDrawable="@drawable/transparent_progress"
+                                android:saveEnabled="false"
+                                android:focusableInTouchMode="false"
+                                android:layout_gravity="center"
+                                />
+                        </LinearLayout>
+
                         <TextView
                             android:id="@+id/fullscore"
                             android:layout_width="wrap_content"
@@ -171,15 +179,16 @@
                                 android:text="@string/uncareful_score"
                                 android:fontFamily="@font/pretendard_medium"
                                 android:textSize="17sp"
+                                android:includeFontPadding="false"
                                 />
 
                             <ImageView
                                 android:id="@+id/mini_description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="3dp"
-                                android:src="@drawable/snow"
-                                android:paddingTop="3dp"
+                                android:layout_marginLeft="7dp"
+                                android:src="@drawable/curious"
+                                android:layout_gravity="center"
                                 />
                             <View
                                 android:layout_width="0dp"
@@ -203,6 +212,7 @@
                                 android:text="점"
                                 android:textColor="@color/resultscore"
                                 android:layout_marginRight="24.69dp"
+                                android:includeFontPadding="false"
                                 />
 
 
@@ -230,6 +240,15 @@
                                 android:text="@string/activity_score"
                                 android:fontFamily="@font/pretendard_medium"
                                 android:textSize="17sp"
+                                android:includeFontPadding="false"
+                                />
+                            <ImageView
+                                android:id="@+id/mini_description2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:src="@drawable/curious"
+                                android:layout_gravity="center"
                                 />
 
                             <View
@@ -254,6 +273,7 @@
                                 android:text="점"
                                 android:textColor="@color/resultscore"
                                 android:layout_marginRight="24.69dp"
+                                android:includeFontPadding="false"
                                 />
 
                         </LinearLayout>

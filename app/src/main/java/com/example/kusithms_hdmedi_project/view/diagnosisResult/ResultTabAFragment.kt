@@ -69,8 +69,8 @@ class ResultTabAFragment : Fragment() {
         val wes = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         val storebtn = binding.storebtn
         val scrollview = binding.myscroll
-        val minidot = binding.miniDescription
-        minidot.getLocationOnScreen(viewModel.location)
+        val container = binding.container
+        container.getLocationOnScreen(viewModel.location)
         val x = viewModel.location[0]
         val y = viewModel.location[1]
 
@@ -95,7 +95,7 @@ class ResultTabAFragment : Fragment() {
         }
         
         //미니 설명창
-        minidot.setOnClickListener{
+        container.setOnClickListener{
             val dialogFragment = MiniFragment()
             dialogFragment.show(parentFragmentManager,"tag" )
         }

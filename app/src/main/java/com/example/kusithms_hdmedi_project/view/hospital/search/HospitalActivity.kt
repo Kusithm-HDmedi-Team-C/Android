@@ -14,6 +14,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,7 +54,9 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
 
         val backbtn = binding.backbtn
         val searchbox = binding.searchbox
-        var current = 0
+        //var current = 0
+        val spinner = binding.menu
+
 
         backbtn.setOnClickListener{
             onBackPressed()
@@ -131,70 +134,70 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
             }
         })
 
+        val scrollListener = object :RecyclerView.OnScrollListener()
+        {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val totalItemCount = layoutManager.itemCount
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                if(totalItemCount <= lastVisibleItem+2)
+                {
+                    when(spinner.selectedItemPosition){
+                        0 -> viewModel.getHospitalApiResponse("averageRating", viewModel.currentPage)
+                        1 -> viewModel.getHospitalApiResponse("numberOfReviews", viewModel.currentPage)
+                    }
+                }
+            }
+        }
+
 
 
         val arrayList=ArrayList<String>()
         arrayList.add("만족도 순")
         arrayList.add("후기 많은 순")
-        val spinner = binding.menu
-        val adapter = ArrayAdapter(this, R.layout.spinner_dropdown,arrayList)
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown)
-        spinner.adapter = adapter
+        spinner.adapter = SpinnerAdapter(this, R.layout.item_spinner_option,arrayList)
+//        val adapter = ArrayAdapter(this, R.layout.spinner_dropdown,arrayList)
+//        adapter.setDropDownViewResource(R.layout.spinner_dropdown)
+//        spinner.adapter = adapter
+
         spinner.post{
-            spinner.dropDownHorizontalOffset = spinner.height
+            spinner.dropDownVerticalOffset = spinner.height
         }
         spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 //val selectedItem = p0?.getItemAtPosition(p2).toString()
+
                 when(position){
-                     0 ->
-                     {
+                     0 -> {
                          //만족도 순 정렬 api호출
-                         viewModel.getHospitalApiResponse("averageRating",current)
-                         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                                 super.onScrolled(recyclerView, dx, dy)
+                         viewModel.setnulldata()
+                         viewModel.currentPage = 0
+                         viewModel.getHospitalApiResponse("averageRating",viewModel.currentPage)
+                         //hospitalAdapter.updateSearchList(viewModel.hospitalData.value!!)
+                         Log.e("91","${viewModel.hospitalData.value}")}
 
-                                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                                 val totalItemCount = layoutManager.itemCount
-                                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                                 if(totalItemCount <= lastVisibleItem+2)
-                                 {
-                                     current +=1
-                                     viewModel.getHospitalApiResponse("averageRating",current)
-                                 }
-                             }
-                         })
-                     }
                     1->
-                    {
-                        //후기 많은 순 api호출
-                        viewModel.getHospitalApiResponse("numberOfReviews",current)
-                        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                                super.onScrolled(recyclerView, dx, dy)
-
-                                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                                val totalItemCount = layoutManager.itemCount
-                                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                                if(totalItemCount <= lastVisibleItem+2)
-                                {
-                                    current +=1
-                                    viewModel.getHospitalApiResponse("numberOfReviews",current)
-                                }
-                            }
-                        })
+                    {//후기 많은 순 api호출
+                        viewModel.setnulldata()
+                        viewModel.currentPage = 0
+                        viewModel.getHospitalApiResponse("numberOfReviews",viewModel.currentPage)
+                        //hospitalAdapter.updateSearchList(viewModel.hospitalData.value!!)
+                        Log.e("91","${viewModel.hospitalData.value}")
                     }
                 }
+                (spinner.adapter as SpinnerAdapter).selectedPosition = position
+                (spinner.adapter as SpinnerAdapter).notifyDataSetChanged()
+                recyclerView.addOnScrollListener(scrollListener)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-
+                viewModel.getHospitalApiResponse("averageRating",0)
             }
         }
 
         //api호출
-        viewModel.getHospitalApiResponse("averageRating",0)
+        //viewModel.getHospitalApiResponse("averageRating",0)
 
         var hospitalDataObserver: Observer<List<Hospitals>>?= null
         var nameofHospitalDataObserver: Observer<List<Hospitals>>?= null
@@ -222,7 +225,6 @@ class HospitalActivity : AppCompatActivity(),onDetailClickListener {
         recyclerView.adapter = hospitalAdapter
 
     }
-
 
 
 

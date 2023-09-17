@@ -33,4 +33,5 @@
     <color name="category_red_bg">#FFC0C0</color>
     <color name="category_blue_text">#735EF1</color>
     <color name="category_blue_bg">#D1CAFF</color>
+    <color name="newbg">#D1F4F6</color>
 </resources>

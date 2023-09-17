@@ -42,6 +42,11 @@ class HospitalSearchViewModel: ViewModel() {
     //private val _hospitalData = MutableLiveData<List<Hospital>>()
     private val _hospitalData = MutableLiveData<List<Hospitals>>()
     val hospitalData : LiveData<List<Hospitals>> = _hospitalData
+
+    fun setnulldata()
+    {
+        _hospitalData.value= emptyList()
+    }
     var hasNextPage = true
 
     //이름 검색시 해당 item만 보이게하기
@@ -95,6 +100,7 @@ class HospitalSearchViewModel: ViewModel() {
 //    {
 //        _reviewClick.value = !(reviewClick.value ?: false)
 //    }
+    var currentPage:Int = 0
 
     //api요청 보내기
     fun getHospitalApiResponse(searchType:String, current:Int)
@@ -112,7 +118,7 @@ class HospitalSearchViewModel: ViewModel() {
                     val currentHospitals = _hospitalData.value ?: emptyList()
                     val combinedHospitals =  currentHospitals + newHospitals
                     _hospitalData.postValue(combinedHospitals)
-                    //current+=1
+                    currentPage+=1
                 }
                 else{
                     Log.e("fail","api 요청에 실패했습니다")
