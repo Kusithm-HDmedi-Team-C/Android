@@ -62,24 +62,26 @@ class HospitalSearchViewModel: ViewModel() {
     private val _detailHospital = MutableLiveData<List<HospitalDetailData>>()
     val detailHospital : LiveData<List<HospitalDetailData>> = _detailHospital
 
-    //리뷰 박스 visible용
-//    private val _reviewClick = MutableLiveData<Boolean>()
-//    val reviewClick : LiveData<Boolean> = _reviewClick
 
 
     //병원 리뷰 저장용
     private val _reviewData = MutableLiveData<List<Review>>()
     val reviewData:LiveData<List<Review>> = _reviewData
 
+    val itemChangedIndex: MutableLiveData<Int> = MutableLiveData()
+
     //리뷰 visible용
     fun reviewVisibility(index:Int)
     {
         val current = _reviewData.value ?: return
+
         if(index in current.indices)
         {
             val review =current[index]
             review.isVisible = !review.isVisible
-            _reviewData.value = current
+            //_reviewData.value = current
+            _reviewData.value = ArrayList(current)
+            itemChangedIndex.value = index
         }
 
     }

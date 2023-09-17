@@ -1,5 +1,6 @@
 package com.example.kusithms_hdmedi_project.view.hospital.search
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,21 +45,25 @@ class ReviewAdapter(var reviews : List<Review>, private val viewModel:HospitalSe
         holder.rating.rating = review.rating.toFloat()
         holder.reviewContent.text = review.content
         holder.mainDoctor.text = review.doctor
-        holder.reviewPrice.text = review.price.toString()
+        val won:String="원"
+        var str = review.price.toString()
+        holder.reviewPrice.text = str + "" + won
 
         holder.reviewInfo.visibility = if(review.isVisible) View.VISIBLE else View.GONE
 
         holder.reviewContent.setOnClickListener{
             viewModel.reviewVisibility(position)
+            Log.e("fuck","${review.isVisible}")
         }
-        for(i in 0 until review.examinations.size)
-        {
-            holder.exam1.visibility = if(review.examinations[i] == "CAT") View.VISIBLE else View.GONE
-            holder.exam2.visibility = if(review.examinations[i] == "FULL_BATTERY") View.VISIBLE else View.GONE
-            holder.exam3.visibility = if(review.examinations[i] == "EEG") View.VISIBLE else View.GONE
-            holder.exam4.visibility = if(review.examinations[i] == "COUNSEL") View.VISIBLE else View.GONE
-            holder.exam5.visibility = if(review.examinations[i] == "MEDICINE") View.VISIBLE else View.GONE
-            holder.exam6.visibility = if(review.examinations[i] == "ETC") View.VISIBLE else View.GONE
+        for (exam in review.examinations) {
+            when (exam) {
+                "CAT" -> holder.exam1.visibility = View.VISIBLE
+                "FULL_BATTERY" -> holder.exam2.visibility = View.VISIBLE
+                "EEG" -> holder.exam3.visibility = View.VISIBLE
+                "COUNSEL" -> holder.exam4.visibility = View.VISIBLE
+                "MEDICINE" -> holder.exam5.visibility = View.VISIBLE
+                "ETC" -> holder.exam6.visibility = View.VISIBLE
+            }
         }
     }
 

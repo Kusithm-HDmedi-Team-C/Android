@@ -27,6 +27,7 @@ class HospitalDetailFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_hospital_detail, container, false)
@@ -38,6 +39,21 @@ class HospitalDetailFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView = binding.reviewRecycler
+
+        val adapter = ReviewAdapter(emptyList(),viewModel)
+        recyclerView.adapter = adapter
+
+        viewModel.reviewData.observe(viewLifecycleOwner)
+        {
+                reviews->
+            adapter.reviews = reviews
+            adapter.notifyDataSetChanged()
+        }
+        viewModel.itemChangedIndex.observe(viewLifecycleOwner) { index ->
+            adapter.notifyItemChanged(index)
+        }
+
 
 
 
@@ -68,20 +84,13 @@ class HospitalDetailFragment : Fragment(){
 
 
 
-        viewModel.reviewData.observe(viewLifecycleOwner)
-        {
-            reviews->
-            val recyclerView = binding.reviewRecycler
-            val adapter = ReviewAdapter(emptyList(),viewModel)
-            recyclerView.adapter = adapter
-            adapter.reviews = reviews
-            Log.e("err", "${viewModel.reviewData.value}")
-            //recyclerView.itemAnimator = null
-        }
 
 
 
+    }
 
+    override fun onResume() {
+        super.onResume()
     }
 
 

@@ -51,6 +51,8 @@ class SearchListFragment : Fragment(),onHospitalItemClickListener {
             searchRecyclerAdapter = searchRecyclerAdapter(hospitals,this)
             recyclerView.adapter = searchRecyclerAdapter
         }
+        val adapter = searchRecyclerAdapter(emptyList(), this)
+        recyclerView.adapter = adapter
 
     }
     override fun onHospitalItemClicked(hospitalName:String)
@@ -60,6 +62,9 @@ class SearchListFragment : Fragment(),onHospitalItemClickListener {
         viewModel.changeSearchState()
         //뒤로가기
         parentFragmentManager.popBackStack()
+    }
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onDestroy() {
