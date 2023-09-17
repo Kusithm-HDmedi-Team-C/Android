@@ -68,31 +68,6 @@ class DiagnosisPrevFragment: Fragment() {
 
     }
 
-    /** 체크할 때 마다 다음단계의 View Visible, 애니메이션 처리 **/
-//    private fun setupVisibleView() {
-//
-//        binding.llTop.setOnClickListener {
-//
-//            binding.ivCheck1.isClickable = false
-//        }
-//
-//        binding.ivCheck2.setOnClickListener {
-//            binding.llChat3.apply {
-//                startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-//                visibility = View.VISIBLE
-//            }
-//            binding.ivCheck2.isClickable = false
-//        }
-//
-//        binding.ivCheck3.setOnClickListener {
-//            binding.tvStart.apply {
-//                startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in))
-//                visibility = View.VISIBLE
-//            }
-//            binding.ivCheck3.isClickable = false
-//        }
-//    }
-
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
