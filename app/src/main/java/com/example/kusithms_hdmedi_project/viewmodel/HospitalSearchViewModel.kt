@@ -42,6 +42,11 @@ class HospitalSearchViewModel: ViewModel() {
     //private val _hospitalData = MutableLiveData<List<Hospital>>()
     private val _hospitalData = MutableLiveData<List<Hospitals>>()
     val hospitalData : LiveData<List<Hospitals>> = _hospitalData
+
+    fun setnulldata()
+    {
+        _hospitalData.value= emptyList()
+    }
     var hasNextPage = true
 
     //이름 검색시 해당 item만 보이게하기
@@ -58,13 +63,26 @@ class HospitalSearchViewModel: ViewModel() {
     val detailHospital : LiveData<List<HospitalDetailData>> = _detailHospital
 
     //리뷰 박스 visible용
-    private val _reviewClick = MutableLiveData<Boolean>()
-    val reviewClick : LiveData<Boolean> = _reviewClick
+//    private val _reviewClick = MutableLiveData<Boolean>()
+//    val reviewClick : LiveData<Boolean> = _reviewClick
 
 
     //병원 리뷰 저장용
     private val _reviewData = MutableLiveData<List<Review>>()
     val reviewData:LiveData<List<Review>> = _reviewData
+
+    //리뷰 visible용
+    fun reviewVisibility(index:Int)
+    {
+        val current = _reviewData.value ?: return
+        if(index in current.indices)
+        {
+            val review =current[index]
+            review.isVisible = !review.isVisible
+            _reviewData.value = current
+        }
+
+    }
 
     fun changeSearchState() {
         _isresultOfSearch.value = !(isresultOfSearch.value ?: false)
@@ -75,13 +93,14 @@ class HospitalSearchViewModel: ViewModel() {
     init{
         _isFocus.postValue(false)
         _isresultOfSearch.postValue(false)
-        _reviewClick.postValue(false)
+        //_reviewClick.postValue(false)
     }
 
-    fun updateReviewClick()
-    {
-        _reviewClick.value = !(reviewClick.value ?: false)
-    }
+//    fun updateReviewClick()
+//    {
+//        _reviewClick.value = !(reviewClick.value ?: false)
+//    }
+    var currentPage:Int = 0
 
     //api요청 보내기
     fun getHospitalApiResponse(searchType:String, current:Int)
@@ -99,7 +118,7 @@ class HospitalSearchViewModel: ViewModel() {
                     val currentHospitals = _hospitalData.value ?: emptyList()
                     val combinedHospitals =  currentHospitals + newHospitals
                     _hospitalData.postValue(combinedHospitals)
-                    //current+=1
+                    currentPage+=1
                 }
                 else{
                     Log.e("fail","api 요청에 실패했습니다")

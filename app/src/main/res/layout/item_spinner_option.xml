@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:id="@+id/itemlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="만족도 순"
+        android:textColor="@color/sub_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/pretendard_medium"
+        android:textSize="13sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="30dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

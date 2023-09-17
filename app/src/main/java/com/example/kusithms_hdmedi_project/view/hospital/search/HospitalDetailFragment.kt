@@ -14,7 +14,7 @@ import com.example.kusithms_hdmedi_project.R
 import com.example.kusithms_hdmedi_project.databinding.FragmentHospitalDetailBinding
 import com.example.kusithms_hdmedi_project.viewmodel.HospitalSearchViewModel
 
-class HospitalDetailFragment : Fragment(),onReviewClickListener {
+class HospitalDetailFragment : Fragment(){
     private var _binding:FragmentHospitalDetailBinding? = null
     private val binding get() = _binding!!
     val viewModel by activityViewModels<HospitalSearchViewModel>()
@@ -65,14 +65,18 @@ class HospitalDetailFragment : Fragment(),onReviewClickListener {
 
         }
 
-         val recyclerView = binding.reviewRecycler
+
+
 
         viewModel.reviewData.observe(viewLifecycleOwner)
         {
             reviews->
-            ReviewAdapter = ReviewAdapter(reviews,this)
-            recyclerView.adapter = ReviewAdapter
+            val recyclerView = binding.reviewRecycler
+            val adapter = ReviewAdapter(emptyList(),viewModel)
+            recyclerView.adapter = adapter
+            adapter.reviews = reviews
             Log.e("err", "${viewModel.reviewData.value}")
+            //recyclerView.itemAnimator = null
         }
 
 
@@ -80,9 +84,6 @@ class HospitalDetailFragment : Fragment(),onReviewClickListener {
 
     }
 
-    override fun onReviewClickListener() {
-        viewModel.updateReviewClick()
-    }
 
 
 }

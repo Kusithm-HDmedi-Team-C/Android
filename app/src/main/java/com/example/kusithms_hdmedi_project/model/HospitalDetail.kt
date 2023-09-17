@@ -17,6 +17,7 @@ data class HospitalDetailData(
     @SerializedName("url") val url: String,
     @SerializedName("mapUrl") val mapUrl: String,
     @SerializedName("telephone") val telephone:String,
+    @SerializedName("numberOfReviews") val numberOfReviews:Int,
     @SerializedName("reviews") val reviews: List<Review>,
     @SerializedName("pageNumber") val pageNumber: Int,
     @SerializedName("count") val count: Int,
@@ -30,6 +31,7 @@ data class Review(
     @SerializedName("doctor") val doctor: String,
     @SerializedName("price") val price: Int,
     @SerializedName("examinations") val examinations: List<String>,
-    @SerializedName("createdAt") val createdAt: String
+    @SerializedName("createdAt") val createdAt: String,
+    var isVisible:Boolean = false
 )
 

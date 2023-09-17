@@ -5,5 +5,10 @@
         <item name="android:textSize">17sp</item>
     </style>
 
+    <style name="dropdownStyle" parent="Widget.AppCompat.Light.ListView.DropDown">
+        <item name="background">@drawable/spinner_option_menu</item>
+        <item name="android:popupBackground">@drawable/spinner_option_menu</item>
+    </style>
+
 
 </resources>
